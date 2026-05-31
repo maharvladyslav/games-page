@@ -15,6 +15,5 @@ export const renderGames = (container, games) => {
     .join("")}     
         </ul>`;
 
-  console.log(markup);
   container.innerHTML = markup;
 };

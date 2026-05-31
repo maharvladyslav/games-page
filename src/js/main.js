@@ -13,4 +13,9 @@ const games = [
 ];
 
 const gamesContainer = document.querySelector("[data-games]");
+const addGameBtn = document.querySelector("[data-controls='add']");
+
 renderGames(gamesContainer, games);
+
+const handleAddGame = () => {};
+addGameBtn.addEventListener("click", handleAddGame);
