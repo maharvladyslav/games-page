@@ -17,5 +17,13 @@ const addGameBtn = document.querySelector("[data-controls='add']");
 
 renderGames(gamesContainer, games);
 
-const handleAddGame = () => {};
+const handleAddGame = () => {
+  const newGame = prompt('Яку гру хочете додати ?').trim()
+  if (newGame){
+games.push(newGame)
+  renderGames(gamesContainer,games)
+  } else {
+    alert('Треба заповнити поле')
+  }
+};
 addGameBtn.addEventListener("click", handleAddGame);
