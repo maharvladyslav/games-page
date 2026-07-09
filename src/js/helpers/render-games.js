@@ -8,7 +8,8 @@ export const renderGames = (container, games) => {
     .map((game) => {
       return `<li class="game-item">
             <article class="game">
-              <h2 class="game-name">${game}</h2>
+            <div class="game-poster"><img class="game-img" src="${game.poster}" alt="Постер до гри: ${game.name}"></div>
+              <h2 class="game-name">${game.name}</h2>
             </article>
           </li>`;
     })
