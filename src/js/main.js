@@ -132,8 +132,19 @@ const resetBtn = document.querySelector("[data-controls='reset']");
 renderGames(gamesContainer, actualGames);
 
 const handleAddGame = () => {
-  const newGame = prompt("Яку гру хочете додати ?").trim();
-  if (newGame) {
+  const gameName = prompt("Ведіть назву гри").trim();
+  const gameTime = Number( prompt("Скільки годин ви вже зиграли в цю гру ?").trim());
+  const gameProcess = confirm("Чи проходите зараз цю гру ?");
+  const gamePoster = prompt("link на зображення ?").trim();
+  if (gameName && gameTime) {
+    const newGame = {
+      id: actualGames.length +1,
+      name: gameName,
+      poster: gamePoster,
+      rating: 0,
+      inProcess: gameProcess,
+      playtime: gameTime,
+    }
     actualGames.push(newGame);
     save(STORAGE_KEY, actualGames);
 
