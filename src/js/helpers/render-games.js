@@ -17,6 +17,9 @@ export const renderGames = (container, games) => {
               <div class="steam-hours-container">
   <span class="hours-text">${game.playtime}</span>
 </div>
+<div class="steam-rating-container">
+  <span class="rating-text">${game.rating}</span>
+</div>
             </article>
           </li>`;
     })

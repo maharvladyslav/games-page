@@ -126,9 +126,11 @@ const games = [
 const STORAGE_KEY = "games";
 const actualGames = load(STORAGE_KEY) || games;
 
+
 const gamesContainer = document.querySelector("[data-games]");
 const addGameBtn = document.querySelector("[data-controls='add']");
 const resetBtn = document.querySelector("[data-controls='reset']");
+const goodGameBtn = document.querySelector("[data-controls='good-game']") 
 renderGames(gamesContainer, actualGames);
 
 const handleAddGame = () => {
@@ -170,10 +172,26 @@ function handleRemoveGame() {
 
 addGameBtn.addEventListener("click", handleAddGame);
 
-const hendleResetGameList = () => {
+const handleResetGameList = () => {
   deleteAllGames(actualGames)
   renderGames(gamesContainer, actualGames)
   save(STORAGE_KEY, actualGames)
 }
 
-resetBtn.addEventListener("click", hendleResetGameList)
+resetBtn.addEventListener("click", handleResetGameList)
+
+const handleShowGoodGames = () => {
+const goodGames = actualGames.filter((game) => game.rating >= 4)
+renderGames(gamesContainer, goodGames)
+}
+
+goodGameBtn.addEventListener("click", handleShowGoodGames)
+
+
+
+
+
+
+
+
+
