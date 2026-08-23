@@ -17,6 +17,7 @@ const actualGames = load(STORAGE_KEY) || games;
 
 const gamesContainer = document.querySelector("[data-games]");
 const addGameBtn = document.querySelector("[data-controls='add']");
+const removeGameBtn = document.querySelector("[data-controls='remove']");
 
 renderGames(gamesContainer, actualGames);
 
@@ -31,4 +32,20 @@ const handleAddGame = () => {
     alert("Треба заповнити поле");
   }
 };
+
+function handleRemoveGame() {
+  const deletGame = prompt("Яку гру хочете видалити ?")
+  const indexDeletGame = actualGames.indexOf(deletGame)
+  if (indexDeletGame === -1) {
+    alert("Такої гри немає")
+  } else {
+    actualGames.splice(indexDeletGame, 1)
+    renderGames(gamesContainer, actualGames)
+    save(STORAGE_KEY, actualGames)
+  }
+
+}
+
+
 addGameBtn.addEventListener("click", handleAddGame);
+removeGameBtn.addEventListener("click", handleRemoveGame);
