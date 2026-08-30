@@ -20,6 +20,9 @@ export const renderGames = (container, games) => {
 <div class="steam-rating-container">
   <span class="rating-text">${game.rating}</span>
 </div>
+<div class="steam-platform-container">
+  <span class="platform-text">${game.platform}</span>
+</div>
             </article>
           </li>`;
     })

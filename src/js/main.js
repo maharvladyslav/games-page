@@ -130,17 +130,18 @@ const actualGames = load(STORAGE_KEY) || games;
 const gamesContainer = document.querySelector("[data-games]");
 const addGameBtn = document.querySelector("[data-controls='add']");
 const resetBtn = document.querySelector("[data-controls='reset']");
-const goodGameBtn = document.querySelector("[data-controls='good-game']") 
+const goodGameBtn = document.querySelector("[data-controls='good-game']")
+const pcGameBtn = document.querySelector("[data-controls='pc-game']")
 renderGames(gamesContainer, actualGames);
 
 const handleAddGame = () => {
   const gameName = prompt("Ведіть назву гри").trim();
-  const gameTime = Number( prompt("Скільки годин ви вже зиграли в цю гру ?").trim());
+  const gameTime = Number(prompt("Скільки годин ви вже зиграли в цю гру ?").trim());
   const gameProcess = confirm("Чи проходите зараз цю гру ?");
   const gamePoster = prompt("link на зображення ?").trim();
   if (gameName && gameTime) {
     const newGame = {
-      id: actualGames.length +1,
+      id: actualGames.length + 1,
       name: gameName,
       poster: gamePoster,
       rating: 0,
@@ -181,11 +182,22 @@ const handleResetGameList = () => {
 resetBtn.addEventListener("click", handleResetGameList)
 
 const handleShowGoodGames = () => {
-const goodGames = actualGames.filter((game) => game.rating >= 4)
-renderGames(gamesContainer, goodGames)
+  const goodGames = actualGames.filter((game) => game.rating >= 4)
+  renderGames(gamesContainer, goodGames)
 }
 
 goodGameBtn.addEventListener("click", handleShowGoodGames)
+
+const handleShowPcGames = () => {
+  const pcGames = actualGames.filter((game) => {
+    if (game.platform) {
+      return game.platform.includes("PC")
+    } else { return false }
+  })
+  renderGames(gamesContainer, pcGames)
+}
+
+pcGameBtn.addEventListener("click", handleShowPcGames)
 
 
 
