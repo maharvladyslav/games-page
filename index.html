@@ -1,47 +1,312 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nexora</title>
-    <link rel="stylesheet" href="./src/css/reset.css" />
-  </head>
-  <body>
-    <header></header>
-    <main>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexora</title>
+  <link rel="icon" type="image/png" href="./src/img/gemini.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/css/reset.css" />
+  <link rel="stylesheet" href="./src/css/main.css" />
+</head>
+
+<body>
+  <aside class="left-sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <div class="brand-logo"><img src="./src/img/gemini.svg" alt="logo"></div>
+        <div class="brand-text">
+          <span class="brand-title">NEXORA</span>
+          <span class="brand-subtitle">Gaming Platform</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button type="button" class="nav-item active">
+          <img class="nav-icon" src="./src/img/home.svg" alt="Главная">
+          <span data-i18n="nav_home">Главная</span>
+        </button>
+
+        <button type="button" class="nav-item">
+          <img class="nav-icon" src="./src/img/gamepad.svg" alt="Библиотека">
+          <span data-i18n="nav_library">Библиотека</span>
+        </button>
+
+        <button type="button" class="nav-item">
+          <img class="nav-icon" src="./src/img/cloud.svg" alt="Облачный гейминг">
+          <span data-i18n="nav_cloud">Облачный гейминг</span>
+        </button>
+
+        <button type="button" class="nav-item">
+          <img class="nav-icon" src="./src/img/download.svg" alt="Загрузки">
+          <span data-i18n="nav_downloads">Загрузки</span>
+        </button>
+
+        <button type="button" class="nav-item">
+          <img class="nav-icon" src="./src/img/font-users.svg" alt="Сообщество">
+          <span data-i18n="nav_community">Сообщество</span>
+        </button>
+
+        <button type="button" class="nav-item">
+          <img class="nav-icon" src="./src/img/comment.svg" alt="Чат">
+          <span data-i18n="nav_chat">Чат</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="settings-menu">
+        <!-- Выпадающее меню языка -->
+        <div class="lang-dropdown-wrapper">
+          <button type="button" class="setting-item lang-dropdown-btn" id="lang-dropdown-btn">
+            <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path
+                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+              </path>
+            </svg>
+            <span><span class="lang-code-text" id="current-lang-code">RU</span> <span id="current-lang-name"
+                data-i18n="lang_name">Русский</span></span>
+          </button>
+
+          <div class="lang-dropdown-menu" id="lang-dropdown-menu">
+            <button type="button" class="lang-option" data-lang="en">
+              <span class="lang-code">GB</span>
+              <span class="lang-title">English</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+
+            <button type="button" class="lang-option" data-lang="ua">
+              <span class="lang-code">UA</span>
+              <span class="lang-title">Українська</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+
+            <button type="button" class="lang-option active" data-lang="ru">
+              <span class="lang-code">RU</span>
+              <span class="lang-title">Русский</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <a href="#" class="setting-item">
+          <span data-i18n="notifications">Уведомления</span>
+          <span class="badge badge-purple">99+</span>
+        </a>
+        <a href="#" class="setting-item">
+          <span data-i18n="appearance">Внешний вид</span>
+        </a>
+        <a href="#" class="setting-item">
+          <span data-i18n="settings">Настройки</span>
+        </a>
+      </div>
+
+      <div class="user-profile">
+        <div class="user-avatar-container">
+          <div class="user-avatar">VS</div>
+        </div>
+        <div class="user-info">
+          <span class="user-name">VideoSlayer</span>
+          <span class="user-status status-online"><span class="status-dot"></span> <span
+              data-i18n="status_online">Онлайн</span></span>
+        </div>
+        <div class="user-arrow">›</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-wrapper">
+    <header class="main-header">
+      <h1 class="page-title" data-i18n="main_title">ГЛАВНАЯ</h1>
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" placeholder="Поиск..." class="search-input" data-i18n-placeholder="search_placeholder">
+      </div>
+    </header>
+
+    <div class="content-container">
+    </div>
+  </main>
+
+  <!-- <main class="main-content">
       <div class="controls">
         <ul class="controls-list">
           <li class="controls-item">
-            <button class="constrols-btn" data-controls="add">Додати</button>
+            <button class="constrols-btn btn-primary" data-controls="add">
+              <span></span> Додати
+            </button>
           </li>
           <li class="controls-item">
-            <button class="constrols-btn" data-controls="reset">
-              Видалити всі ігри
+            <button class="constrols-btn btn-danger" data-controls="reset">
+              <span></span> Видалити всі ігри
             </button>
           </li>
           <li class="controls-item">
             <button class="constrols-btn" data-controls="good-game">
-              Показати круті ігри
+              <span></span> Показати круті ігри
             </button>
           </li>
           <li class="controls-item">
             <button class="constrols-btn" data-controls="pc-game">
-              Ігри на пк
+              <span></span> Ігри на пк
+            </button>
+          </li>
+          <li class="controls-item">
+            <button class="controls-btn" data-controls="all-hour">
+              <span></span> Показати усі зіграни години
             </button>
           </li>
         </ul>
         <ul class="sort-list" data-sort>
           <li class="sort-item">
             <button class="sort-btn" data-sort-type="name-arc">
-              Від а до я
+              <span></span> Від а до я
+            </button>
+          </li>
+          <li class="sort-item">
+            <button class="sort-btn" data-sort-type="hour-arc">
+              <span></span> Від меньших годин до більших
             </button>
           </li>
         </ul>
       </div>
       <div class="game-container" data-games></div>
-    </main>
-    <footer></footer>
-    <script type="module" src="./src/js/main.js"></script>
-    <!-- <script type="module" src="./src/js/sort-game.js"></script> -->
-  </body>
+    </main>-->
+
+  <aside class="right-sidebar">
+    <div class="chat-section-header">
+      <span class="chat-title" data-i18n="chat_header">ЧАТ</span>
+    </div>
+
+    <div class="right-search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" placeholder="Поиск..." class="search-input" data-i18n-placeholder="search_placeholder">
+    </div>
+
+    <div class="right-scroll-area">
+      <!-- MY HUBS -->
+      <div class="chat-group">
+        <div class="group-title" data-i18n="group_my_hubs">МОИ ХАБЫ</div>
+        <div class="hub-list">
+          <a href="#" class="hub-item active">
+            <div class="hub-icon hub-p">N</div>
+            <span class="hub-name">Nexora Community</span>
+            <span class="hub-count count-p">12</span>
+          </a>
+          <a href="#" class="hub-item">
+            <div class="hub-icon hub-r">S</div>
+            <span class="hub-name">Souls Legion</span>
+            <span class="hub-count count-r">5</span>
+          </a>
+          <a href="#" class="hub-item">
+            <div class="hub-icon hub-c">C</div>
+            <span class="hub-name">Cyber Division</span>
+          </a>
+          <a href="#" class="hub-item">
+            <div class="hub-icon hub-o">C</div>
+            <span class="hub-name">Chill Lounge</span>
+            <span class="hub-count count-p">2</span>
+          </a>
+          <a href="#" class="hub-item">
+            <div class="hub-icon hub-g">F</div>
+            <span class="hub-name">FPS Factory</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ZONES -->
+      <div class="chat-group">
+        <div class="group-title" data-i18n="group_zones">ЗОНЫ</div>
+        <div class="zone-list">
+          <a href="#" class="zone-item">
+            <img src="./src/img/bolt.svg" alt="bolt" class="zone-icon">
+            <span data-i18n="zone_feed">Лента</span>
+          </a>
+          <a href="#" class="zone-item">
+            <img src="./src/img/chst.svg" alt="chst" class="zone-icon">
+            <span data-i18n="zone_general">Общий</span>
+          </a>
+          <a href="#" class="zone-item">
+            <img src="./src/img/trophy.svg" alt="trophy" class="zone-icon">
+            <span data-i18n="zone_drops">Дропы</span>
+          </a>
+          <a href="#" class="zone-item">
+            <img src="./src/img/users.svg" alt="users" class="zone-icon">
+            <span data-i18n="zone_squad">Сквад</span>
+          </a>
+          <a href="#" class="zone-item">
+            <img src="./src/img/interrogation.svg" alt="interrogation" class="zone-icon">
+            <span data-i18n="zone_help">Помощь</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ONLINE -->
+      <div class="chat-group">
+        <div class="group-title"><span data-i18n="group_online">ОНЛАЙН</span> — 3</div>
+        <div class="online-list">
+          <div class="user-row">
+            <div class="avatar-wrapper">
+              <div class="friend-avatar av-1 sm">P1</div>
+              <span class="status-indicator online"></span>
+            </div>
+            <div class="user-row-info">
+              <span class="user-row-name">PlayerOne</span>
+              <span class="user-row-game text-cyan">Counter-Strike 2</span>
+            </div>
+          </div>
+
+          <div class="user-row">
+            <div class="avatar-wrapper">
+              <div class="friend-avatar av-2 sm">DN</div>
+              <span class="status-indicator online"></span>
+            </div>
+            <div class="user-row-info">
+              <span class="user-row-name">DarkNinja_99</span>
+              <span class="user-row-game text-red">Elden Ring</span>
+            </div>
+          </div>
+
+          <div class="user-row">
+            <div class="avatar-wrapper">
+              <div class="friend-avatar av-3 sm">Sh</div>
+              <span class="status-indicator online"></span>
+            </div>
+            <div class="user-row-info">
+              <span class="user-row-name">Shadow</span>
+              <span class="user-row-game text-cyan">Dota 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-footer">
+      <input type="text" placeholder="#общий..." class="chat-bottom-input"
+        data-i18n-placeholder="chat_input_placeholder">
+    </div>
+
+  </aside>
+
+  <!-- <script type="module" src="./src/js/main.js"></script>
+  <script type="module" src="./src/js/sort-game.js"></script> -->
+  <script type="module" src="./src/js/helpers/lang.js"></script>
+</body>
+
 </html>

@@ -158,6 +158,8 @@ const addGameBtn = document.querySelector("[data-controls='add']");
 const resetBtn = document.querySelector("[data-controls='reset']");
 const goodGameBtn = document.querySelector("[data-controls='good-game']");
 const pcGameBtn = document.querySelector("[data-controls='pc-game']");
+const allHourBtn = document.querySelector("[data-controls='all-hour']");
+
 renderGames(gamesContainer, actualGames);
 
 const handleAddGame = () => {
@@ -231,10 +233,50 @@ const sortList = document.querySelector("[data-sort]");
 
 const handleSortGames = (event) => {
   const target = event.target;
-  console.log(target);
   if (target.dataset.sortType === "name-arc") {
-    console.log("sort by name");
-  }
-};
+    const sortBuNameGame = [...actualGames].sort((a,b) =>
+      a.name.localeCompare(b.name))
+    renderGames(gamesContainer, sortBuNameGame);
+  } 
 
+  if (target.dataset.sortType === "hour-arc") {
+    
+  }
+  
+};
 sortList.addEventListener("click", handleSortGames);
+
+const handlShowHousGames = () => {
+const allHours = actualGames.reduce((acc, game) => acc + game.playtime, 0)
+alert(`Загальний час в іграх: ${allHours}` )
+}
+
+allHourBtn.addEventListener("click", handlShowHousGames);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
