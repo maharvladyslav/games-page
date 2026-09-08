@@ -219,3 +219,115 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnList = document.getElementById('viewList');
+    const btnGrid = document.getElementById('viewGrid');
+
+    if (btnList && btnGrid) {
+        btnList.addEventListener('click', () => {
+            btnList.classList.add('active');
+            btnGrid.classList.remove('active');
+        });
+
+        btnGrid.addEventListener('click', () => {
+            btnGrid.classList.add('active');
+            btnList.classList.remove('active');
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('.sort-dropdown-wrapper');
+    const btn = document.getElementById('sortDropdownBtn');
+    const menu = document.getElementById('sortDropdownMenu');
+    const titleSpan = document.getElementById('currentSortTitle');
+    const options = menu.querySelectorAll('.sort-option');
+
+    if (wrapper && btn) {
+        // Открытие / закрытие по клику на кнопку
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            wrapper.classList.toggle('open');
+        });
+
+        // Выбор элемента
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                options.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                titleSpan.textContent = option.textContent;
+                wrapper.classList.remove('open');
+            });
+        });
+
+        // Закрытие при клике в любую другую область экрана
+        document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+                wrapper.classList.remove('open');
+            }
+        });
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const appearanceBtn = document.getElementById('appearanceBtn');
+    const themePanel = document.getElementById('themePanel');
+    const closeThemePanel = document.getElementById('closeThemePanel');
+    const themeCards = document.querySelectorAll('.theme-card');
+    const resetThemeBtn = document.getElementById('resetThemeBtn');
+
+    // 1. Загрузка сохраненной темы
+    const savedTheme = localStorage.getItem('nexora-theme') || 'nexora';
+    applyTheme(savedTheme);
+
+    // 2. Открытие / Закрытие панели
+    if (appearanceBtn) {
+        appearanceBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            themePanel.classList.add('open');
+        });
+    }
+
+    if (closeThemePanel) {
+        closeThemePanel.addEventListener('click', () => {
+            themePanel.classList.remove('open');
+        });
+    }
+
+    // 3. Выбор темы
+    themeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const themeName = card.getAttribute('data-theme');
+            applyTheme(themeName);
+        });
+    });
+
+    // 4. Сброс темы
+    if (resetThemeBtn) {
+        resetThemeBtn.addEventListener('click', () => {
+            applyTheme('nexora');
+        });
+    }
+
+    // Функция применения темы
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('nexora-theme', theme);
+
+        themeCards.forEach(card => {
+            if (card.getAttribute('data-theme') === theme) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+    }
+});
+
+visualSidebar.classList.toggle('active'); // или classList.remove('open')
+

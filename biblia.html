@@ -28,35 +28,35 @@
             <nav class="nav-menu">
                 <a href="./index.html">
                     <button type="button" class="nav-item">
-                        <img class="nav-icon" src="./src/img/home.svg" alt="Home">
+                        <img class="nav-icon purple-icon" src="./src/img/home.svg" alt="Home">
                         <span data-i18n="nav_home">Главная</span>
                     </button>
                 </a>
 
                 <a href="./biblia.html">
                     <button type="button" class="nav-item active">
-                        <img class="nav-icon" src="./src/img/gamepad.svg" alt="Library">
+                        <img class="nav-icon purple-icon" src="./src/img/gamepad.svg" alt="Library">
                         <span data-i18n="nav_library">Библиотека</span>
                     </button>
                 </a>
 
                 <button type="button" class="nav-item">
-                    <img class="nav-icon" src="./src/img/cloud.svg" alt="Облачный гейминг">
+                    <img class="nav-icon purple-icon" src="./src/img/cloud.svg" alt="Облачный гейминг">
                     <span data-i18n="nav_cloud">Облачный гейминг</span>
                 </button>
 
                 <button type="button" class="nav-item">
-                    <img class="nav-icon" src="./src/img/download.svg" alt="Загрузки">
+                    <img class="nav-icon purple-icon" src="./src/img/download.svg" alt="Загрузки">
                     <span data-i18n="nav_downloads">Загрузки</span>
                 </button>
 
                 <button type="button" class="nav-item">
-                    <img class="nav-icon" src="./src/img/font-users.svg" alt="Сообщество">
+                    <img class="nav-icon purple-icon" src="./src/img/font-users.svg" alt="Сообщество">
                     <span data-i18n="nav_community">Сообщество</span>
                 </button>
 
                 <button type="button" class="nav-item">
-                    <img class="nav-icon" src="./src/img/comment.svg" alt="Чат">
+                    <img class="nav-icon purple-icon" src="./src/img/comment.svg" alt="Чат">
                     <span data-i18n="nav_chat">Чат</span>
                 </button>
             </nav>
@@ -69,10 +69,11 @@
                     <button type="button" class="setting-item lang-dropdown-btn" id="lang-dropdown-btn">
                         <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z">
+                            </path>
                         </svg>
                         <span>
-                            <span class="lang-code-text" id="current-lang-code">RU</span> 
+                            <span class="lang-code-text" id="current-lang-code">RU</span>
                             <span id="current-lang-name">Русский</span>
                         </span>
                     </button>
@@ -111,7 +112,8 @@
                 </div>
                 <div class="user-info">
                     <span class="user-name">VideoSlayer</span>
-                    <span class="user-status status-online"><span class="status-dot"></span> <span data-i18n="status_online">Онлайн</span></span>
+                    <span class="user-status status-online"><span class="status-dot"></span> <span
+                            data-i18n="status_online">Онлайн</span></span>
                 </div>
                 <div class="user-arrow">›</div>
             </div>
@@ -127,7 +129,8 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" placeholder="Поиск..." class="search-input" data-i18n-placeholder="search_placeholder">
+                <input type="text" placeholder="Поиск..." class="search-input"
+                    data-i18n-placeholder="search_placeholder">
             </div>
         </header>
 
@@ -141,7 +144,8 @@
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" placeholder="Поиск игр..." class="subsidebar-search-input" data-i18n-placeholder="search_games_placeholder">
+                        <input type="text" placeholder="Поиск игр..." class="subsidebar-search-input"
+                            data-i18n-placeholder="search_games_placeholder">
                     </div>
 
                     <!-- Навигация библиотеки -->
@@ -162,68 +166,81 @@
                         <!-- Секция: КАТЕГОРИИ -->
                         <div class="subnav-group collapsible open">
                             <div class="subnav-header toggle-btn">
-                                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                                 <span data-i18n="subnav_header_categories">КАТЕГОРИИ</span>
                             </div>
                             <div class="subnav-list" id="categories-list">
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Action</span><span class="subnav-count">12</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Action RPG</span><span class="subnav-count">5</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_adventure">Приключения</span><span class="subnav-count">7</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Battle Royale</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_building">Строительство</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_coop">Кооператив</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_competitive">Соревновательные</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_crime">Криминал</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Cyberpunk</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">FPS</span><span class="subnav-count">2</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_fantasy">Фэнтези</span><span class="subnav-count">4</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Hack and Slash</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_indie">Инди</span><span class="subnav-count">4</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">JRPG</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Metroidvania</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_multiplayer">Мультиплеер</span><span class="subnav-count">3</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_mythology">Мифология</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_narrative">Сюжетные</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_open_world">Открытый мир</span><span class="subnav-count">7</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_platformer">Платформер</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">RPG</span><span class="subnav-count">7</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Roguelike</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_sandbox">Песочница</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Sci-Fi</span><span class="subnav-count">2</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_shooter">Шутер</span><span class="subnav-count">2</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_simulation">Симулятор</span><span class="subnav-count">2</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Souls-like</span><span class="subnav-count">3</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_sports">Спорт</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_stealth">Стелс</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_strategy">Стратегия</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_survival">Выживание</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_survival_horror">Survival Horror</span><span class="subnav-count">2</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_thriller">Триллер</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label" data-i18n="cat_turn_based">Пошаговые</span><span class="subnav-count">2</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Action</span><span
+                                        class="subnav-count">12</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Action
+                                        RPG</span><span class="subnav-count">5</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_adventure">Приключения</span><span
+                                        class="subnav-count">7</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Battle
+                                        Royale</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_building">Строительство</span><span
+                                        class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_coop">Кооператив</span><span
+                                        class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_competitive">Соревновательные</span><span
+                                        class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_crime">Криминал</span><span
+                                        class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span
+                                        class="subnav-label">Cyberpunk</span><span
+                                        class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">FPS</span><span
+                                        class="subnav-count">2</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_fantasy">Фэнтези</span><span
+                                        class="subnav-count">4</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Hack and
+                                        Slash</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"
+                                        data-i18n="cat_indie">Инди</span><span class="subnav-count">4</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">JRPG</span><span
+                                        class="subnav-count">1</span></button>
                             </div>
                         </div>
 
                         <!-- Секция: ПЛАТФОРМА -->
                         <div class="subnav-group collapsible open">
                             <div class="subnav-header toggle-btn">
-                                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
-                                <span data-i18n="subnav_header_platform">ПЛАТФОРМА</span>
+                                <span>ПЛАТФОРМА</span>
                             </div>
-                            <div class="subnav-list" id="platforms-list">
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Mobile</span><span class="subnav-count">4</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Nintendo Switch</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">PC</span><span class="subnav-count">29</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">PS4</span><span class="subnav-count">19</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">PS5</span><span class="subnav-count">18</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Switch</span><span class="subnav-count">11</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox</span><span class="subnav-count">14</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox One</span><span class="subnav-count">5</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox Series X/S</span><span class="subnav-count">3</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">macOS</span><span class="subnav-count">1</span></button>
+                            <div class="subnav-list">
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        Mobile</span><span class="subnav-count">4</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        Nintendo Switch</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        PC</span><span class="subnav-count">29</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        PS4</span><span class="subnav-count">19</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        PS5</span><span class="subnav-count">18</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        Switch</span><span class="subnav-count">11</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        Xbox</span><span class="subnav-count">14</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        Xbox One</span><span class="subnav-count">5</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        Xbox Series X/S</span><span class="subnav-count">3</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
+                                        macOS</span><span class="subnav-count">1</span></button>
                             </div>
                         </div>
                     </div>
@@ -236,20 +253,246 @@
                         </div>
                         <div class="stats-item">
                             <span class="stats-label" data-i18n="stats_total_hours">Всего часов</span>
-                            <span class="stats-value cyan" id="stats-hours-count" data-i18n="stats_hours_val">2.7k ч</span>
+                            <span class="stats-value cyan" id="stats-hours-count" data-i18n="stats_hours_val">2.7k
+                                ч</span>
                         </div>
                     </div>
                 </aside>
 
                 <!-- Основная сетка с играми -->
                 <section class="library-content">
-                    <!-- Сюда выводится список игр -->
+                    <div class="library-header">
+                        <div class="header-left">
+                            <img src="./src/img/gamepad.svg" alt="Gamepad" class="icon-gamepad purple-icon">
+                            <span class="header-title" data-i18n="subnav_header_library">БИБЛИОТЕКА</span>
+                            <span class="badge"><span class="badge-count">30 / 30</span> <span
+                                    data-i18n="stats_games">Игры</span></span>
+                        </div>
+
+                        <div class="header-right">
+                            <div class="sort-dropdown-wrapper">
+                                <button type="button" class="sort-btn" id="sortDropdownBtn">
+                                    <img src="./src/img/sort.svg" alt="Sort" class="icon-sort purple-icon">
+                                    <span id="currentSortTitle" data-i18n="sort_title">Название</span>
+                                    <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+
+                                <div class="sort-dropdown-menu" id="sortDropdownMenu">
+                                    <button type="button" class="sort-option active" data-sort="title">Название</button>
+                                    <button type="button" class="sort-option" data-sort="playtime">Время игры</button>
+                                    <button type="button" class="sort-option" data-sort="rating">Рейтинг</button>
+                                </div>
+                            </div>
+
+                            <div class="view-switch">
+                                <button type="button" class="view-btn active" id="viewList" title="Список">
+                                    <img src="./src/img/list.svg" alt="List View" class="icon-view">
+                                </button>
+                                <button type="button" class="view-btn" id="viewGrid" title="Сетка">
+                                    <img src="./src/img/grid.svg" alt="Grid View" class="icon-view">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="games-grid list-view" id="gamesContainer">
+                        <!-- Карточки игр добавляются динамически -->
+                    </div>
                 </section>
             </div>
         </main>
     </div>
-<script type="module" src="./src/js/helpers/lang.js"></script>
-    
+
+    <!-- Правая панель настроек "ВИЗУАЛ" -->
+    <aside class="right-sidebar visual-settings">
+        <!-- Шапка панели -->
+        <div class="visual-header">
+            <div class="visual-header-left">
+                <div class="visual-small-logo-wrapper">
+                    <img src="./src/img/layers.svg" alt="Визуал" class="visual-small-logo">
+                </div>
+                <h3 class="visual-title">Визуал</h3>
+            </div>
+            <button type="button" class="close-btn" id="closeVisualBtn">&times;</button>
+        </div>
+
+        <!-- Навигация: Иконки + Подписи -->
+        <div class="visual-tabs">
+            <button type="button" class="tab-item active">
+                <img src="./src/img/triangle.svg" alt="Themes" class="tab-icon">
+                <span>Темы</span>
+            </button>
+            <button type="button" class="tab-item">
+                <img src="./src/img/layers.svg" alt="Colors" class="tab-icon">
+                <span>Цвета</span>
+            </button>
+            <button type="button" class="tab-item">
+                <img src="./src/img/grid.svg" alt="Layout" class="tab-icon">
+                <span>Лейаут</span>
+            </button>
+            <button type="button" class="tab-item">
+                <img src="./src/img/bolt.svg" alt="Effects" class="tab-icon">
+                <span>Эффекты</span>
+            </button>
+        </div>
+
+        <!-- Список тем -->
+        <div class="visual-content">
+            <div class="section-title">ГОТОВЫЕ ТЕМЫ</div>
+
+            <div class="themes-list">
+                <!-- NEXORA -->
+                <button type="button" class="theme-card active" data-theme="nexora">
+                    <div class="theme-name">
+                        <span class="theme-icon">💜</span>
+                        <span>NEXORA</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #a855f7;"></span>
+                        <span class="theme-dot" style="background-color: #3b82f6;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- CRIMSON -->
+                <button type="button" class="theme-card" data-theme="crimson">
+                    <div class="theme-name">
+                        <span class="theme-icon circle" style="background-color: #e11d48;"></span>
+                        <span>CRIMSON</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #e11d48;"></span>
+                        <span class="theme-dot" style="background-color: #f43f5e;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- EMERALD -->
+                <button type="button" class="theme-card" data-theme="emerald">
+                    <div class="theme-name">
+                        <span class="theme-icon">💚</span>
+                        <span>EMERALD</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #10b981;"></span>
+                        <span class="theme-dot" style="background-color: #06b6d4;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- GOLD -->
+                <button type="button" class="theme-card" data-theme="gold">
+                    <div class="theme-name">
+                        <span class="theme-icon circle" style="background-color: #eab308;"></span>
+                        <span>GOLD</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #eab308;"></span>
+                        <span class="theme-dot" style="background-color: #f59e0b;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- PINK -->
+                <button type="button" class="theme-card" data-theme="pink">
+                    <div class="theme-name">
+                        <span class="theme-icon">🌸</span>
+                        <span>PINK</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #ec4899;"></span>
+                        <span class="theme-dot" style="background-color: #f472b6;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- OCEAN -->
+                <button type="button" class="theme-card" data-theme="ocean">
+                    <div class="theme-name">
+                        <span class="theme-icon">🌊</span>
+                        <span>OCEAN</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #0ea5e9;"></span>
+                        <span class="theme-dot" style="background-color: #2563eb;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- MIDNIGHT -->
+                <button type="button" class="theme-card" data-theme="midnight">
+                    <div class="theme-name">
+                        <span class="theme-icon">🔮</span>
+                        <span>MIDNIGHT</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #8b5cf6;"></span>
+                        <span class="theme-dot" style="background-color: #6366f1;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <!-- MATRIX -->
+                <button type="button" class="theme-card" data-theme="matrix">
+                    <div class="theme-name">
+                        <span class="theme-icon circle" style="background-color: #22c55e;"></span>
+                        <span>MATRIX</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #22c55e;"></span>
+                        <span class="theme-dot" style="background-color: #10b981;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Подвал с кнопкой сброса -->
+        <div class="visual-footer">
+            <button type="button" class="reset-btn">
+                <img src="./src/img/rotate.svg" alt="Reset" class="reset-icon">
+                <span>Сбросить к NEXORA</span>
+            </button>
+        </div>
+    </aside>
+
+    <script type="module" src="./src/js/helpers/lang.js"></script>
+    <script type="module" src="./src/js/library.js"></script>
 </body>
+<script>
+    document.getElementById('closeVisualBtn').addEventListener('click', function () {
+        const visualSidebar = document.querySelector('.visual-settings');
+        if (visualSidebar) {
+            visualSidebar.style.display = 'none'; // Или скройте её другим способом, например, через добавление класса
+        }
+    });
+</script>
+
+<script>
+    const visualSidebar = document.querySelector('.visual-settings');
+    const closeBtn = document.getElementById('closeVisualBtn');
+    
+    // Находим кнопку «Внешний вид» в левом сайдбаре (по тексту или структуре)
+    // Либо можете добавить ей id="appearanceBtn", если так удобнее
+    const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
+
+    // Открытие панели
+    if (appearanceBtn) {
+        appearanceBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            visualSidebar.classList.add('open'); // или 'active'
+        });
+    }
+
+    // Закрытие по крестику
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            visualSidebar.classList.remove('open'); // или 'active'
+        });
+    }
+</script>
 
 </html>

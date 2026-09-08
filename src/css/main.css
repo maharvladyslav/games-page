@@ -85,7 +85,6 @@ body {
     gap: 6px;
 }
 
-/* Ссылки-обертки */
 .nav-menu>a {
     text-decoration: none;
     display: block;
@@ -117,7 +116,6 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Эффект ховера для навигации */
 .nav-item:hover,
 .nav-menu>a:hover .nav-item {
     background: rgba(255, 255, 255, 0.06);
@@ -130,7 +128,6 @@ body {
     filter: brightness(0) invert(1);
 }
 
-/* Активное состояние кнопки */
 .nav-item.active {
     background: linear-gradient(90deg, #371466 0%, #1a0b36 100%) !important;
     border: 1px solid var(--active-border) !important;
@@ -170,7 +167,6 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Эффект ховера для настроек */
 .setting-item:hover {
     background: rgba(255, 255, 255, 0.06);
     color: #ffffff;
@@ -362,7 +358,6 @@ body {
     color: var(--text-primary);
 }
 
-/* Поиск в правой панели */
 .right-search {
     position: relative;
     display: flex;
@@ -392,7 +387,6 @@ body {
     box-shadow: 0 0 8px var(--active-glow);
 }
 
-/* Скролл-зона */
 .right-scroll-area {
     flex: 1;
     overflow-y: auto;
@@ -420,7 +414,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Мои Хабы */
 .hub-list {
     display: flex;
     flex-direction: column;
@@ -462,11 +455,25 @@ body {
     flex-shrink: 0;
 }
 
-.hub-p { background: #8b5cf6; }
-.hub-r { background: #ef4444; }
-.hub-c { background: #06b6d4; }
-.hub-o { background: #f59e0b; }
-.hub-g { background: #10b981; }
+.hub-p {
+    background: #8b5cf6;
+}
+
+.hub-r {
+    background: #ef4444;
+}
+
+.hub-c {
+    background: #06b6d4;
+}
+
+.hub-o {
+    background: #f59e0b;
+}
+
+.hub-g {
+    background: #10b981;
+}
 
 .hub-name {
     flex: 1;
@@ -493,7 +500,6 @@ body {
     color: #fca5a5;
 }
 
-/* Онлайн пользователи */
 .online-list {
     display: flex;
     flex-direction: column;
@@ -530,9 +536,17 @@ body {
     color: #fff;
 }
 
-.av-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-.av-2 { background: linear-gradient(135deg, #ec4899, #be185d); }
-.av-3 { background: linear-gradient(135deg, #10b981, #047857); }
+.av-1 {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.av-2 {
+    background: linear-gradient(135deg, #ec4899, #be185d);
+}
+
+.av-3 {
+    background: linear-gradient(135deg, #10b981, #047857);
+}
 
 .status-indicator {
     position: absolute;
@@ -570,10 +584,14 @@ body {
     text-overflow: ellipsis;
 }
 
-.text-cyan { color: #22d3ee; }
-.text-red { color: #f87171; }
+.text-cyan {
+    color: #22d3ee;
+}
 
-/* Подвал правой панели */
+.text-red {
+    color: #f87171;
+}
+
 .right-footer {
     margin-top: 12px;
     padding-top: 12px;
@@ -596,7 +614,6 @@ body {
     border-color: var(--active-border);
 }
 
-/* Кнопка Помощи */
 .help-btn {
     position: absolute;
     bottom: 16px;
@@ -840,12 +857,13 @@ body {
 .subsidebar-scroll-area::-webkit-scrollbar {
     width: 4px;
 }
+
 .subsidebar-scroll-area::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
 }
 
-/* Заголовки секций (БИБЛИОТЕКА, КАТЕГОРИИ...) */
+/* Заголовки секций */
 .subnav-group {
     display: flex;
     flex-direction: column;
@@ -914,7 +932,6 @@ body {
     text-align: left;
 }
 
-/* Картинка/иконка внутри кнопки */
 .subnav-icon {
     width: 14px;
     height: 14px;
@@ -931,7 +948,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Счетчик количества игр справа */
 .subnav-count {
     font-size: 11px;
     color: var(--text-muted);
@@ -939,7 +955,6 @@ body {
     margin-left: 6px;
 }
 
-/* Hover-состояние */
 .subnav-btn:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.04);
@@ -949,7 +964,6 @@ body {
     filter: brightness(0) invert(0.8);
 }
 
-/* ACTIVE состояние (Нажатая кнопка) */
 .subnav-btn.active {
     background: linear-gradient(135deg, rgba(139, 55, 255, 0.25) 0%, rgba(88, 28, 135, 0.15) 100%);
     border: 1px solid #8b37ff;
@@ -1007,3 +1021,899 @@ body {
     padding: 20px;
 }
 
+/* ================= ИСПРАВЛЕННАЯ ШАПКА БИБЛИОТЕКИ ================= */
+.library-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background: #11111b;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Левая и правая секции */
+.header-left,
+.header-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px;
+}
+
+/* Текст заголовка */
+.header-left .header-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Бейдж с количеством игр */
+.header-left .badge {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    white-space: nowrap;
+}
+
+/* Кнопка сортировки */
+.sort-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px;
+    height: 32px;
+    padding: 0 10px;
+    background: #1a1a28;
+    border: 1px solid #2e2e42;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 12px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.sort-btn:hover {
+    background: #222235;
+}
+
+/* Переключатель вида */
+.view-switch {
+    display: flex !important;
+    align-items: center !important;
+    height: 32px;
+    background: #1a1a28;
+    border: 1px solid #2e2e42;
+    border-radius: 6px;
+    padding: 2px;
+    gap: 2px;
+    box-sizing: border-box;
+}
+
+.view-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 26px;
+    height: 26px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.view-btn.active {
+    background: #8b5cf6;
+}
+
+/* Фиксация размеров картинок */
+.library-header img {
+    display: block !important;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.header-left img {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.sort-btn img {
+    width: 12px !important;
+    height: 12px !important;
+}
+
+.view-btn img {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+/* Эффекты цвета и прозрачности */
+.view-btn:not(.active) img {
+    opacity: 0.5;
+}
+
+.view-btn.active img {
+    opacity: 1;
+    filter: brightness(0) invert(1);
+}
+
+/* Перекрашивает черные/белые PNG/SVG иконки в фиолетовый цвет как на скриншоте */
+.purple-icon {
+    filter: invert(34%) sepia(85%) saturate(3419%) hue-rotate(253deg) brightness(98%) contrast(96%);
+}
+
+/* Фиксируем аккуратные размеры для иконок */
+.icon-gamepad,
+.icon-sort,
+.icon-view {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.icon-chevron {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+.icon-chevron {
+    width: 12px;
+    height: 12px;
+    stroke: #a855f7;
+    /* Твой фиолетовый цвет или #ffffff для белого */
+}
+
+/* Общий контейнер переключателя */
+.view-switch {
+    display: inline-flex;
+    align-items: center;
+    background-color: #12131e;
+    border: 1px solid #1e2030;
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+}
+
+/* Кнопки переключения */
+.view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Иконка неактивной кнопки */
+.view-btn .icon-view {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(43%) sepia(10%) saturate(1250%) hue-rotate(205deg) brightness(88%) contrast(85%);
+    /* Приглушенный сине-фиолетовый */
+    opacity: 0.6;
+}
+
+/* Активная кнопка (фиолетовый квадрат) */
+.view-btn.active {
+    background-color: #8b5cf6;
+}
+
+/* Иконка внутри активной кнопки (белая) */
+.view-btn.active .icon-view {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+}
+
+.view-btn:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Обертка для позиционирования меню */
+.sort-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Кнопка сортировки */
+.sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #12131e;
+    border: 1px solid #1e2030;
+    border-radius: 10px;
+    padding: 8px 14px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sort-btn:hover,
+.sort-dropdown-wrapper.open .sort-btn {
+    border-color: #3b3e5b;
+    background-color: #171927;
+}
+
+/* Иконка галочки */
+.icon-chevron {
+    width: 12px;
+    height: 12px;
+    stroke: #8b5cf6;
+    transition: transform 0.2s ease;
+}
+
+.sort-dropdown-wrapper.open .icon-chevron {
+    transform: rotate(180deg);
+}
+
+/* Выпадающее меню */
+.sort-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 160px;
+    background-color: #12131e;
+    border: 1px solid #2a2d43;
+    border-radius: 10px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+}
+
+/* Показ меню при открытии */
+.sort-dropdown-wrapper.open .sort-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Пункты списка */
+.sort-option {
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sort-option:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Активный выбранный пункт (фиолетовый) */
+.sort-option.active {
+    background-color: #1c1836;
+    color: #a855f7;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   ПРАВАЯ ПАНЕЛЬ "ВИЗУАЛ" (VISUAL SETTINGS)
+   ========================================================================== */
+
+/* Основной контейнер панели */
+.visual-settings {
+    width: 320px;
+    height: 100vh;
+    background-color: #0b0b0e;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+
+/* 1. Крупный 3D-логотип вверху */
+.visual-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 10px;
+}
+
+.visual-big-logo {
+    width: 90px;
+    height: 90px;
+    color: #ffffff;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
+}
+
+/* 2. Шапка панели */
+.visual-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.visual-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.visual-header .close-btn {
+    background: transparent;
+    border: none;
+    color: #8f8f9d;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.visual-header .close-btn:hover {
+    color: #ffffff;
+}
+
+/* 3. Навигация по вкладкам (Иконки в ряд + подписи) */
+.visual-tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.tab-item {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: #8f8f9d;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 4px 6px;
+}
+
+.tab-item .tab-icon {
+    width: 22px;
+    height: 22px;
+    stroke: #8f8f9d;
+    transition: stroke 0.2s ease;
+}
+
+.tab-item:hover,
+.tab-item.active {
+    color: #ffffff;
+}
+
+.tab-item.active .tab-icon,
+.tab-item:hover .tab-icon {
+    stroke: #ffffff;
+}
+
+/* 4. Контентную область и список тем */
+.visual-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+}
+
+/* Кастомный скроллбар */
+.visual-content::-webkit-scrollbar {
+    width: 4px;
+}
+.visual-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #636370;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.themes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Карточка темы */
+.theme-card {
+    width: 100%;
+    background-color: #121217;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: #16161d;
+}
+
+/* Активная тема MATRIX с зеленой рамкой */
+.theme-card[data-theme="matrix"].active,
+.theme-card.active {
+    border: 1px solid #22c55e;
+    background-color: #121217;
+}
+
+.theme-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.theme-icon {
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-icon.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* 5. Подвал (Сброс и справка) */
+.visual-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    margin-top: 10px;
+}
+
+.reset-action-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    transition: transform 0.3s ease, opacity 0.2s;
+}
+
+.reset-action-btn:hover {
+    transform: rotate(-45deg);
+    opacity: 0.8;
+}
+
+.reset-action-btn .reset-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.help-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: #8f8f9d;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.help-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+/* Подвал и полноразмерная кнопка сброса */
+.visual-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 16px;
+    margin-top: auto;
+}
+
+.reset-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 42px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #9494a8;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.reset-btn:active {
+    transform: scale(0.98);
+}
+
+.reset-btn .reset-icon {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+}
+
+.help-btn {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #8f8f9d;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.help-btn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* Выравнивание списка тем */
+.themes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.theme-card {
+    width: 100%;
+    height: 48px;
+    background-color: #121217;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Выравнивание всего контента по левому краю */
+    gap: 12px;                  /* Фиксированный отступ между иконкой и текстом */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.theme-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: #16161d;
+}
+
+.theme-card.active {
+    border: 1px solid #22c55e; /* Прямоугольная зеленая рамка для активного элемента */
+    background-color: #121217;
+}
+
+/* Фиксированная ширина контейнера иконки, чтобы текст выравнивался строго по одной линии */
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.theme-icon.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.theme-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Размеры заготовок под картинки */
+.visual-big-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.tab-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.icon-close {
+    width: 16px;
+    height: 16px;
+}
+
+.reset-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.help-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.theme-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.theme-card.active {
+    border-color: var(--accent-primary, #a855f7);
+    background: rgba(168, 85, 247, 0.08);
+}
+
+.theme-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.theme-preview-elements {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.theme-check {
+    display: none;
+    font-size: 12px;
+    color: var(--accent-primary, #a855f7);
+    font-weight: bold;
+}
+
+.theme-card.active .theme-check {
+    display: inline-block;
+}
+
+.visual-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.visual-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Контейнер для иконки в шапке визуала */
+.visual-header-left .visual-small-logo-wrapper {
+    width: 28px;
+    height: 28px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-small-logo {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(54%) sepia(89%) saturate(1045%) hue-rotate(235deg) brightness(98%) contrast(92%);
+}
+
+.visual-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 10px 4px;
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.tab-item .tab-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    /* Делаем иконку светлой и читаемой */
+    filter: brightness(0) saturate(100%) invert(70%) sepia(10%) saturate(200%) hue-rotate(200deg) brightness(90%) contrast(90%);
+    transition: filter 0.2s ease;
+}
+
+.tab-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.tab-item:hover .tab-icon {
+    filter: brightness(0) invert(1);
+}
+
+.tab-item.active {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.3);
+    color: #fff;
+}
+
+/* Активная вкладка получает правильную фиолетовую иконку */
+.tab-item.active .tab-icon {
+    filter: brightness(0) saturate(100%) invert(54%) sepia(89%) saturate(1045%) hue-rotate(235deg) brightness(98%) contrast(92%);
+}
+
+.visual-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 10px 16px; /* уменьшили вертикальные отступы контейнера */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 6px 2px; /* уменьшили высоту карточки */
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 10.5px; /* чуть уменьшили шрифт */
+    transition: all 0.2s ease;
+}
+
+.tab-item .tab-icon {
+    width: 15px; /* уменьшили размер иконки */
+    height: 15px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(70%) sepia(10%) saturate(200%) hue-rotate(200deg) brightness(90%) contrast(90%);
+    transition: filter 0.2s ease;
+}
+
+.tab-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.tab-item:hover .tab-icon {
+    filter: brightness(0) invert(1);
+}
+
+.tab-item.active {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.3);
+    color: #fff;
+}
+
+.tab-item.active .tab-icon {
+    filter: brightness(0) saturate(100%) invert(54%) sepia(89%) saturate(1045%) hue-rotate(235deg) brightness(98%) contrast(92%);
+}
+
+.visual-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px; /* уменьшили верхний и нижний отступ с 16px до 10px */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.right-sidebar.visual-settings {
+    /* Ваши текущие стили для панели */
+    display: none; /* по умолчанию скрыта */
+}
+
+.right-sidebar.visual-settings.open {
+    display: block; /* или flex / grid — в зависимости от того, как она у вас версталась */
+}
