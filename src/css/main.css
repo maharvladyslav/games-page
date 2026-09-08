@@ -85,6 +85,13 @@ body {
     gap: 6px;
 }
 
+/* Ссылки-обертки */
+.nav-menu>a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
 .nav-item {
     display: flex;
     align-items: center;
@@ -111,26 +118,29 @@ body {
 }
 
 /* Эффект ховера для навигации */
-.nav-item:hover {
+.nav-item:hover,
+.nav-menu>a:hover .nav-item {
     background: rgba(255, 255, 255, 0.06);
     color: #ffffff;
 }
 
-.nav-item:hover .nav-icon {
+.nav-item:hover .nav-icon,
+.nav-menu>a:hover .nav-icon {
     opacity: 1;
     filter: brightness(0) invert(1);
 }
 
+/* Активное состояние кнопки */
 .nav-item.active {
-    background: linear-gradient(90deg, #371466 0%, #1a0b36 100%);
-    border: 1px solid var(--active-border);
-    color: #ffffff;
-    box-shadow: 0 0 15px var(--active-glow);
+    background: linear-gradient(90deg, #371466 0%, #1a0b36 100%) !important;
+    border: 1px solid var(--active-border) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px var(--active-glow) !important;
 }
 
 .nav-item.active .nav-icon {
-    opacity: 1;
-    filter: drop-shadow(0 0 2px #a855f7) invert(40%) sepia(90%) saturate(1500%) hue-rotate(240deg);
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 2px #a855f7) invert(40%) sepia(90%) saturate(1500%) hue-rotate(240deg) !important;
 }
 
 /* Нижняя секция левого сайдбара */
@@ -302,6 +312,7 @@ body {
     height: 14px;
     stroke: var(--text-muted);
     pointer-events: none;
+    top: 9px;
 }
 
 .search-input {
@@ -324,11 +335,6 @@ body {
 .search-input:focus {
     border-color: var(--active-border);
     box-shadow: 0 0 10px var(--active-glow);
-}
-
-.content-container {
-    padding: 24px;
-    flex: 1;
 }
 
 /* ================= ПРАВЫЙ САЙДБАР (ЧАТ) ================= */
@@ -456,25 +462,11 @@ body {
     flex-shrink: 0;
 }
 
-.hub-p {
-    background: #8b5cf6;
-}
-
-.hub-r {
-    background: #ef4444;
-}
-
-.hub-c {
-    background: #06b6d4;
-}
-
-.hub-o {
-    background: #f59e0b;
-}
-
-.hub-g {
-    background: #10b981;
-}
+.hub-p { background: #8b5cf6; }
+.hub-r { background: #ef4444; }
+.hub-c { background: #06b6d4; }
+.hub-o { background: #f59e0b; }
+.hub-g { background: #10b981; }
 
 .hub-name {
     flex: 1;
@@ -538,17 +530,9 @@ body {
     color: #fff;
 }
 
-.av-1 {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-}
-
-.av-2 {
-    background: linear-gradient(135deg, #ec4899, #be185d);
-}
-
-.av-3 {
-    background: linear-gradient(135deg, #10b981, #047857);
-}
+.av-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.av-2 { background: linear-gradient(135deg, #ec4899, #be185d); }
+.av-3 { background: linear-gradient(135deg, #10b981, #047857); }
 
 .status-indicator {
     position: absolute;
@@ -586,13 +570,8 @@ body {
     text-overflow: ellipsis;
 }
 
-.text-cyan {
-    color: #22d3ee;
-}
-
-.text-red {
-    color: #f87171;
-}
+.text-cyan { color: #22d3ee; }
+.text-red { color: #f87171; }
 
 /* Подвал правой панели */
 .right-footer {
@@ -798,3 +777,233 @@ body {
 .lang-option.active .check-icon {
     opacity: 1;
 }
+
+/* ================= МАКЕТ БИБЛИОТЕКИ И ВНУТРЕННИЙ САЙДБАР ================= */
+.content-container {
+    padding: 0 !important;
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.library-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.library-sidebar {
+    width: 230px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 16px 10px 12px 10px;
+    flex-shrink: 0;
+}
+
+/* Инпут поиска игр в сайдбаре */
+.subsidebar-search {
+    position: relative;
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
+.subsidebar-search-input {
+    width: 100%;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    padding: 0 10px 0 32px;
+    color: #ffffff;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.subsidebar-search-input:focus {
+    border-color: #8b37ff;
+}
+
+/* Скролл-зона для меню сайдбара */
+.subsidebar-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.subsidebar-scroll-area::-webkit-scrollbar {
+    width: 4px;
+}
+.subsidebar-scroll-area::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Заголовки секций (БИБЛИОТЕКА, КАТЕГОРИИ...) */
+.subnav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.subnav-header {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.8px;
+    padding: 4px 8px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+/* Анимация и логика аккордеона */
+.subnav-header.toggle-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.subnav-header.toggle-btn:hover {
+    color: var(--text-primary);
+}
+
+.chevron-icon {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+    color: var(--text-muted);
+}
+
+.subnav-group.collapsible:not(.open) .chevron-icon {
+    transform: rotate(-90deg);
+}
+
+.subnav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.subnav-group.collapsible:not(.open) .subnav-list {
+    display: none;
+}
+
+/* Кнопки навигации, категорий и платформ */
+.subnav-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 7px 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+/* Картинка/иконка внутри кнопки */
+.subnav-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    object-fit: contain;
+    filter: brightness(0) invert(0.45);
+    transition: filter 0.2s ease;
+}
+
+.subnav-label {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Счетчик количества игр справа */
+.subnav-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-left: 6px;
+}
+
+/* Hover-состояние */
+.subnav-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.subnav-btn:hover .subnav-icon {
+    filter: brightness(0) invert(0.8);
+}
+
+/* ACTIVE состояние (Нажатая кнопка) */
+.subnav-btn.active {
+    background: linear-gradient(135deg, rgba(139, 55, 255, 0.25) 0%, rgba(88, 28, 135, 0.15) 100%);
+    border: 1px solid #8b37ff;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(139, 55, 255, 0.3);
+}
+
+.subnav-btn.active .subnav-icon {
+    filter: invert(45%) sepia(85%) saturate(1900%) hue-rotate(245deg) brightness(98%) contrast(100%);
+}
+
+.subnav-btn.active .subnav-count {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+/* Блок статистики внизу */
+.library-stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 8px 4px 8px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 8px;
+}
+
+.stats-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.stats-label {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.stats-value {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.stats-value.purple {
+    color: #a855f7;
+}
+
+.stats-value.cyan {
+    color: #38bdf8;
+}
+
+.library-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
