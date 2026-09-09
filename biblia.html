@@ -461,38 +461,78 @@
 
     <script type="module" src="./src/js/helpers/lang.js"></script>
     <script type="module" src="./src/js/library.js"></script>
-</body>
-<script>
-    document.getElementById('closeVisualBtn').addEventListener('click', function () {
+
+    <!-- Скрипт управления открытием/закрытием панели «Визуал» -->
+    <script>
         const visualSidebar = document.querySelector('.visual-settings');
-        if (visualSidebar) {
-            visualSidebar.style.display = 'none'; // Или скройте её другим способом, например, через добавление класса
+        const closeBtn = document.getElementById('closeVisualBtn');
+        const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
+
+        // Открытие панели
+        if (appearanceBtn) {
+            appearanceBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                visualSidebar.classList.add('open');
+            });
         }
-    });
-</script>
 
-<script>
-    const visualSidebar = document.querySelector('.visual-settings');
-    const closeBtn = document.getElementById('closeVisualBtn');
-    
-    // Находим кнопку «Внешний вид» в левом сайдбаре (по тексту или структуре)
-    // Либо можете добавить ей id="appearanceBtn", если так удобнее
-    const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
+        // Закрытие по крестику
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                visualSidebar.classList.remove('open');
+            });
+        }
+    </script>
 
-    // Открытие панели
-    if (appearanceBtn) {
-        appearanceBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            visualSidebar.classList.add('open'); // или 'active'
+    <!-- Скрипт переключения и сохранения тем -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeCards = document.querySelectorAll('.theme-card');
+            const htmlElement = document.documentElement;
+            const resetBtn = document.querySelector('.reset-btn');
+
+            const applyTheme = (themeName) => {
+                if (themeName === 'nexora') {
+                    htmlElement.removeAttribute('data-theme');
+                } else {
+                    htmlElement.setAttribute('data-theme', themeName);
+                }
+
+                themeCards.forEach(card => {
+                    if (card.getAttribute('data-theme') === themeName) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            };
+
+            // 1. Проверяем сохраненную тему при загрузке страницы
+            const savedTheme = localStorage.getItem('nexora-theme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            }
+
+            // 2. Слушаем клики по карточкам тем
+            themeCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const themeName = card.getAttribute('data-theme');
+                    if (!themeName) return;
+
+                    applyTheme(themeName);
+                    localStorage.setItem('nexora-theme', themeName);
+                });
+            });
+
+            // 3. Обработка клика по кнопке сброса к Nexora
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    applyTheme('nexora');
+                    localStorage.removeItem('nexora-theme');
+                });
+            }
         });
-    }
-
-    // Закрытие по крестику
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            visualSidebar.classList.remove('open'); // или 'active'
-        });
-    }
-</script>
+    </script>
+</body>
 
 </html>

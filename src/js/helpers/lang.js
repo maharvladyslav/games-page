@@ -331,3 +331,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 visualSidebar.classList.toggle('active'); // или classList.remove('open')
 
+document.addEventListener('DOMContentLoaded', () => {
+    const themeCards = document.querySelectorAll('.theme-card');
+    const htmlElement = document.documentElement;
+    const resetBtn = document.querySelector('.reset-btn');
+
+    // Функция применения темы
+    const applyTheme = (themeName) => {
+        if (themeName === 'nexora') {
+            htmlElement.removeAttribute('data-theme');
+        } else {
+            htmlElement.setAttribute('data-theme', themeName);
+        }
+
+        // Обновляем активный класс у карточек тем
+        themeCards.forEach(card => {
+            if (card.getAttribute('data-theme') === themeName) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+    };
+
+    // 1. Проверяем сохраненную тему при загрузке страницы
+    const savedTheme = localStorage.getItem('nexora-theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    }
+
+    // 2. Слушаем клики по карточкам тем
+    themeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const themeName = card.getAttribute('data-theme');
+            if (!themeName) return;
+
+            applyTheme(themeName);
+            localStorage.setItem('nexora-theme', themeName);
+        });
+    });
+
+    // 3. Обработка клика по кнопке сброса к Nexora
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            applyTheme('nexora');
+            localStorage.removeItem('nexora-theme');
+        });
+    }
+});

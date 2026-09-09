@@ -1917,3 +1917,156 @@ body {
 .right-sidebar.visual-settings.open {
     display: block; /* или flex / grid — в зависимости от того, как она у вас версталась */
 }
+
+/* Дефолтные цвета (Nexora) */
+:root {
+    --accent-color: #a855f7;
+}
+
+/* Цвета для темы Crimson */
+html[data-theme="crimson"] {
+    --accent-color: #e11d48;
+}
+
+/* Цвета для темы Matrix */
+html[data-theme="matrix"] {
+    --accent-color: #22c55e;
+}
+
+/* Дефолтная тема NEXORA (Глубокий темный + Неоновый фиолетовый) */
+:root {
+    --bg-color: #040306;
+    --card-bg: #0b0812;
+    --border-color: #1a1028;
+    --text-color: #ffffff;
+    --accent-color: #c084fc;
+    --secondary-accent: #38bdf8;
+    --main-gradient: linear-gradient(135deg, #c084fc 0%, #38bdf8 100%);
+    --accent-glow: rgba(192, 132, 252, 0.2);
+    --box-glow: 0 0 25px rgba(192, 132, 252, 0.12);
+}
+
+/* Тема CRIMSON (Глубокий черный + Неоновый малиновый) */
+[data-theme="crimson"] {
+    --bg-color: #060304;
+    --card-bg: #12080a;
+    --border-color: #281016;
+    --text-color: #ffffff;
+    --accent-color: #fb7185;
+    --secondary-accent: #f43f5e;
+    --main-gradient: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+    --accent-glow: rgba(251, 113, 133, 0.2);
+    --box-glow: 0 0 25px rgba(251, 113, 133, 0.12);
+}
+
+/* Тема EMERALD (Глубокий черный + Неоновый изумрудный) */
+[data-theme="emerald"] {
+    --bg-color: #020605;
+    --card-bg: #07120e;
+    --border-color: #0d261b;
+    --text-color: #ffffff;
+    --accent-color: #34d399;
+    --secondary-accent: #22d3ee;
+    --main-gradient: linear-gradient(135deg, #34d399 0%, #22d3ee 100%);
+    --accent-glow: rgba(52, 211, 153, 0.2);
+    --box-glow: 0 0 25px rgba(52, 211, 153, 0.12);
+}
+
+/* Тема GOLD (Глубокий черный + Неоновый золотой) */
+[data-theme="gold"] {
+    --bg-color: #060502;
+    --card-bg: #121007;
+    --border-color: #26210f;
+    --text-color: #ffffff;
+    --accent-color: #facc15;
+    --secondary-accent: #fb923c;
+    --main-gradient: linear-gradient(135deg, #facc15 0%, #fb923c 100%);
+    --accent-glow: rgba(250, 204, 21, 0.2);
+    --box-glow: 0 0 25px rgba(250, 204, 21, 0.12);
+}
+
+/* Тема PINK (Глубокий черный + Неоновый розовый) */
+[data-theme="pink"] {
+    --bg-color: #060305;
+    --card-bg: #12080f;
+    --border-color: #281020;
+    --text-color: #ffffff;
+    --accent-color: #f472b6;
+    --secondary-accent: #fb7185;
+    --main-gradient: linear-gradient(135deg, #f472b6 0%, #fb7185 100%);
+    --accent-glow: rgba(244, 114, 182, 0.2);
+    --box-glow: 0 0 25px rgba(244, 114, 182, 0.12);
+}
+
+/* Тема OCEAN (Глубокий черный + Неоновый океан) */
+[data-theme="ocean"] {
+    --bg-color: #030508;
+    --card-bg: #090e17;
+    --border-color: #0f1d33;
+    --text-color: #ffffff;
+    --accent-color: #38bdf8;
+    --secondary-accent: #818cf8;
+    --main-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    --accent-glow: rgba(56, 189, 248, 0.2);
+    --box-glow: 0 0 25px rgba(56, 189, 248, 0.12);
+}
+
+/* Тема MIDNIGHT (Глубокий черный + Неоновый полуночный) */
+[data-theme="midnight"] {
+    --bg-color: #050308;
+    --card-bg: #0e0917;
+    --border-color: #1b1233;
+    --text-color: #ffffff;
+    --accent-color: #a78bfa;
+    --secondary-accent: #38bdf8;
+    --main-gradient: linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%);
+    --accent-glow: rgba(167, 139, 250, 0.2);
+    --box-glow: 0 0 25px rgba(167, 139, 250, 0.12);
+}
+
+/* Тема MATRIX (Глубокий черный + Неоновый матричный) */
+[data-theme="matrix"] {
+    --bg-color: #020603;
+    --card-bg: #06120a;
+    --border-color: #0c2613;
+    --text-color: #ffffff;
+    --accent-color: #4ade80;
+    --secondary-accent: #2dd4bf;
+    --main-gradient: linear-gradient(135deg, #4ade80 0%, #2dd4bf 100%);
+    --accent-glow: rgba(74, 222, 128, 0.2);
+    --box-glow: 0 0 25px rgba(74, 222, 128, 0.12);
+}
+
+/* Применение темных и глубоких неоновых стилей */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.left-sidebar, 
+.right-sidebar, 
+.library-sidebar, 
+.main-header,
+.visual-settings,
+.theme-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.nav-item.active,
+.subnav-btn.active,
+.sort-option.active,
+.theme-card.active {
+    background-color: var(--accent-glow);
+    border-color: var(--accent-color);
+    box-shadow: var(--box-glow);
+}
+
+.purple-icon, 
+.stats-value.purple,
+.badge-purple {
+    background: var(--main-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 6px var(--accent-glow));
+}
