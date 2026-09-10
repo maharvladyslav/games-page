@@ -8,9 +8,45 @@
     <link rel="icon" type="image/png" href="./src/img/gemini.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/main.css" />
+    <style>
+        body, button, input, select, textarea {
+            font-family: var(--font-family, 'Inter', sans-serif);
+        }
+        /* Фикс отображения текста в кнопках выбора шрифта */
+        #fontSelectorList .font-card {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            padding: 12px !important;
+            cursor: pointer;
+            text-align: left;
+            background: var(--bg-cards, #131420);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+        #fontSelectorList .font-card.active {
+            border-color: var(--accent-primary, #8b5cf6);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Динамическое изменение цвета иконок и элементов в активных карточках тем/шрифтов через --accent-primary */
+        .theme-card.active, 
+        .font-card.active {
+            border-color: var(--accent-primary, #8b5cf6) !important;
+            background: color-mix(in srgb, var(--accent-primary, #8b5cf6) 15%, transparent) !important;
+        }
+        
+        .theme-card.active .theme-check,
+        .theme-card.active .theme-icon {
+            color: var(--accent-primary, #8b5cf6);
+        }
+    </style>
 </head>
 
 <body>
@@ -221,26 +257,16 @@
                                 <span>ПЛАТФОРМА</span>
                             </div>
                             <div class="subnav-list">
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        Mobile</span><span class="subnav-count">4</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        Nintendo Switch</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        PC</span><span class="subnav-count">29</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        PS4</span><span class="subnav-count">19</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        PS5</span><span class="subnav-count">18</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        Switch</span><span class="subnav-count">11</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        Xbox</span><span class="subnav-count">14</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        Xbox One</span><span class="subnav-count">5</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        Xbox Series X/S</span><span class="subnav-count">3</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label"><img src="" alt="">
-                                        macOS</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Mobile</span><span class="subnav-count">4</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Nintendo Switch</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">PC</span><span class="subnav-count">29</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">PS4</span><span class="subnav-count">19</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">PS5</span><span class="subnav-count">18</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Switch</span><span class="subnav-count">11</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox</span><span class="subnav-count">14</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox One</span><span class="subnav-count">5</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox Series X/S</span><span class="subnav-count">3</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">macOS</span><span class="subnav-count">1</span></button>
                             </div>
                         </div>
                     </div>
@@ -253,8 +279,7 @@
                         </div>
                         <div class="stats-item">
                             <span class="stats-label" data-i18n="stats_total_hours">Всего часов</span>
-                            <span class="stats-value cyan" id="stats-hours-count" data-i18n="stats_hours_val">2.7k
-                                ч</span>
+                            <span class="stats-value cyan" id="stats-hours-count" data-i18n="stats_hours_val">2.7k ч</span>
                         </div>
                     </div>
                 </aside>
@@ -321,43 +346,41 @@
 
         <!-- Навигация: Иконки + Подписи -->
         <div class="visual-tabs">
-            <button type="button" class="tab-item active">
+            <button type="button" class="tab-item" data-tab="themes">
                 <img src="./src/img/triangle.svg" alt="Themes" class="tab-icon">
                 <span>Темы</span>
             </button>
-            <button type="button" class="tab-item">
+            <button type="button" class="tab-item active" data-tab="colors">
                 <img src="./src/img/layers.svg" alt="Colors" class="tab-icon">
                 <span>Цвета</span>
             </button>
-            <button type="button" class="tab-item">
+            <button type="button" class="tab-item" data-tab="layout">
                 <img src="./src/img/grid.svg" alt="Layout" class="tab-icon">
                 <span>Лейаут</span>
             </button>
-            <button type="button" class="tab-item">
+            <button type="button" class="tab-item" data-tab="effects">
                 <img src="./src/img/bolt.svg" alt="Effects" class="tab-icon">
                 <span>Эффекты</span>
             </button>
         </div>
 
-        <!-- Список тем -->
-        <div class="visual-content">
+        <!-- Содержимое вкладки: Темы -->
+        <div class="visual-content tab-pane" id="tab-themes" style="display: none;">
             <div class="section-title">ГОТОВЫЕ ТЕМЫ</div>
 
             <div class="themes-list">
-                <!-- NEXORA -->
                 <button type="button" class="theme-card active" data-theme="nexora">
                     <div class="theme-name">
                         <span class="theme-icon">💜</span>
                         <span>NEXORA</span>
                     </div>
                     <div class="theme-preview-elements">
-                        <span class="theme-dot" style="background-color: #a855f7;"></span>
-                        <span class="theme-dot" style="background-color: #3b82f6;"></span>
+                        <span class="theme-dot" style="background-color: var(--accent-primary);"></span>
+                        <span class="theme-dot" style="background-color: var(--accent-cyan);"></span>
                         <span class="theme-check">✓</span>
                     </div>
                 </button>
 
-                <!-- CRIMSON -->
                 <button type="button" class="theme-card" data-theme="crimson">
                     <div class="theme-name">
                         <span class="theme-icon circle" style="background-color: #e11d48;"></span>
@@ -370,7 +393,6 @@
                     </div>
                 </button>
 
-                <!-- EMERALD -->
                 <button type="button" class="theme-card" data-theme="emerald">
                     <div class="theme-name">
                         <span class="theme-icon">💚</span>
@@ -383,7 +405,6 @@
                     </div>
                 </button>
 
-                <!-- GOLD -->
                 <button type="button" class="theme-card" data-theme="gold">
                     <div class="theme-name">
                         <span class="theme-icon circle" style="background-color: #eab308;"></span>
@@ -396,7 +417,6 @@
                     </div>
                 </button>
 
-                <!-- PINK -->
                 <button type="button" class="theme-card" data-theme="pink">
                     <div class="theme-name">
                         <span class="theme-icon">🌸</span>
@@ -409,7 +429,6 @@
                     </div>
                 </button>
 
-                <!-- OCEAN -->
                 <button type="button" class="theme-card" data-theme="ocean">
                     <div class="theme-name">
                         <span class="theme-icon">🌊</span>
@@ -422,7 +441,6 @@
                     </div>
                 </button>
 
-                <!-- MIDNIGHT -->
                 <button type="button" class="theme-card" data-theme="midnight">
                     <div class="theme-name">
                         <span class="theme-icon">🔮</span>
@@ -435,7 +453,6 @@
                     </div>
                 </button>
 
-                <!-- MATRIX -->
                 <button type="button" class="theme-card" data-theme="matrix">
                     <div class="theme-name">
                         <span class="theme-icon circle" style="background-color: #22c55e;"></span>
@@ -450,6 +467,81 @@
             </div>
         </div>
 
+        <!-- Содержимое вкладки: Цвета (с выбором шрифта) -->
+        <div class="visual-content tab-pane active" id="tab-colors">
+            <div class="section-title">КАСТОМНЫЕ ЦВЕТА</div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Акцент (Primary)</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorPrimary" value="#8b5cf6" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorPrimaryText">#8b5cf6</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Акцент 2 (Cyan)</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorCyan" value="#06b6d4" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorCyanText">#06b6d4</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Фон страницы</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorBg" value="#0a0b10" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorBgText">#0a0b10</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Поверхность / Сайдбар</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorSurface" value="#0e0f16" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorSurfaceText">#0e0f16</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Карточки</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorCards" value="#131420" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorCardsText">#131420</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">ВЫБОР ШРИФТА</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;" id="fontSelectorList">
+                <button type="button" class="font-card active" data-font="'Inter', sans-serif">
+                    <span style="font-family: 'Inter', sans-serif;">Inter (Стандартный)</span>
+                </button>
+                <button type="button" class="font-card" data-font="'Roboto', sans-serif">
+                    <span style="font-family: 'Roboto', sans-serif;">Roboto</span>
+                </button>
+                <button type="button" class="font-card" data-font="'Montserrat', sans-serif">
+                    <span style="font-family: 'Montserrat', sans-serif;">Montserrat</span>
+                </button>
+                <button type="button" class="font-card" data-font="'Courier New', monospace">
+                    <span style="font-family: 'Courier New', monospace;">Courier New (Моноширинный)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Содержимое вкладки: Лейаут -->
+        <div class="visual-content tab-pane" id="tab-layout" style="display: none;">
+            <div class="section-title">НАСТРОЙКИ СЕТКИ</div>
+            <p style="color: var(--text-muted, #888); font-size: 13px;">Скоро здесь появятся опции сетки.</p>
+        </div>
+
+        <!-- Содержимое вкладки: Эффекты -->
+        <div class="visual-content tab-pane" id="tab-effects" style="display: none;">
+            <div class="section-title">ВИЗУАЛЬНЫЕ ЭФФЕКТЫ</div>
+            <p style="color: var(--text-muted, #888); font-size: 13px;">Скоро здесь появятся анимации и эффекты.</p>
+        </div>
+        
+
         <!-- Подвал с кнопкой сброса -->
         <div class="visual-footer">
             <button type="button" class="reset-btn">
@@ -462,34 +554,55 @@
     <script type="module" src="./src/js/helpers/lang.js"></script>
     <script type="module" src="./src/js/library.js"></script>
 
-    <!-- Скрипт управления открытием/закрытием панели «Визуал» -->
-    <script>
-        const visualSidebar = document.querySelector('.visual-settings');
-        const closeBtn = document.getElementById('closeVisualBtn');
-        const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
-
-        // Открытие панели
-        if (appearanceBtn) {
-            appearanceBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                visualSidebar.classList.add('open');
-            });
-        }
-
-        // Закрытие по крестику
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function () {
-                visualSidebar.classList.remove('open');
-            });
-        }
-    </script>
-
-    <!-- Скрипт переключения и сохранения тем -->
+    <!-- Единый скрипт для панели Визуал, вкладок и кастомизации -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const themeCards = document.querySelectorAll('.theme-card');
+            // 1. Управление открытием/закрытием панели «Визуал»
+            const visualSidebar = document.querySelector('.visual-settings');
+            const closeBtn = document.getElementById('closeVisualBtn');
+            const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
+
+            if (appearanceBtn) {
+                appearanceBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    visualSidebar.classList.add('open');
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    visualSidebar.classList.remove('open');
+                });
+            }
+
+            // 2. Переключение вкладок в панели «Визуал»
+            const tabItems = document.querySelectorAll('.visual-tabs .tab-item');
+            const tabPanes = document.querySelectorAll('.visual-content.tab-pane');
+
+            tabItems.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabItems.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    tabPanes.forEach(pane => pane.style.display = 'none');
+                    const targetId = ['tab-themes', 'tab-colors', 'tab-layout', 'tab-effects'][index];
+                    const targetPane = document.getElementById(targetId);
+                    if (targetPane) targetPane.style.display = 'block';
+                });
+            });
+
+            // 3. Темы и кастомные цвета
+            const themeCards = document.querySelectorAll('.themes-list .theme-card');
             const htmlElement = document.documentElement;
             const resetBtn = document.querySelector('.reset-btn');
+
+            const colorInputs = [
+                { input: document.getElementById('colorPrimary'), text: document.getElementById('colorPrimaryText'), cssVar: '--accent-primary', storageKey: 'nexora-c-primary' },
+                { input: document.getElementById('colorCyan'), text: document.getElementById('colorCyanText'), cssVar: '--accent-cyan', storageKey: 'nexora-c-cyan' },
+                { input: document.getElementById('colorBg'), text: document.getElementById('colorBgText'), cssVar: '--bg-main', storageKey: 'nexora-c-bg' },
+                { input: document.getElementById('colorSurface'), text: document.getElementById('colorSurfaceText'), cssVar: '--bg-surface', storageKey: 'nexora-c-surface' },
+                { input: document.getElementById('colorCards'), text: document.getElementById('colorCardsText'), cssVar: '--bg-cards', storageKey: 'nexora-c-cards' }
+            ];
 
             const applyTheme = (themeName) => {
                 if (themeName === 'nexora') {
@@ -507,32 +620,213 @@
                 });
             };
 
-            // 1. Проверяем сохраненную тему при загрузке страницы
+            // Загрузка сохраненных параметров тем
             const savedTheme = localStorage.getItem('nexora-theme');
-            if (savedTheme) {
-                applyTheme(savedTheme);
-            }
+            if (savedTheme) applyTheme(savedTheme);
 
-            // 2. Слушаем клики по карточкам тем
+            // Загрузка и применение кастомных цветов
+            colorInputs.forEach(item => {
+                const savedVal = localStorage.getItem(item.storageKey);
+                if (savedVal) {
+                    item.input.value = savedVal;
+                    item.text.textContent = savedVal;
+                    document.documentElement.style.setProperty(item.cssVar, savedVal);
+                }
+
+                item.input.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    item.text.textContent = val;
+                    document.documentElement.style.setProperty(item.cssVar, val);
+                    localStorage.setItem(item.storageKey, val);
+                });
+            });
+
+            // Обработчики кликов по готовым темам
             themeCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const themeName = card.getAttribute('data-theme');
                     if (!themeName) return;
-
                     applyTheme(themeName);
                     localStorage.setItem('nexora-theme', themeName);
                 });
             });
 
-            // 3. Обработка клика по кнопке сброса к Nexora
+            // 4. Рабочее переключение шрифтов
+            const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
+            const savedFont = localStorage.getItem('nexora-font');
+
+            if (savedFont) {
+                document.documentElement.style.setProperty('--font-family', savedFont);
+                fontButtons.forEach(btn => {
+                    if (btn.getAttribute('data-font') === savedFont) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            fontButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    fontButtons.forEach(b => b.classList.remove('active'));
+                    const fontVal = btn.getAttribute('data-font');
+                    
+                    document.documentElement.style.setProperty('--font-family', fontVal);
+                    localStorage.setItem('nexora-font', fontVal);
+                    
+                    btn.classList.add('active');
+                });
+            });
+
+            // Сброс настроек
             if (resetBtn) {
                 resetBtn.addEventListener('click', () => {
-                    applyTheme('nexora');
-                    localStorage.removeItem('nexora-theme');
+                    localStorage.clear();
+                    location.reload();
                 });
             }
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Управление открытием/закрытием панели «Визуал»
+        const visualSidebar = document.querySelector('.visual-settings');
+        const closeBtn = document.getElementById('closeVisualBtn');
+        const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
+
+        if (appearanceBtn) {
+            appearanceBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                visualSidebar.classList.add('open');
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                visualSidebar.classList.remove('open');
+            });
+        }
+
+        // 2. Переключение вкладок в панели «Визуал»
+        const tabItems = document.querySelectorAll('.visual-tabs .tab-item');
+        const tabPanes = document.querySelectorAll('.visual-content.tab-pane');
+
+        tabItems.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                tabItems.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                tabPanes.forEach(pane => pane.style.display = 'none');
+                const targetId = ['tab-themes', 'tab-colors', 'tab-layout', 'tab-effects'][index];
+                const targetPane = document.getElementById(targetId);
+                if (targetPane) targetPane.style.display = 'block';
+            });
+        });
+
+        // 3. Темы и кастомные цвета
+        const themeCards = document.querySelectorAll('.themes-list .theme-card');
+        const htmlElement = document.documentElement;
+        const resetBtn = document.querySelector('.reset-btn');
+
+        const colorInputs = [
+            { input: document.getElementById('colorPrimary'), text: document.getElementById('colorPrimaryText'), cssVar: '--accent-primary', storageKey: 'nexora-c-primary' },
+            { input: document.getElementById('colorCyan'), text: document.getElementById('colorCyanText'), cssVar: '--accent-cyan', storageKey: 'nexora-c-cyan' },
+            { input: document.getElementById('colorBg'), text: document.getElementById('colorBgText'), cssVar: '--bg-main', storageKey: 'nexora-c-bg' },
+            { input: document.getElementById('colorSurface'), text: document.getElementById('colorSurfaceText'), cssVar: '--bg-surface', storageKey: 'nexora-c-surface' },
+            { input: document.getElementById('colorCards'), text: document.getElementById('colorCardsText'), cssVar: '--bg-cards', storageKey: 'nexora-c-cards' }
+        ];
+
+        const applyTheme = (themeName) => {
+            if (themeName === 'nexora') {
+                htmlElement.removeAttribute('data-theme');
+            } else {
+                htmlElement.setAttribute('data-theme', themeName);
+            }
+
+            themeCards.forEach(card => {
+                if (card.getAttribute('data-theme') === themeName) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        };
+
+        // Загрузка сохраненных параметров тем
+        const savedTheme = localStorage.getItem('nexora-theme');
+        if (savedTheme) applyTheme(savedTheme);
+
+        // Загрузка и применение кастомных цветов + ПРЯМАЯ покраска иконок в активных кнопках
+        colorInputs.forEach(item => {
+            const savedVal = localStorage.getItem(item.storageKey);
+            if (savedVal) {
+                item.input.value = savedVal;
+                item.text.textContent = savedVal;
+                document.documentElement.style.setProperty(item.cssVar, savedVal);
+            }
+
+            item.input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                item.text.textContent = val;
+                document.documentElement.style.setProperty(item.cssVar, val);
+                localStorage.setItem(item.storageKey, val);
+
+                // ЕСЛИ это Акцент (Primary) — принудительно красим иконки во всех активных кнопках (темах и шрифтах)
+                if (item.cssVar === '--accent-primary') {
+                    document.querySelectorAll('.theme-card.active img, .font-card.active img, .theme-card.active .purple-icon, .font-card.active .purple-icon').forEach(icon => {
+                        icon.style.color = val;
+                        icon.style.fill = val;
+                    });
+                }
+            });
+        });
+
+        // Обработчики кликов по готовым темам
+        themeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const themeName = card.getAttribute('data-theme');
+                if (!themeName) return;
+                applyTheme(themeName);
+                localStorage.setItem('nexora-theme', themeName);
+            });
+        });
+
+        // 4. Рабочее переключение шрифтов
+        const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
+        const savedFont = localStorage.getItem('nexora-font');
+
+        if (savedFont) {
+            document.documentElement.style.setProperty('--font-family', savedFont);
+            fontButtons.forEach(btn => {
+                if (btn.getAttribute('data-font') === savedFont) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        fontButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                fontButtons.forEach(b => b.classList.remove('active'));
+                const fontVal = btn.getAttribute('data-font');
+                
+                document.documentElement.style.setProperty('--font-family', fontVal);
+                localStorage.setItem('nexora-font', fontVal);
+                
+                btn.classList.add('active');
+            });
+        });
+
+        // Сброс настроек
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                localStorage.clear();
+                location.reload();
+            });
+        }
+    });
+</script>
 </body>
 
 </html>

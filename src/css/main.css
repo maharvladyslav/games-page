@@ -2070,3 +2070,18 @@ body {
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 6px var(--accent-glow));
 }
+
+/* Принудительная покраска любых иконок и картинок внутри активных элементов */
+.active .purple-icon,
+.active img,
+.active svg {
+    color: var(--accent-primary, #8b5cf6) !important;
+    fill: var(--accent-primary, #8b5cf6) !important;
+    stroke: var(--accent-primary, #8b5cf6) !important;
+}
+
+/* Автоматическая перекраска картинок и иконок в активных элементах через фильтр */
+.active img,
+.active .purple-icon {
+    filter: drop-shadow(0 0 0 var(--accent-primary));
+}
