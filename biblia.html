@@ -1,3 +1,4 @@
+<!-- biblia.html -->
 <!doctype html>
 <html lang="ru" class="dark">
 
@@ -8,48 +9,19 @@
     <link rel="icon" type="image/png" href="./src/img/gemini.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/main.css" />
-    <style>
-        body, button, input, select, textarea {
-            font-family: var(--font-family, 'Inter', sans-serif);
-        }
-        /* Фикс отображения текста в кнопках выбора шрифта */
-        #fontSelectorList .font-card {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start !important;
-            padding: 12px !important;
-            cursor: pointer;
-            text-align: left;
-            background: var(--bg-cards, #131420);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            width: 100%;
-            color: inherit;
-            transition: all 0.2s ease;
-        }
-        #fontSelectorList .font-card.active {
-            border-color: var(--accent-primary, #8b5cf6);
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        /* Динамическое изменение цвета иконок и элементов в активных карточках тем/шрифтов через --accent-primary */
-        .theme-card.active, 
-        .font-card.active {
-            border-color: var(--accent-primary, #8b5cf6) !important;
-            background: color-mix(in srgb, var(--accent-primary, #8b5cf6) 15%, transparent) !important;
-        }
-        
-        .theme-card.active .theme-check,
-        .theme-card.active .theme-icon {
-            color: var(--accent-primary, #8b5cf6);
-        }
-    </style>
+    <link rel="stylesheet" href="./src/css/visual-extras.css" />
 </head>
 
 <body>
+    <!-- Фоновый слой для динамических паттернов и анимаций -->
+    <div id="dynamic-bg-layer" class="bg-pattern-none"></div>
+    <div id="dynamic-fx-layer"></div>
+
     <!-- Левый сайдбар -->
     <aside class="left-sidebar">
         <div class="sidebar-top">
@@ -142,17 +114,19 @@
                 </a>
             </div>
 
-            <div class="user-profile">
-                <div class="user-avatar-container">
-                    <div class="user-avatar">VS</div>
+            <a href="./profil.html" class="user-profile-link">
+                <div class="user-profile">
+                    <div class="user-avatar-container">
+                        <div class="user-avatar">VS</div>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">VideoSlayer</span>
+                        <span class="user-status status-online"><span class="status-dot"></span> <span
+                                data-i18n="status_online">Онлайн</span></span>
+                    </div>
+                    <div class="user-arrow">›</div>
                 </div>
-                <div class="user-info">
-                    <span class="user-name">VideoSlayer</span>
-                    <span class="user-status status-online"><span class="status-dot"></span> <span
-                            data-i18n="status_online">Онлайн</span></span>
-                </div>
-                <div class="user-arrow">›</div>
-            </div>
+            </a>
         </div>
     </aside>
 
@@ -257,16 +231,26 @@
                                 <span>ПЛАТФОРМА</span>
                             </div>
                             <div class="subnav-list">
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Mobile</span><span class="subnav-count">4</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Nintendo Switch</span><span class="subnav-count">1</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">PC</span><span class="subnav-count">29</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">PS4</span><span class="subnav-count">19</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">PS5</span><span class="subnav-count">18</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Switch</span><span class="subnav-count">11</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox</span><span class="subnav-count">14</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox One</span><span class="subnav-count">5</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox Series X/S</span><span class="subnav-count">3</span></button>
-                                <button type="button" class="subnav-btn"><span class="subnav-label">macOS</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Mobile</span><span
+                                        class="subnav-count">4</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Nintendo
+                                        Switch</span><span class="subnav-count">1</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">PC</span><span
+                                        class="subnav-count">29</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">PS4</span><span
+                                        class="subnav-count">19</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">PS5</span><span
+                                        class="subnav-count">18</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Switch</span><span
+                                        class="subnav-count">11</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox</span><span
+                                        class="subnav-count">14</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox One</span><span
+                                        class="subnav-count">5</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">Xbox Series
+                                        X/S</span><span class="subnav-count">3</span></button>
+                                <button type="button" class="subnav-btn"><span class="subnav-label">macOS</span><span
+                                        class="subnav-count">1</span></button>
                             </div>
                         </div>
                     </div>
@@ -279,7 +263,8 @@
                         </div>
                         <div class="stats-item">
                             <span class="stats-label" data-i18n="stats_total_hours">Всего часов</span>
-                            <span class="stats-value cyan" id="stats-hours-count" data-i18n="stats_hours_val">2.7k ч</span>
+                            <span class="stats-value cyan" id="stats-hours-count" data-i18n="stats_hours_val">2.7k
+                                ч</span>
                         </div>
                     </div>
                 </aside>
@@ -350,11 +335,11 @@
                 <img src="./src/img/triangle.svg" alt="Themes" class="tab-icon">
                 <span>Темы</span>
             </button>
-            <button type="button" class="tab-item active" data-tab="colors">
+            <button type="button" class="tab-item" data-tab="colors">
                 <img src="./src/img/layers.svg" alt="Colors" class="tab-icon">
                 <span>Цвета</span>
             </button>
-            <button type="button" class="tab-item" data-tab="layout">
+            <button type="button" class="tab-item active" data-tab="layout">
                 <img src="./src/img/grid.svg" alt="Layout" class="tab-icon">
                 <span>Лейаут</span>
             </button>
@@ -468,46 +453,61 @@
         </div>
 
         <!-- Содержимое вкладки: Цвета (с выбором шрифта) -->
-        <div class="visual-content tab-pane active" id="tab-colors">
+        <div class="visual-content tab-pane" id="tab-colors" style="display: none;">
             <div class="section-title">КАСТОМНЫЕ ЦВЕТА</div>
             <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
                     <span style="color: var(--text-main, #ccc);">Акцент (Primary)</span>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <input type="color" id="colorPrimary" value="#8b5cf6" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
-                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorPrimaryText">#8b5cf6</span>
+                        <input type="color" id="colorPrimary" value="#8b5cf6"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorPrimaryText">#8b5cf6</span>
                     </div>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
                     <span style="color: var(--text-main, #ccc);">Акцент 2 (Cyan)</span>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <input type="color" id="colorCyan" value="#06b6d4" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
-                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorCyanText">#06b6d4</span>
+                        <input type="color" id="colorCyan" value="#06b6d4"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorCyanText">#06b6d4</span>
                     </div>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
                     <span style="color: var(--text-main, #ccc);">Фон страницы</span>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <input type="color" id="colorBg" value="#0a0b10" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
-                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorBgText">#0a0b10</span>
+                        <input type="color" id="colorBg" value="#0a0b10"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorBgText">#0a0b10</span>
                     </div>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
                     <span style="color: var(--text-main, #ccc);">Поверхность / Сайдбар</span>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <input type="color" id="colorSurface" value="#0e0f16" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
-                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorSurfaceText">#0e0f16</span>
+                        <input type="color" id="colorSurface" value="#0e0f16"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorSurfaceText">#0e0f16</span>
                     </div>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
                     <span style="color: var(--text-main, #ccc);">Карточки</span>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <input type="color" id="colorCards" value="#131420" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
-                        <span style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;" id="colorCardsText">#131420</span>
+                        <input type="color" id="colorCards" value="#131420"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorCardsText">#131420</span>
                     </div>
                 </div>
             </div>
@@ -530,17 +530,104 @@
         </div>
 
         <!-- Содержимое вкладки: Лейаут -->
-        <div class="visual-content tab-pane" id="tab-layout" style="display: none;">
-            <div class="section-title">НАСТРОЙКИ СЕТКИ</div>
-            <p style="color: var(--text-muted, #888); font-size: 13px;">Скоро здесь появятся опции сетки.</p>
+        <div class="visual-content tab-pane active" id="tab-layout">
+            <div class="section-title">ФОНОВЫЙ ПАТТЕРН</div>
+            <div class="patterns-grid" id="patternsGrid">
+                <button type="button" class="pattern-card active" data-pattern="none">
+                    <span>Нет</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="grid">
+                    <span>Сетка</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="dots">
+                    <span>Точки</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="diagonal">
+                    <span>Диагональ</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="noise">
+                    <span>Шум</span>
+                </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="section-title" style="margin-bottom: 0;">Радиус углов</span>
+                <span id="radiusValueText"
+                    style="color: var(--accent-primary, #8b5cf6); font-weight: 600; font-size: 13px;">8px</span>
+            </div>
+            <input type="range" id="radiusRange" min="0" max="24" value="8"
+                style="width: 100%; accent-color: var(--accent-primary, #8b5cf6); cursor: pointer; margin-bottom: 24px;">
         </div>
 
         <!-- Содержимое вкладки: Эффекты -->
         <div class="visual-content tab-pane" id="tab-effects" style="display: none;">
-            <div class="section-title">ВИЗУАЛЬНЫЕ ЭФФЕКТЫ</div>
-            <p style="color: var(--text-muted, #888); font-size: 13px;">Скоро здесь появятся анимации и эффекты.</p>
+            <div class="section-title">АНИМАЦИЯ ФОНА</div>
+            <div class="effects-grid" id="effectsGrid">
+                <button type="button" class="effect-card active" data-effect="none">
+                    <span>Нет</span>
+                    <span class="effect-sub">—</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="sakura">
+                    <span>Сакура</span>
+                    <span class="effect-sub">Лепестки · PINK</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="sparks">
+                    <span>Искры</span>
+                    <span class="effect-sub">Огонь · CRIMSON</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="matrix">
+                    <span>Матрица</span>
+                    <span class="effect-sub">Код · MATRIX</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="bubbles">
+                    <span>Пузыри</span>
+                    <span class="effect-sub">Вода · OCEAN</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="meteors">
+                    <span>Метеоры</span>
+                    <span class="effect-sub">Звёзды · MIDNIGHT</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="fireflies">
+                    <span>Светлячки</span>
+                    <span class="effect-sub">Природа · EMERALD</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="particles">
+                    <span>Частицы</span>
+                    <span class="effect-sub">Геометрия · NEXORA</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="glitter">
+                    <span>Блёстки</span>
+                    <span class="effect-sub">Золото · GOLD</span>
+                </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="section-title" style="margin-bottom: 0;">Интенсивность свечения</span>
+                <span id="glowValueText"
+                    style="color: var(--accent-primary, #8b5cf6); font-weight: 600; font-size: 13px;">20%</span>
+            </div>
+            <input type="range" id="glowRange" min="0" max="100" value="20"
+                style="width: 100%; accent-color: var(--accent-primary, #8b5cf6); cursor: pointer; margin-bottom: 24px;">
+
+            <div class="preview-box">
+                <div class="preview-title">Предпросмотр кнопки</div>
+                <button type="button" class="preview-btn-demo">ПРИМЕНИТЬ СТИЛЬ</button>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-title">Предпросмотр карточки</div>
+                <div class="preview-card-demo">
+                    <div class="preview-card-icon">
+                        <img src="./src/img/gamepad.svg" alt="icon"
+                            style="width: 20px; height: 20px; filter: brightness(0) invert(1);">
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 14px; color: #fff;">Игра</div>
+                        <div style="font-size: 12px; color: var(--accent-cyan, #06b6d4);">Action RPG</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
 
         <!-- Подвал с кнопкой сброса -->
         <div class="visual-footer">
@@ -553,8 +640,6 @@
 
     <script type="module" src="./src/js/helpers/lang.js"></script>
     <script type="module" src="./src/js/library.js"></script>
-
-    <!-- Единый скрипт для панели Визуал, вкладок и кастомизации -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Управление открытием/закрытием панели «Визуал»
@@ -620,11 +705,9 @@
                 });
             };
 
-            // Загрузка сохраненных параметров тем
             const savedTheme = localStorage.getItem('nexora-theme');
             if (savedTheme) applyTheme(savedTheme);
 
-            // Загрузка и применение кастомных цветов
             colorInputs.forEach(item => {
                 const savedVal = localStorage.getItem(item.storageKey);
                 if (savedVal) {
@@ -641,7 +724,6 @@
                 });
             });
 
-            // Обработчики кликов по готовым темам
             themeCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const themeName = card.getAttribute('data-theme');
@@ -651,7 +733,7 @@
                 });
             });
 
-            // 4. Рабочее переключение шрифтов
+            // 4. Шрифты
             const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
             const savedFont = localStorage.getItem('nexora-font');
 
@@ -670,12 +752,92 @@
                 btn.addEventListener('click', () => {
                     fontButtons.forEach(b => b.classList.remove('active'));
                     const fontVal = btn.getAttribute('data-font');
-                    
                     document.documentElement.style.setProperty('--font-family', fontVal);
                     localStorage.setItem('nexora-font', fontVal);
-                    
                     btn.classList.add('active');
                 });
+            });
+
+            // 5. Лейаут (Паттерны и Радиус) — РАБОЧИЙ ФУНКЦИОНАЛ
+            const patternCards = document.querySelectorAll('.pattern-card');
+            const radiusRange = document.getElementById('radiusRange');
+            const radiusValueText = document.getElementById('radiusValueText');
+            const bgLayer = document.getElementById('dynamic-bg-layer');
+
+            const applyPattern = (patternName) => {
+                if (bgLayer) {
+                    bgLayer.className = '';
+                    bgLayer.classList.add(`bg-pattern-${patternName}`);
+                }
+                patternCards.forEach(c => {
+                    if (c.getAttribute('data-pattern') === patternName) c.classList.add('active');
+                    else c.classList.remove('active');
+                });
+            };
+
+            const savedPattern = localStorage.getItem('nexora-pattern') || 'none';
+            applyPattern(savedPattern);
+
+            patternCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const patternName = card.getAttribute('data-pattern');
+                    applyPattern(patternName);
+                    localStorage.setItem('nexora-pattern', patternName);
+                });
+            });
+
+            const savedRadius = localStorage.getItem('nexora-radius') || '8';
+            radiusRange.value = savedRadius;
+            radiusValueText.textContent = savedRadius + 'px';
+            document.documentElement.style.setProperty('--ui-radius', savedRadius + 'px');
+
+            radiusRange.addEventListener('input', (e) => {
+                const val = e.target.value;
+                radiusValueText.textContent = val + 'px';
+                document.documentElement.style.setProperty('--ui-radius', val + 'px');
+                localStorage.setItem('nexora-radius', val);
+            });
+
+            // 6. Эффекты (Анимация фона и Свечение) — РАБОЧИЙ ФУНКЦИОНАЛ
+            const effectCards = document.querySelectorAll('.effect-card');
+            const glowRange = document.getElementById('glowRange');
+            const glowValueText = document.getElementById('glowValueText');
+            const fxLayer = document.getElementById('dynamic-fx-layer');
+
+            const applyEffect = (effectName) => {
+                if (fxLayer) {
+                    fxLayer.className = '';
+                    if (effectName !== 'none') {
+                        fxLayer.classList.add(`fx-${effectName}`);
+                    }
+                }
+                effectCards.forEach(c => {
+                    if (c.getAttribute('data-effect') === effectName) c.classList.add('active');
+                    else c.classList.remove('active');
+                });
+            };
+
+            const savedEffect = localStorage.getItem('nexora-effect') || 'none';
+            applyEffect(savedEffect);
+
+            effectCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const effectName = card.getAttribute('data-effect');
+                    applyEffect(effectName);
+                    localStorage.setItem('nexora-effect', effectName);
+                });
+            });
+
+            const savedGlow = localStorage.getItem('nexora-glow') || '20';
+            glowRange.value = savedGlow;
+            glowValueText.textContent = savedGlow + '%';
+            document.documentElement.style.setProperty('--glow-intensity', savedGlow / 100);
+
+            glowRange.addEventListener('input', (e) => {
+                const val = e.target.value;
+                glowValueText.textContent = val + '%';
+                document.documentElement.style.setProperty('--glow-intensity', val / 100);
+                localStorage.setItem('nexora-glow', val);
             });
 
             // Сброс настроек
@@ -688,145 +850,239 @@
         });
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Управление открытием/закрытием панели «Визуал»
-        const visualSidebar = document.querySelector('.visual-settings');
-        const closeBtn = document.getElementById('closeVisualBtn');
-        const appearanceBtn = document.querySelector('.setting-item [data-i18n="appearance"]').closest('a');
+        // 6. Эффекты (Живые анимации частиц фона)
+        const effectCards = document.querySelectorAll('.effect-card');
+        const glowRange = document.getElementById('glowRange');
+        const glowValueText = document.getElementById('glowValueText');
+        const fxLayer = document.getElementById('dynamic-fx-layer');
 
-        if (appearanceBtn) {
-            appearanceBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                visualSidebar.classList.add('open');
-            });
-        }
+        let animationInterval = null;
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                visualSidebar.classList.remove('open');
-            });
-        }
+        const createParticles = (type) => {
+            if (!fxLayer) return;
+            fxLayer.innerHTML = '';
+            if (animationInterval) clearInterval(animationInterval);
+            if (type === 'none') return;
 
-        // 2. Переключение вкладок в панели «Визуал»
-        const tabItems = document.querySelectorAll('.visual-tabs .tab-item');
-        const tabPanes = document.querySelectorAll('.visual-content.tab-pane');
+            const particleCount = 35; // Количество элементов на экране
+            const elements = [];
 
-        tabItems.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                tabItems.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
+            for (let i = 0; i < particleCount; i++) {
+                const el = document.createElement('div');
+                el.classList.add('fx-particle', `particle-${type}`);
 
-                tabPanes.forEach(pane => pane.style.display = 'none');
-                const targetId = ['tab-themes', 'tab-colors', 'tab-layout', 'tab-effects'][index];
-                const targetPane = document.getElementById(targetId);
-                if (targetPane) targetPane.style.display = 'block';
-            });
-        });
+                // Случайные начальные позиции и параметры анимации
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.top = -20 + 'px';
 
-        // 3. Темы и кастомные цвета
-        const themeCards = document.querySelectorAll('.themes-list .theme-card');
-        const htmlElement = document.documentElement;
-        const resetBtn = document.querySelector('.reset-btn');
+                const size = Math.random() * 8 + 6; // Размер от 6 до 14px
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
 
-        const colorInputs = [
-            { input: document.getElementById('colorPrimary'), text: document.getElementById('colorPrimaryText'), cssVar: '--accent-primary', storageKey: 'nexora-c-primary' },
-            { input: document.getElementById('colorCyan'), text: document.getElementById('colorCyanText'), cssVar: '--accent-cyan', storageKey: 'nexora-c-cyan' },
-            { input: document.getElementById('colorBg'), text: document.getElementById('colorBgText'), cssVar: '--bg-main', storageKey: 'nexora-c-bg' },
-            { input: document.getElementById('colorSurface'), text: document.getElementById('colorSurfaceText'), cssVar: '--bg-surface', storageKey: 'nexora-c-surface' },
-            { input: document.getElementById('colorCards'), text: document.getElementById('colorCardsText'), cssVar: '--bg-cards', storageKey: 'nexora-c-cards' }
-        ];
+                const duration = Math.random() * 6 + 4; // Скорость падения/подъема от 4 до 10 сек
+                const delay = Math.random() * 5; // Задержка старта
 
-        const applyTheme = (themeName) => {
-            if (themeName === 'nexora') {
-                htmlElement.removeAttribute('data-theme');
-            } else {
-                htmlElement.setAttribute('data-theme', themeName);
-            }
+                el.style.animationDuration = duration + 's';
+                el.style.animationDelay = delay + 's';
 
-            themeCards.forEach(card => {
-                if (card.getAttribute('data-theme') === themeName) {
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
+                // Кастомный контент или форма для разных эффектов
+                if (type === 'matrix') {
+                    const chars = '0123456789ABCDEFXYZ';
+                    el.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    el.style.fontSize = (size + 4) + 'px';
+                } else if (type === 'sakura') {
+                    el.style.borderRadius = '50% 0 50% 50%';
+                } else if (type === 'bubbles') {
+                    el.style.borderRadius = '50%';
+                    el.style.border = '1px solid rgba(14, 165, 233, 0.4)';
+                } else if (type === 'fireflies') {
+                    el.style.borderRadius = '50%';
                 }
-            });
+
+                fxLayer.appendChild(el);
+            }
         };
 
-        // Загрузка сохраненных параметров тем
-        const savedTheme = localStorage.getItem('nexora-theme');
-        if (savedTheme) applyTheme(savedTheme);
-
-        // Загрузка и применение кастомных цветов + ПРЯМАЯ покраска иконок в активных кнопках
-        colorInputs.forEach(item => {
-            const savedVal = localStorage.getItem(item.storageKey);
-            if (savedVal) {
-                item.input.value = savedVal;
-                item.text.textContent = savedVal;
-                document.documentElement.style.setProperty(item.cssVar, savedVal);
-            }
-
-            item.input.addEventListener('input', (e) => {
-                const val = e.target.value;
-                item.text.textContent = val;
-                document.documentElement.style.setProperty(item.cssVar, val);
-                localStorage.setItem(item.storageKey, val);
-
-                // ЕСЛИ это Акцент (Primary) — принудительно красим иконки во всех активных кнопках (темах и шрифтах)
-                if (item.cssVar === '--accent-primary') {
-                    document.querySelectorAll('.theme-card.active img, .font-card.active img, .theme-card.active .purple-icon, .font-card.active .purple-icon').forEach(icon => {
-                        icon.style.color = val;
-                        icon.style.fill = val;
-                    });
-                }
+        const applyEffect = (effectName) => {
+            effectCards.forEach(c => {
+                if (c.getAttribute('data-effect') === effectName) c.classList.add('active');
+                else c.classList.remove('active');
             });
-        });
+            createParticles(effectName);
+        };
 
-        // Обработчики кликов по готовым темам
-        themeCards.forEach(card => {
+        const savedEffect = localStorage.getItem('nexora-effect') || 'none';
+        applyEffect(savedEffect);
+
+        effectCards.forEach(card => {
             card.addEventListener('click', () => {
-                const themeName = card.getAttribute('data-theme');
-                if (!themeName) return;
-                applyTheme(themeName);
-                localStorage.setItem('nexora-theme', themeName);
+                const effectName = card.getAttribute('data-effect');
+                applyEffect(effectName);
+                localStorage.setItem('nexora-effect', effectName);
             });
         });
 
-        // 4. Рабочее переключение шрифтов
-        const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
-        const savedFont = localStorage.getItem('nexora-font');
+        const savedGlow = localStorage.getItem('nexora-glow') || '20';
+        glowRange.value = savedGlow;
+        glowValueText.textContent = savedGlow + '%';
+        document.documentElement.style.setProperty('--glow-intensity', savedGlow / 100);
 
-        if (savedFont) {
-            document.documentElement.style.setProperty('--font-family', savedFont);
-            fontButtons.forEach(btn => {
-                if (btn.getAttribute('data-font') === savedFont) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-
-        fontButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                fontButtons.forEach(b => b.classList.remove('active'));
-                const fontVal = btn.getAttribute('data-font');
-                
-                document.documentElement.style.setProperty('--font-family', fontVal);
-                localStorage.setItem('nexora-font', fontVal);
-                
-                btn.classList.add('active');
-            });
+        glowRange.addEventListener('input', (e) => {
+            const val = e.target.value;
+            glowValueText.textContent = val + '%';
+            document.documentElement.style.setProperty('--glow-intensity', val / 100);
+            localStorage.setItem('nexora-glow', val);
         });
+    </script>
+    <script>
+        const translations = {
+            ru: {
+                lang_code: "RU",
+                lang_name: "Русский",
+                page_library: "БИБЛИОТЕКА",
+                search_placeholder: "Поиск...",
+                search_games_placeholder: "Поиск игр...",
+                nav_home: "Главная",
+                nav_library: "Библиотека",
+                nav_cloud: "Облачный гейминг",
+                nav_downloads: "Загрузки",
+                nav_community: "Сообщество",
+                nav_chat: "Чат",
+                notifications: "Уведомления",
+                appearance: "Внешний вид",
+                settings: "Настройки",
+                status_online: "Онлайн",
+                subnav_header_library: "БИБЛИОТЕКА",
+                lib_all_games: "Все игры",
+                lib_in_progress: "В процессе",
+                lib_completed: "Завершённые",
+                subnav_header_categories: "КАТЕГОРИИ",
+                subnav_header_platform: "ПЛАТФОРМА",
+                cat_adventure: "Приключения",
+                cat_building: "Строительство",
+                cat_coop: "Кооператив",
+                cat_competitive: "Соревновательные",
+                cat_crime: "Криминал",
+                cat_fantasy: "Фэнтези",
+                cat_indie: "Инди",
+                cat_multiplayer: "Мультиплеер",
+                cat_mythology: "Мифология",
+                cat_narrative: "Сюжетные",
+                cat_open_world: "Открытый мир",
+                cat_platformer: "Платформер",
+                cat_sandbox: "Песочница",
+                cat_shooter: "Шутер",
+                cat_simulation: "Симулятор",
+                cat_sports: "Спорт",
+                cat_stealth: "Стелс",
+                cat_strategy: "Стратегия",
+                cat_survival: "Выживание",
+                cat_survival_horror: "Survival Horror",
+                cat_thriller: "Триллер",
+                cat_turn_based: "Пошаговые",
+                stats_games: "Игры",
+                stats_total_hours: "Всего часов",
+                stats_hours_val: "2.7k ч"
+            },
+            en: {
+                lang_code: "GB",
+                lang_name: "English",
+                page_library: "LIBRARY",
+                search_placeholder: "Search...",
+                search_games_placeholder: "Search games...",
+                nav_home: "Home",
+                nav_library: "Library",
+                nav_cloud: "Cloud Gaming",
+                nav_downloads: "Downloads",
+                nav_community: "Community",
+                nav_chat: "Chat",
+                notifications: "Notifications",
+                appearance: "Appearance",
+                settings: "Settings",
+                status_online: "Online",
+                subnav_header_library: "LIBRARY",
+                lib_all_games: "All Games",
+                lib_in_progress: "In Progress",
+                lib_completed: "Completed",
+                subnav_header_categories: "CATEGORIES",
+                subnav_header_platform: "PLATFORM",
+                cat_adventure: "Adventure",
+                cat_building: "Building",
+                cat_coop: "Co-op",
+                cat_competitive: "Competitive",
+                cat_crime: "Crime",
+                cat_fantasy: "Fantasy",
+                cat_indie: "Indie",
+                cat_multiplayer: "Multiplayer",
+                cat_mythology: "Mythology",
+                cat_narrative: "Narrative",
+                cat_open_world: "Open World",
+                cat_platformer: "Platformer",
+                cat_sandbox: "Sandbox",
+                cat_shooter: "Shooter",
+                cat_simulation: "Simulation",
+                cat_sports: "Sports",
+                cat_stealth: "Stealth",
+                cat_strategy: "Strategy",
+                cat_survival: "Survival",
+                cat_survival_horror: "Survival Horror",
+                cat_thriller: "Thriller",
+                cat_turn_based: "Turn-Based",
+                stats_games: "Games",
+                stats_total_hours: "Total Hours",
+                stats_hours_val: "2.7k h"
+            },
+            ua: {
+                lang_code: "UA",
+                lang_name: "Українська",
+                page_library: "БІБЛІОТЕКА",
+                search_placeholder: "Пошук...",
+                search_games_placeholder: "Пошук ігор...",
+                nav_home: "Головна",
+                nav_library: "Бібліотека",
+                nav_cloud: "Хмарний ґеймінг",
+                nav_downloads: "Завантаження",
+                nav_community: "Спільнота",
+                nav_chat: "Чат",
+                notifications: "Сповіщення",
+                appearance: "Зовнішній вигляд",
+                settings: "Налаштування",
+                status_online: "Онлайн",
+                subnav_header_library: "БІБЛІОТЕКА",
+                lib_all_games: "Усі ігри",
+                lib_in_progress: "У процесі",
+                lib_completed: "Завершені",
+                subnav_header_categories: "КАТЕГОРІЇ",
+                subnav_header_platform: "ПЛАТФОРМА",
+                cat_adventure: "Пригоди",
+                cat_building: "Будівництво",
+                cat_coop: "Кооператив",
+                cat_competitive: "Змагальні",
+                cat_crime: "Кримінал",
+                cat_fantasy: "Фентезі",
+                cat_indie: "Інді",
+                cat_multiplayer: "Мультиплеєр",
+                cat_mythology: "Міфологія",
+                cat_narrative: "Сюжетні",
+                cat_open_world: "Відкритий світ",
+                cat_platformer: "Платформер",
+                cat_sandbox: "Пісочниця",
+                cat_shooter: "Шутер",
+                cat_simulation: "Симулятор",
+                cat_sports: "Спорт",
+                cat_stealth: "Стелс",
+                cat_strategy: "Стратегія",
+                cat_survival: "Виживання",
+                cat_survival_horror: "Survival Horror",
+                cat_thriller: "Трилер",
+                cat_turn_based: "Покрокові",
+                stats_games: "Ігри",
+                stats_total_hours: "Усього годин",
+                stats_hours_val: "2.7k год"
+            }
+        };
 
-        // Сброс настроек
-        if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-                localStorage.clear();
-                location.reload();
-            });
-        }
-    });
-</script>
+    </script>
 </body>
 
 </html>

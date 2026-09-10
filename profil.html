@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora Client - Профиль</title>
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="icon" type="image/png" href="./src/img/gemini.svg">
+</head>
+<body>
+
+    <!-- ДИНАМИЧЕСКИЕ СЛОИ ФОНА И ЭФФЕКТОВ -->
+    <div id="dynamic-bg-layer"></div>
+    <div id="dynamic-fx-layer"></div>
+
+    <!-- ================= ЛЕВЫЙ САЙДБАР ================= -->
+    <aside class="left-sidebar">
+        <div class="sidebar-top">
+            <!-- Брендинг -->
+            <div class="brand">
+                <div class="brand-logo">
+                    <img src="./src/img/gemini.svg" alt="">
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">NEXORA</span>
+                    <span class="brand-subtitle">Gaming Platform</span>
+                </div>
+            </div>
+
+            <!-- Навигационное меню -->
+            <nav class="nav-menu">
+                <a href="./index.html">
+                    <button type="button" class="nav-item">
+                        <img class="nav-icon purple-icon" src="./src/img/home.svg" alt="Home">
+                        <span data-i18n="nav_home">Главная</span>
+                    </button>
+                </a>
+
+                <a href="./biblia.html">
+                    <button type="button" class="nav-item active">
+                        <img class="nav-icon purple-icon" src="./src/img/gamepad.svg" alt="Library">
+                        <span data-i18n="nav_library">Библиотека</span>
+                    </button>
+                </a>
+
+                <a href="#">
+                    <button type="button" class="nav-item">
+                        <img class="nav-icon purple-icon" src="./src/img/cloud.svg" alt="Облачный гейминг">
+                        <span data-i18n="nav_cloud">Облачный гейминг</span>
+                    </button>
+                </a>
+
+                <a href="#">
+                    <button type="button" class="nav-item">
+                        <img class="nav-icon purple-icon" src="./src/img/download.svg" alt="Загрузки">
+                        <span data-i18n="nav_downloads">Загрузки</span>
+                    </button>
+                </a>
+
+                <a href="#">
+                    <button type="button" class="nav-item">
+                        <img class="nav-icon purple-icon" src="./src/img/font-users.svg" alt="Сообщество">
+                        <span data-i18n="nav_community">Сообщество</span>
+                    </button>
+                </a>
+
+                <a href="#">
+                    <button type="button" class="nav-item">
+                        <img class="nav-icon purple-icon" src="./src/img/comment.svg" alt="Чат">
+                        <span data-i18n="nav_chat">Чат</span>
+                    </button>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Нижняя панель сайдбара -->
+        <div class="sidebar-bottom">
+            <div class="settings-menu">
+                <!-- Выпадающий список языков (Переводчик) -->
+                <div class="lang-dropdown-wrapper">
+                    <button type="button" class="setting-item lang-dropdown-btn" id="lang-dropdown-btn">
+                        <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; margin-right: 6px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
+                        </svg>
+                        <span>
+                            <span class="lang-code-text" id="current-lang-code">RU</span>
+                            <span id="current-lang-name">Русский</span>
+                        </span>
+                    </button>
+
+                    <div class="lang-dropdown-menu" id="lang-dropdown-menu">
+                        <button type="button" class="lang-option" data-lang="en">
+                            <span class="lang-code">GB</span>
+                            <span class="lang-title">English</span>
+                        </button>
+                        <button type="button" class="lang-option" data-lang="ua">
+                            <span class="lang-code">UA</span>
+                            <span class="lang-title">Українська</span>
+                        </button>
+                        <button type="button" class="lang-option active" data-lang="ru">
+                            <span class="lang-code">RU</span>
+                            <span class="lang-title">Русский</span>
+                        </button>
+                    </div>
+                </div>
+
+                <a href="#" class="setting-item">
+                    <span data-i18n="notifications">Уведомления</span>
+                    <span class="badge-purple">3</span>
+                </a>
+                <a href="#" class="setting-item" id="appearanceBtn">
+                    <span data-i18n="appearance">Внешний вид</span>
+                </a>
+                <a href="#" class="setting-item">
+                    <span data-i18n="settings">Настройки</span>
+                </a>
+            </div>
+
+            <!-- Профиль пользователя (активный) -->
+            <div class="user-profile active">
+                <div class="user-avatar">VS</div>
+                <div class="user-info">
+                    <span class="user-name">VideoSlayer</span>
+                    <span class="user-status"><span class="status-dot"></span><span data-i18n="status_online">Онлайн</span></span>
+                </div>
+                <span class="user-arrow">›</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= ЦЕНТРАЛЬНАЯ ОБЛАСТЬ (ПРОФИЛЬ) ================= -->
+    <div class="main-wrapper">
+        <header class="main-header">
+            <h1 class="page-title" data-i18n="page_profile">ПРОФИЛЬ</h1>
+            <div class="search-box">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" class="search-input" placeholder="Поиск..." data-i18n-placeholder="search_placeholder">
+            </div>
+        </header>
+
+        <div class="content-container profile-container">
+            <!-- Шапка профиля с баннером -->
+            <div class="profile-header-banner">
+                <div class="profile-user-info-row">
+                    <div class="profile-avatar-container">
+                        <div class="profile-main-avatar">VS</div>
+                        <span class="status-indicator online"></span>
+                    </div>
+                    <div class="profile-meta">
+                        <div class="profile-activity-status" data-i18n="profile_playing">🎮 Играет в Elden Ring</div>
+                        <div class="profile-country-join" data-i18n="profile_location">📍 Украина • С 2018</div>
+                    </div>
+                    <button class="btn-edit-profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        <span data-i18n="btn_edit">Редактировать</span>
+                    </button>
+                </div>
+
+                <div class="profile-bio" data-i18n="profile_bio">
+                    Гейминг — это жизнь 🎮 Люблю RPG и Souls-like игры. Всегда ищу новые приключения в виртуальных мирах.
+                </div>
+
+                <div class="profile-social-links">
+                    <a href="#" class="social-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
+                        Twitch <span class="star">★</span>
+                    </a>
+                    <a href="#" class="social-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"/></svg>
+                        YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- Статистические плашки -->
+            <div class="profile-stats-grid">
+                <div class="stat-card">
+                    <span class="stat-num purple">30</span>
+                    <span class="stat-label" data-i18n="stats_games">Игры</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num cyan">2720</span>
+                    <span class="stat-label" data-i18n="stats_hours">Часы</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num green">6</span>
+                    <span class="stat-label" data-i18n="stats_friends">Друзья</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num orange">47</span>
+                    <span class="stat-label" data-i18n="stats_achievements">Достижения</span>
+                </div>
+            </div>
+
+            <!-- Витрина игр -->
+            <div class="profile-section">
+                <div class="section-header-title">
+                    <span data-i18n="sec_showcase">⭐ ВИТРИНА ИГР</span>
+                </div>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <div class="showcase-img placeholder-starfield"></div>
+                        <div class="showcase-info">
+                            <span class="game-title">Starfield</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="showcase-img placeholder-bg3"></div>
+                        <div class="showcase-info">
+                            <span class="game-title">Baldur's Gate 3</span>
+                            <span class="stars">★★★★☆</span>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="showcase-img placeholder-alan2"></div>
+                        <div class="showcase-info">
+                            <span class="game-title">Alan Wake 2</span>
+                            <span class="stars">★★★★☆</span>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="showcase-img placeholder-elden"></div>
+                        <div class="showcase-info">
+                            <span class="game-title">Elden Ring</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Нижний блок: Недавние игры + Достижения и Друзья -->
+            <div class="profile-bottom-grid">
+                <div class="profile-section recent-games-section">
+                    <div class="section-header-title">
+                        <span data-i18n="sec_recent">🎮 НЕДАВНИЕ</span>
+                    </div>
+                    <div class="recent-list">
+                        <div class="recent-row">
+                            <div class="game-mini-thumb"></div>
+                            <div class="game-details">
+                                <span class="g-name">Minecraft</span>
+                                <span class="g-stars">★★★★☆ <span class="g-hours" data-i18n="hours_minecraft">500 ч</span></span>
+                            </div>
+                            <div class="progress-bar-wrap"><div class="p-bar" style="width: 85%;"></div></div>
+                        </div>
+                        <div class="recent-row">
+                            <div class="game-mini-thumb"></div>
+                            <div class="game-details">
+                                <span class="g-name">Counter-Strike 2</span>
+                                <span class="g-stars">★★★★☆ <span class="g-hours" data-i18n="hours_cs2">300 ч</span></span>
+                            </div>
+                            <div class="progress-bar-wrap"><div class="p-bar" style="width: 60%;"></div></div>
+                        </div>
+                        <div class="recent-row">
+                            <div class="game-mini-thumb"></div>
+                            <div class="game-details">
+                                <span class="g-name">The Witcher 3: Wild Hunt</span>
+                                <span class="g-stars">★★★★★ <span class="g-hours" data-i18n="hours_witcher">200 ч</span></span>
+                            </div>
+                            <div class="progress-bar-wrap"><div class="p-bar" style="width: 45%;"></div></div>
+                        </div>
+                        <div class="recent-row">
+                            <div class="game-mini-thumb"></div>
+                            <div class="game-details">
+                                <span class="g-name">Red Dead Redemption 2</span>
+                                <span class="g-stars">★★★★★ <span class="g-hours" data-i18n="hours_rdr2">180 ч</span></span>
+                            </div>
+                            <div class="progress-bar-wrap"><div class="p-bar" style="width: 35%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-side-column">
+                    <div class="profile-section">
+                        <div class="section-header-title">
+                            <span data-i18n="sec_achievements">🏆 ДОСТИЖЕНИЯ</span>
+                        </div>
+                        <div class="achievements-grid">
+                            <div class="ach-badge">
+                                <span class="ach-icon">🏆</span>
+                                <span class="ach-text" data-i18n="ach_collector">Коллекционер</span>
+                            </div>
+                            <div class="ach-badge">
+                                <span class="ach-icon">⏱️</span>
+                                <span class="ach-text" data-i18n="ach_addict">Заядлый</span>
+                            </div>
+                            <div class="ach-badge">
+                                <span class="ach-icon">⭐</span>
+                                <span class="ach-text" data-i18n="ach_critic">Критик</span>
+                            </div>
+                            <div class="ach-badge">
+                                <span class="ach-icon">👥</span>
+                                <span class="ach-text" data-i18n="ach_sociable">Общительный</span>
+                            </div>
+                            <div class="ach-badge">
+                                <span class="ach-icon">⚡</span>
+                                <span class="ach-text" data-i18n="ach_veteran">Ветеран</span>
+                            </div>
+                            <div class="ach-badge">
+                                <span class="ach-icon">🛡️</span>
+                                <span class="ach-text" data-i18n="ach_reliable">Надёжный</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <div class="section-header-title">
+                            <span data-i18n="sec_friends">👥 ДРУЗЬЯ</span>
+                        </div>
+                        <div class="friends-mini-list">
+                            <div class="friend-mini-row">
+                                <div class="f-avatar">P1</div>
+                                <div class="f-info">
+                                    <span class="f-name">PlayerOne</span>
+                                    <span class="f-status">Counter-Strike 2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= ПРАВАЯ ПАНЕЛЬ "ВИЗУАЛ" ================= -->
+    <aside class="right-sidebar visual-settings" id="themePanel">
+        <!-- Шапка панели -->
+        <div class="visual-header">
+            <div class="visual-header-left">
+                <div class="visual-small-logo-wrapper">
+                    <img src="./src/img/layers.svg" alt="Визуал" class="visual-small-logo">
+                </div>
+                <h3 class="visual-title">Визуал</h3>
+            </div>
+            <button type="button" class="close-btn" id="closeVisualBtn">&times;</button>
+        </div>
+
+        <!-- Навигация: Иконки + Подписи -->
+        <div class="visual-tabs">
+            <button type="button" class="tab-item" data-tab="themes">
+                <img src="./src/img/triangle.svg" alt="Themes" class="tab-icon">
+                <span>Темы</span>
+            </button>
+            <button type="button" class="tab-item" data-tab="colors">
+                <img src="./src/img/layers.svg" alt="Colors" class="tab-icon">
+                <span>Цвета</span>
+            </button>
+            <button type="button" class="tab-item active" data-tab="layout">
+                <img src="./src/img/grid.svg" alt="Layout" class="tab-icon">
+                <span>Лейаут</span>
+            </button>
+            <button type="button" class="tab-item" data-tab="effects">
+                <img src="./src/img/bolt.svg" alt="Effects" class="tab-icon">
+                <span>Эффекты</span>
+            </button>
+        </div>
+
+        <!-- Содержимое вкладки: Темы -->
+        <div class="visual-content tab-pane" id="tab-themes" style="display: none;">
+            <div class="section-title">ГОТОВЫЕ ТЕМЫ</div>
+
+            <div class="themes-list">
+                <button type="button" class="theme-card active" data-theme="nexora">
+                    <div class="theme-name">
+                        <span class="theme-icon">💜</span>
+                        <span>NEXORA</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: var(--accent-primary);"></span>
+                        <span class="theme-dot" style="background-color: var(--accent-cyan);"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="crimson">
+                    <div class="theme-name">
+                        <span class="theme-icon circle" style="background-color: #e11d48;"></span>
+                        <span>CRIMSON</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #e11d48;"></span>
+                        <span class="theme-dot" style="background-color: #f43f5e;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="emerald">
+                    <div class="theme-name">
+                        <span class="theme-icon">💚</span>
+                        <span>EMERALD</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #10b981;"></span>
+                        <span class="theme-dot" style="background-color: #06b6d4;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="gold">
+                    <div class="theme-name">
+                        <span class="theme-icon circle" style="background-color: #eab308;"></span>
+                        <span>GOLD</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #eab308;"></span>
+                        <span class="theme-dot" style="background-color: #f59e0b;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="pink">
+                    <div class="theme-name">
+                        <span class="theme-icon">🌸</span>
+                        <span>PINK</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #ec4899;"></span>
+                        <span class="theme-dot" style="background-color: #f472b6;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="ocean">
+                    <div class="theme-name">
+                        <span class="theme-icon">🌊</span>
+                        <span>OCEAN</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #0ea5e9;"></span>
+                        <span class="theme-dot" style="background-color: #2563eb;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="midnight">
+                    <div class="theme-name">
+                        <span class="theme-icon">🔮</span>
+                        <span>MIDNIGHT</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #8b5cf6;"></span>
+                        <span class="theme-dot" style="background-color: #6366f1;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+
+                <button type="button" class="theme-card" data-theme="matrix">
+                    <div class="theme-name">
+                        <span class="theme-icon circle" style="background-color: #22c55e;"></span>
+                        <span>MATRIX</span>
+                    </div>
+                    <div class="theme-preview-elements">
+                        <span class="theme-dot" style="background-color: #22c55e;"></span>
+                        <span class="theme-dot" style="background-color: #10b981;"></span>
+                        <span class="theme-check">✓</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Содержимое вкладки: Цвета (с выбором шрифта) -->
+        <div class="visual-content tab-pane" id="tab-colors" style="display: none;">
+            <div class="section-title">КАСТОМНЫЕ ЦВЕТА</div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Акцент (Primary)</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorPrimary" value="#8b5cf6"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorPrimaryText">#8b5cf6</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Акцент 2 (Cyan)</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorCyan" value="#06b6d4"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorCyanText">#06b6d4</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Фон страницы</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorBg" value="#0a0b10"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorBgText">#0a0b10</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Поверхность / Сайдбар</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorSurface" value="#0e0f16"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorSurfaceText">#0e0f16</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                    <span style="color: var(--text-main, #ccc);">Карточки</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="colorCards" value="#131420"
+                            style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+                            id="colorCardsText">#131420</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">ВЫБОР ШРИФТА</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;" id="fontSelectorList">
+                <button type="button" class="font-card active" data-font="'Inter', sans-serif">
+                    <span style="font-family: 'Inter', sans-serif;">Inter (Стандартный)</span>
+                </button>
+                <button type="button" class="font-card" data-font="'Roboto', sans-serif">
+                    <span style="font-family: 'Roboto', sans-serif;">Roboto</span>
+                </button>
+                <button type="button" class="font-card" data-font="'Montserrat', sans-serif">
+                    <span style="font-family: 'Montserrat', sans-serif;">Montserrat</span>
+                </button>
+                <button type="button" class="font-card" data-font="'Courier New', monospace">
+                    <span style="font-family: 'Courier New', monospace;">Courier New (Моноширинный)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Содержимое вкладки: Лейаут -->
+        <div class="visual-content tab-pane active" id="tab-layout">
+            <div class="section-title">ФОНОВЫЙ ПАТТЕРН</div>
+            <div class="patterns-grid" id="patternsGrid">
+                <button type="button" class="pattern-card active" data-pattern="none">
+                    <span>Нет</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="grid">
+                    <span>Сетка</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="dots">
+                    <span>Точки</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="diagonal">
+                    <span>Диагональ</span>
+                </button>
+                <button type="button" class="pattern-card" data-pattern="noise">
+                    <span>Шум</span>
+                </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="section-title" style="margin-bottom: 0;">Радиус углов</span>
+                <span id="radiusValueText"
+                    style="color: var(--accent-primary, #8b5cf6); font-weight: 600; font-size: 13px;">8px</span>
+            </div>
+            <input type="range" id="radiusRange" min="0" max="24" value="8"
+                style="width: 100%; accent-color: var(--accent-primary, #8b5cf6); cursor: pointer; margin-bottom: 24px;">
+        </div>
+
+        <!-- Содержимое вкладки: Эффекты -->
+        <div class="visual-content tab-pane" id="tab-effects" style="display: none;">
+            <div class="section-title">АНИМАЦИЯ ФОНА</div>
+            <div class="effects-grid" id="effectsGrid">
+                <button type="button" class="effect-card active" data-effect="none">
+                    <span>Нет</span>
+                    <span class="effect-sub">—</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="sakura">
+                    <span>Сакура</span>
+                    <span class="effect-sub">Лепестки · PINK</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="sparks">
+                    <span>Искры</span>
+                    <span class="effect-sub">Огонь · CRIMSON</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="matrix">
+                    <span>Матрица</span>
+                    <span class="effect-sub">Код · MATRIX</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="bubbles">
+                    <span>Пузыри</span>
+                    <span class="effect-sub">Вода · OCEAN</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="meteors">
+                    <span>Метеоры</span>
+                    <span class="effect-sub">Звёзды · MIDNIGHT</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="fireflies">
+                    <span>Светлячки</span>
+                    <span class="effect-sub">Природа · EMERALD</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="particles">
+                    <span>Частицы</span>
+                    <span class="effect-sub">Геометрия · NEXORA</span>
+                </button>
+                <button type="button" class="effect-card" data-effect="glitter">
+                    <span>Блёстки</span>
+                    <span class="effect-sub">Золото · GOLD</span>
+                </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="section-title" style="margin-bottom: 0;">Интенсивность свечения</span>
+                <span id="glowValueText"
+                    style="color: var(--accent-primary, #8b5cf6); font-weight: 600; font-size: 13px;">20%</span>
+            </div>
+            <input type="range" id="glowRange" min="0" max="100" value="20"
+                style="width: 100%; accent-color: var(--accent-primary, #8b5cf6); cursor: pointer; margin-bottom: 24px;">
+
+            <div class="preview-box">
+                <div class="preview-title">Предпросмотр кнопки</div>
+                <button type="button" class="preview-btn-demo">ПРИМЕНИТЬ СТИЛЬ</button>
+            </div>
+
+            <div class="preview-box">
+                <div class="preview-title">Предпросмотр карточки</div>
+                <div class="preview-card-demo">
+                    <div class="preview-card-icon">
+                        <img src="./src/img/gamepad.svg" alt="icon"
+                            style="width: 20px; height: 20px; filter: brightness(0) invert(1);">
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 14px; color: #fff;">Игра</div>
+                        <div style="font-size: 12px; color: var(--accent-cyan, #06b6d4);">Action RPG</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал с кнопкой сброса -->
+        <div class="visual-footer">
+            <button type="button" class="reset-btn" id="resetThemeBtn">
+                <img src="./src/img/rotate.svg" alt="Reset" class="reset-icon">
+                <span>Сбросить к NEXORA</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Скрипты -->
+    <script>
+        const translations = {
+            ru: {
+                lang_code: "RU",
+                lang_name: "Русский",
+                nav_home: "Главная",
+                nav_library: "Библиотека",
+                nav_cloud: "Облачный гейминг",
+                nav_downloads: "Загрузки",
+                nav_community: "Сообщество",
+                nav_chat: "Чат",
+                notifications: "Уведомления",
+                appearance: "Внешний вид",
+                settings: "Настройки",
+                status_online: "Онлайн",
+                page_profile: "ПРОФИЛЬ",
+                search_placeholder: "Поиск...",
+                profile_playing: "🎮 Играет в Elden Ring",
+                profile_location: "📍 Украина • С 2018",
+                btn_edit: "Редактировать",
+                profile_bio: "Гейминг — это жизнь 🎮 Люблю RPG и Souls-like игры. Всегда ищу новые приключения в виртуальных мирах.",
+                stats_games: "Игры",
+                stats_hours: "Часы",
+                stats_friends: "Друзья",
+                stats_achievements: "Достижения",
+                sec_showcase: "⭐ ВИТРИНА ИГР",
+                sec_recent: "🎮 НЕДАВНИЕ",
+                hours_minecraft: "500 ч",
+                hours_cs2: "300 ч",
+                hours_witcher: "200 ч",
+                hours_rdr2: "180 ч",
+                sec_achievements: "🏆 ДОСТИЖЕНИЯ",
+                ach_collector: "Коллекционер",
+                ach_addict: "Заядлый",
+                ach_critic: "Критик",
+                ach_sociable: "Общительный",
+                ach_veteran: "Ветеран",
+                ach_reliable: "Надёжный",
+                sec_friends: "👥 ДРУЗЬЯ",
+                layout_compact: "Компактный режим сайдбара",
+                layout_animations: "Плавные анимации переходов",
+                effects_blur: "Эффект размытия (Glassmorphism)",
+                effects_glow: "Неоновое свечение элементов"
+            },
+            en: {
+                lang_code: "GB",
+                lang_name: "English",
+                nav_home: "Home",
+                nav_library: "Library",
+                nav_cloud: "Cloud Gaming",
+                nav_downloads: "Downloads",
+                nav_community: "Community",
+                nav_chat: "Chat",
+                notifications: "Notifications",
+                appearance: "Appearance",
+                settings: "Settings",
+                status_online: "Online",
+                page_profile: "PROFILE",
+                search_placeholder: "Search...",
+                profile_playing: "🎮 Playing Elden Ring",
+                profile_location: "📍 Ukraine • Since 2018",
+                btn_edit: "Edit",
+                profile_bio: "Gaming is life 🎮 I love RPG and Souls-like games. Always looking for new adventures in virtual worlds.",
+                stats_games: "Games",
+                stats_hours: "Hours",
+                stats_friends: "Friends",
+                stats_achievements: "Achievements",
+                sec_showcase: "⭐ GAME SHOWCASE",
+                sec_recent: "🎮 RECENT",
+                hours_minecraft: "500 h",
+                hours_cs2: "300 h",
+                hours_witcher: "200 h",
+                hours_rdr2: "180 h",
+                sec_achievements: "🏆 ACHIEVEMENTS",
+                ach_collector: "Collector",
+                ach_addict: "Hardcore",
+                ach_critic: "Critic",
+                ach_sociable: "Sociable",
+                ach_veteran: "Veteran",
+                ach_reliable: "Reliable",
+                sec_friends: "👥 FRIENDS",
+                layout_compact: "Compact sidebar mode",
+                layout_animations: "Smooth transition animations",
+                effects_blur: "Blur effect (Glassmorphism)",
+                effects_glow: "Neon element glow"
+            },
+            ua: {
+                lang_code: "UA",
+                lang_name: "Українська",
+                nav_home: "Головна",
+                nav_library: "Бібліотека",
+                nav_cloud: "Хмарний ґеймінг",
+                nav_downloads: "Завантаження",
+                nav_community: "Спільнота",
+                nav_chat: "Чат",
+                notifications: "Сповіщення",
+                appearance: "Зовнішній вигляд",
+                settings: "Налаштування",
+                status_online: "Онлайн",
+                page_profile: "ПРОФІЛЬ",
+                search_placeholder: "Пошук...",
+                profile_playing: "🎮 Грає в Elden Ring",
+                profile_location: "📍 Україна • З 2018",
+                btn_edit: "Редагувати",
+                profile_bio: "Ґеймінг — це життя 🎮 Люблю RPG та Souls-like ігри. Завжди шукаю нові пригоди у віртуальних світах.",
+                stats_games: "Ігри",
+                stats_hours: "Години",
+                stats_friends: "Друзі",
+                stats_achievements: "Досягнення",
+                sec_showcase: "⭐ ВІТРИНА ІГОР",
+                sec_recent: "🎮 НЕЩОДАВНІ",
+                hours_minecraft: "500 год",
+                hours_cs2: "300 год",
+                hours_witcher: "200 год",
+                hours_rdr2: "180 год",
+                sec_achievements: "🏆 ДОСЯГНЕННЯ",
+                ach_collector: "Колекціонер",
+                ach_addict: "Запеклий",
+                ach_critic: "Критик",
+                ach_sociable: "Товариський",
+                ach_veteran: "Ветеран",
+                ach_reliable: "Надійний",
+                sec_friends: "👥 ДРУЗІ",
+                layout_compact: "Компактний режим сайдбару",
+                layout_animations: "Плавні анімації переходів",
+                effects_blur: "Ефект розмиття (Glassmorphism)",
+                effects_glow: "Неонове світіння елементів"
+            }
+        };
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            localStorage.setItem('nexora-lang', lang);
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+
+            const codeEl = document.getElementById('current-lang-code');
+            const nameEl = document.getElementById('current-lang-name');
+            if (codeEl) codeEl.textContent = translations[lang].lang_code;
+            if (nameEl) nameEl.textContent = translations[lang].lang_name;
+
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                if (opt.getAttribute('data-lang') === lang) {
+                    opt.classList.add('active');
+                } else {
+                    opt.classList.remove('active');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropdownBtn = document.getElementById('lang-dropdown-btn');
+            const dropdownMenu = document.getElementById('lang-dropdown-menu');
+
+            if (dropdownBtn && dropdownMenu) {
+                dropdownBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdownMenu.classList.toggle('show');
+                });
+
+                document.addEventListener('click', () => {
+                    dropdownMenu.classList.remove('show');
+                });
+
+                dropdownMenu.querySelectorAll('.lang-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        const lang = option.getAttribute('data-lang');
+                        setLanguage(lang);
+                        dropdownMenu.classList.remove('show');
+                    });
+                });
+            }
+
+            const savedLang = localStorage.getItem('nexora-lang') || 'ru';
+            setLanguage(savedLang);
+
+            // Управление панелью «Визуал»
+            const appearanceBtn = document.getElementById('appearanceBtn');
+            const themePanel = document.getElementById('themePanel');
+            const closeThemePanel = document.getElementById('closeVisualBtn');
+
+            if (appearanceBtn && themePanel) {
+                appearanceBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    themePanel.classList.add('open');
+                });
+            }
+
+            if (closeThemePanel && themePanel) {
+                closeThemePanel.addEventListener('click', () => {
+                    themePanel.classList.remove('open');
+                });
+            }
+
+            // Переключение вкладок панели
+            const tabButtons = document.querySelectorAll('.visual-tabs .tab-item');
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const tabName = btn.getAttribute('data-tab');
+                    document.querySelectorAll('.visual-content.tab-pane').forEach(pane => {
+                        pane.style.display = 'none';
+                    });
+
+                    const targetPane = document.getElementById(`tab-${tabName}`);
+                    if (targetPane) {
+                        targetPane.style.display = 'block';
+                    }
+                });
+            });
+
+            // Выбор тем
+            const themeCards = document.querySelectorAll('.themes-list .theme-card');
+            const savedTheme = localStorage.getItem('nexora-theme') || 'nexora';
+            
+            function applyTheme(themeName) {
+                document.body.setAttribute('data-theme', themeName);
+                themeCards.forEach(card => {
+                    if (card.getAttribute('data-theme') === themeName) {
+                        card.classList.add('active');
+                        let previewElements = card.querySelector('.theme-preview-elements');
+                        if (previewElements && !card.querySelector('.theme-check')) {
+                            let check = document.createElement('span');
+                            check.className = 'theme-check';
+                            check.textContent = '✓';
+                            previewElements.appendChild(check);
+                        }
+                    } else {
+                        card.classList.remove('active');
+                        let check = card.querySelector('.theme-check');
+                        if (check) {
+                            check.remove();
+                        }
+                    }
+                });
+                localStorage.setItem('nexora-theme', themeName);
+            }
+
+            applyTheme(savedTheme);
+
+            themeCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const theme = card.getAttribute('data-theme');
+                    applyTheme(theme);
+                });
+            });
+
+            const resetBtn = document.getElementById('resetThemeBtn');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    applyTheme('nexora');
+                });
+            }
+
+            // Интерактив для range-инпутов (радиус и свечение)
+            const radiusRange = document.getElementById('radiusRange');
+            const radiusValueText = document.getElementById('radiusValueText');
+            if (radiusRange && radiusValueText) {
+                radiusRange.addEventListener('input', (e) => {
+                    radiusValueText.textContent = e.target.value + 'px';
+                });
+            }
+
+            const glowRange = document.getElementById('glowRange');
+            const glowValueText = document.getElementById('glowValueText');
+            if (glowRange && glowValueText) {
+                glowRange.addEventListener('input', (e) => {
+                    glowValueText.textContent = e.target.value + '%';
+                });
+            }
+
+            // Интерактив для паттернов и эффектов
+            const patterns = document.querySelectorAll('.patterns-grid .pattern-card');
+            patterns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    patterns.forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            const effects = document.querySelectorAll('.effects-grid .effect-card');
+            effects.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    effects.forEach(ef => ef.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            // Интерактив для шрифтов
+            const fontCards = document.querySelectorAll('.font-card');
+            fontCards.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    fontCards.forEach(f => f.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
