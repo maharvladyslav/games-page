@@ -11,9 +11,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./src/css/reset.css" />
   <link rel="stylesheet" href="./src/css/main.css" />
+  <style>
+    /* Базовые цвета тем, если они не прописаны в main.css */
+    html[data-theme="crimson"] {
+      --accent-primary: #e11d48;
+      --accent-cyan: #f43f5e;
+    }
+
+    html[data-theme="emerald"] {
+      --accent-primary: #10b981;
+      --accent-cyan: #06b6d4;
+    }
+
+    html[data-theme="gold"] {
+      --accent-primary: #eab308;
+      --accent-cyan: #f59e0b;
+    }
+
+    html[data-theme="pink"] {
+      --accent-primary: #ec4899;
+      --accent-cyan: #f472b6;
+    }
+
+    html[data-theme="ocean"] {
+      --accent-primary: #0ea5e9;
+      --accent-cyan: #2563eb;
+    }
+
+    html[data-theme="midnight"] {
+      --accent-primary: #8b5cf6;
+      --accent-cyan: #6366f1;
+    }
+
+    html[data-theme="matrix"] {
+      --accent-primary: #22c55e;
+      --accent-cyan: #10b981;
+    }
+  </style>
 </head>
 
 <body>
+  <div id="dynamic-bg-layer"></div>
   <aside class="left-sidebar">
     <div class="sidebar-top">
       <div class="brand">
@@ -108,7 +146,7 @@
           <span data-i18n="notifications">Уведомления</span>
           <span class="badge badge-purple">99+</span>
         </a>
-        <a href="#" class="setting-item">
+        <a href="#" class="setting-item" id="appearance-btn">
           <span data-i18n="appearance">Внешний вид</span>
         </a>
         <a href="#" class="setting-item">
@@ -148,171 +186,1054 @@
     </div>
   </main>
 
-  <!-- <main class="main-content">
-      <div class="controls">
-        <ul class="controls-list">
-          <li class="controls-item">
-            <button class="constrols-btn btn-primary" data-controls="add">
-              <span></span> Додати
-            </button>
-          </li>
-          <li class="controls-item">
-            <button class="constrols-btn btn-danger" data-controls="reset">
-              <span></span> Видалити всі ігри
-            </button>
-          </li>
-          <li class="controls-item">
-            <button class="constrols-btn" data-controls="good-game">
-              <span></span> Показати круті ігри
-            </button>
-          </li>
-          <li class="controls-item">
-            <button class="constrols-btn" data-controls="pc-game">
-              <span></span> Ігри на пк
-            </button>
-          </li>
-          <li class="controls-item">
-            <button class="controls-btn" data-controls="all-hour">
-              <span></span> Показати усі зіграни години
-            </button>
-          </li>
-        </ul>
-        <ul class="sort-list" data-sort>
-          <li class="sort-item">
-            <button class="sort-btn" data-sort-type="name-arc">
-              <span></span> Від а до я
-            </button>
-          </li>
-          <li class="sort-item">
-            <button class="sort-btn" data-sort-type="hour-arc">
-              <span></span> Від меньших годин до більших
-            </button>
-          </li>
-        </ul>
+  <aside class="right-sidebar visual-settings">
+    <!-- Шапка панели -->
+    <div class="visual-header">
+      <div class="visual-header-left">
+        <div class="visual-small-logo-wrapper">
+          <img src="./src/img/layers.svg" alt="Визуал" class="visual-small-logo">
+        </div>
+        <h3 class="visual-title">Визуал</h3>
       </div>
-      <div class="game-container" data-games></div>
-    </main>-->
-
-  <aside class="right-sidebar">
-    <div class="chat-section-header">
-      <span class="chat-title" data-i18n="chat_header">ЧАТ</span>
+      <button type="button" class="close-btn" id="closeVisualBtn">&times;</button>
     </div>
 
-    <div class="right-search">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-      <input type="text" placeholder="Поиск..." class="search-input" data-i18n-placeholder="search_placeholder">
+    <!-- Навигация: Иконки + Подписи -->
+    <div class="visual-tabs">
+      <button type="button" class="tab-item" data-tab="themes">
+        <img src="./src/img/triangle.svg" alt="Themes" class="tab-icon">
+        <span>Темы</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="colors">
+        <img src="./src/img/layers.svg" alt="Colors" class="tab-icon">
+        <span>Цвета</span>
+      </button>
+      <button type="button" class="tab-item active" data-tab="layout">
+        <img src="./src/img/grid.svg" alt="Layout" class="tab-icon">
+        <span>Лейаут</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="effects">
+        <img src="./src/img/bolt.svg" alt="Effects" class="tab-icon">
+        <span>Эффекты</span>
+      </button>
     </div>
 
-    <div class="right-scroll-area">
-      <!-- MY HUBS -->
-      <div class="chat-group">
-        <div class="group-title" data-i18n="group_my_hubs">МОИ ХАБЫ</div>
-        <div class="hub-list">
-          <a href="#" class="hub-item active">
-            <div class="hub-icon hub-p">N</div>
-            <span class="hub-name">Nexora Community</span>
-            <span class="hub-count count-p">12</span>
-          </a>
-          <a href="#" class="hub-item">
-            <div class="hub-icon hub-r">S</div>
-            <span class="hub-name">Souls Legion</span>
-            <span class="hub-count count-r">5</span>
-          </a>
-          <a href="#" class="hub-item">
-            <div class="hub-icon hub-c">C</div>
-            <span class="hub-name">Cyber Division</span>
-          </a>
-          <a href="#" class="hub-item">
-            <div class="hub-icon hub-o">C</div>
-            <span class="hub-name">Chill Lounge</span>
-            <span class="hub-count count-p">2</span>
-          </a>
-          <a href="#" class="hub-item">
-            <div class="hub-icon hub-g">F</div>
-            <span class="hub-name">FPS Factory</span>
-          </a>
+    <!-- Содержимое вкладки: Темы -->
+    <div class="visual-content tab-pane" id="tab-themes" style="display: none;">
+      <div class="section-title">ГОТОВЫЕ ТЕМЫ</div>
+
+      <div class="themes-list">
+        <button type="button" class="theme-card active" data-theme="nexora">
+          <div class="theme-name">
+            <span class="theme-icon">💜</span>
+            <span>NEXORA</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: var(--accent-primary);"></span>
+            <span class="theme-dot" style="background-color: var(--accent-cyan);"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="crimson">
+          <div class="theme-name">
+            <span class="theme-icon circle" style="background-color: #e11d48;"></span>
+            <span>CRIMSON</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #e11d48;"></span>
+            <span class="theme-dot" style="background-color: #f43f5e;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="emerald">
+          <div class="theme-name">
+            <span class="theme-icon">💚</span>
+            <span>EMERALD</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #10b981;"></span>
+            <span class="theme-dot" style="background-color: #06b6d4;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="gold">
+          <div class="theme-name">
+            <span class="theme-icon circle" style="background-color: #eab308;"></span>
+            <span>GOLD</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #eab308;"></span>
+            <span class="theme-dot" style="background-color: #f59e0b;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="pink">
+          <div class="theme-name">
+            <span class="theme-icon">🌸</span>
+            <span>PINK</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #ec4899;"></span>
+            <span class="theme-dot" style="background-color: #f472b6;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="ocean">
+          <div class="theme-name">
+            <span class="theme-icon">🌊</span>
+            <span>OCEAN</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #0ea5e9;"></span>
+            <span class="theme-dot" style="background-color: #2563eb;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="midnight">
+          <div class="theme-name">
+            <span class="theme-icon">🔮</span>
+            <span>MIDNIGHT</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #8b5cf6;"></span>
+            <span class="theme-dot" style="background-color: #6366f1;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+
+        <button type="button" class="theme-card" data-theme="matrix">
+          <div class="theme-name">
+            <span class="theme-icon circle" style="background-color: #22c55e;"></span>
+            <span>MATRIX</span>
+          </div>
+          <div class="theme-preview-elements">
+            <span class="theme-dot" style="background-color: #22c55e;"></span>
+            <span class="theme-dot" style="background-color: #10b981;"></span>
+            <span class="theme-check">✓</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Содержимое вкладки: Цвета (с выбором шрифта) -->
+    <div class="visual-content tab-pane" id="tab-colors" style="display: none;">
+      <div class="section-title">КАСТОМНЫЕ ЦВЕТА</div>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+          <span style="color: var(--text-main, #ccc);">Акцент (Primary)</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="color" id="colorPrimary" value="#8b5cf6"
+              style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+            <span
+              style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+              id="colorPrimaryText">#8b5cf6</span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+          <span style="color: var(--text-main, #ccc);">Акцент 2 (Cyan)</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="color" id="colorCyan" value="#06b6d4"
+              style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+            <span
+              style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+              id="colorCyanText">#06b6d4</span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+          <span style="color: var(--text-main, #ccc);">Фон страницы</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="color" id="colorBg" value="#0a0b10"
+              style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+            <span
+              style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+              id="colorBgText">#0a0b10</span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+          <span style="color: var(--text-main, #ccc);">Поверхность / Сайдбар</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="color" id="colorSurface" value="#0e0f16"
+              style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+            <span
+              style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+              id="colorSurfaceText">#0e0f16</span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+          <span style="color: var(--text-main, #ccc);">Карточки</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="color" id="colorCards" value="#131420"
+              style="width: 28px; height: 28px; border: none; background: none; cursor: pointer; border-radius: 4px;">
+            <span
+              style="background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;"
+              id="colorCardsText">#131420</span>
+          </div>
         </div>
       </div>
 
-      <!-- ZONES -->
-      <div class="chat-group">
-        <div class="group-title" data-i18n="group_zones">ЗОНЫ</div>
-        <div class="zone-list">
-          <a href="#" class="zone-item">
-            <img src="./src/img/bolt.svg" alt="bolt" class="zone-icon">
-            <span data-i18n="zone_feed">Лента</span>
-          </a>
-          <a href="#" class="zone-item">
-            <img src="./src/img/chst.svg" alt="chst" class="zone-icon">
-            <span data-i18n="zone_general">Общий</span>
-          </a>
-          <a href="#" class="zone-item">
-            <img src="./src/img/trophy.svg" alt="trophy" class="zone-icon">
-            <span data-i18n="zone_drops">Дропы</span>
-          </a>
-          <a href="#" class="zone-item">
-            <img src="./src/img/users.svg" alt="users" class="zone-icon">
-            <span data-i18n="zone_squad">Сквад</span>
-          </a>
-          <a href="#" class="zone-item">
-            <img src="./src/img/interrogation.svg" alt="interrogation" class="zone-icon">
-            <span data-i18n="zone_help">Помощь</span>
-          </a>
-        </div>
+      <div class="section-title">ВЫБОР ШРИФТА</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;" id="fontSelectorList">
+        <button type="button" class="font-card active" data-font="'Inter', sans-serif">
+          <span style="font-family: 'Inter', sans-serif;">Inter (Стандартный)</span>
+        </button>
+        <button type="button" class="font-card" data-font="'Roboto', sans-serif">
+          <span style="font-family: 'Roboto', sans-serif;">Roboto</span>
+        </button>
+        <button type="button" class="font-card" data-font="'Montserrat', sans-serif">
+          <span style="font-family: 'Montserrat', sans-serif;">Montserrat</span>
+        </button>
+        <button type="button" class="font-card" data-font="'Courier New', monospace">
+          <span style="font-family: 'Courier New', monospace;">Courier New (Моноширинный)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Содержимое вкладки: Лейаут -->
+    <div class="visual-content tab-pane active" id="tab-layout">
+      <div class="section-title">ФОНОВЫЙ ПАТТЕРН</div>
+      <div class="patterns-grid" id="patternsGrid">
+        <button type="button" class="pattern-card active" data-pattern="none">
+          <span>Нет</span>
+        </button>
+        <button type="button" class="pattern-card" data-pattern="grid">
+          <span>Сетка</span>
+        </button>
+        <button type="button" class="pattern-card" data-pattern="dots">
+          <span>Точки</span>
+        </button>
+        <button type="button" class="pattern-card" data-pattern="diagonal">
+          <span>Диагональ</span>
+        </button>
+        <button type="button" class="pattern-card" data-pattern="noise">
+          <span>Шум</span>
+        </button>
       </div>
 
-      <!-- ONLINE -->
-      <div class="chat-group">
-        <div class="group-title"><span data-i18n="group_online">ОНЛАЙН</span> — 3</div>
-        <div class="online-list">
-          <div class="user-row">
-            <div class="avatar-wrapper">
-              <div class="friend-avatar av-1 sm">P1</div>
-              <span class="status-indicator online"></span>
-            </div>
-            <div class="user-row-info">
-              <span class="user-row-name">PlayerOne</span>
-              <span class="user-row-game text-cyan">Counter-Strike 2</span>
-            </div>
-          </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span class="section-title" style="margin-bottom: 0;">Радиус углов</span>
+        <span id="radiusValueText"
+          style="color: var(--accent-primary, #8b5cf6); font-weight: 600; font-size: 13px;">8px</span>
+      </div>
+      <input type="range" id="radiusRange" min="0" max="24" value="8"
+        style="width: 100%; accent-color: var(--accent-primary, #8b5cf6); cursor: pointer; margin-bottom: 24px;">
+    </div>
 
-          <div class="user-row">
-            <div class="avatar-wrapper">
-              <div class="friend-avatar av-2 sm">DN</div>
-              <span class="status-indicator online"></span>
-            </div>
-            <div class="user-row-info">
-              <span class="user-row-name">DarkNinja_99</span>
-              <span class="user-row-game text-red">Elden Ring</span>
-            </div>
-          </div>
+    <!-- Содержимое вкладки: Эффекты -->
+    <div class="visual-content tab-pane" id="tab-effects" style="display: none;">
+      <div class="section-title">АНИМАЦИЯ ФОНА</div>
+      <div class="effects-grid" id="effectsGrid">
+        <button type="button" class="effect-card active" data-effect="none">
+          <span>Нет</span>
+          <span class="effect-sub">—</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="sakura">
+          <span>Сакура</span>
+          <span class="effect-sub">Лепестки · PINK</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="sparks">
+          <span>Искры</span>
+          <span class="effect-sub">Огонь · CRIMSON</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="matrix">
+          <span>Матрица</span>
+          <span class="effect-sub">Код · MATRIX</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="bubbles">
+          <span>Пузыри</span>
+          <span class="effect-sub">Вода · OCEAN</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="meteors">
+          <span>Метеоры</span>
+          <span class="effect-sub">Звёзды · MIDNIGHT</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="fireflies">
+          <span>Светлячки</span>
+          <span class="effect-sub">Природа · EMERALD</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="particles">
+          <span>Частицы</span>
+          <span class="effect-sub">Геометрия · NEXORA</span>
+        </button>
+        <button type="button" class="effect-card" data-effect="glitter">
+          <span>Блёстки</span>
+          <span class="effect-sub">Золото · GOLD</span>
+        </button>
+      </div>
 
-          <div class="user-row">
-            <div class="avatar-wrapper">
-              <div class="friend-avatar av-3 sm">Sh</div>
-              <span class="status-indicator online"></span>
-            </div>
-            <div class="user-row-info">
-              <span class="user-row-name">Shadow</span>
-              <span class="user-row-game text-cyan">Dota 2</span>
-            </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span class="section-title" style="margin-bottom: 0;">Интенсивность свечения</span>
+        <span id="glowValueText"
+          style="color: var(--accent-primary, #8b5cf6); font-weight: 600; font-size: 13px;">20%</span>
+      </div>
+      <input type="range" id="glowRange" min="0" max="100" value="20"
+        style="width: 100%; accent-color: var(--accent-primary, #8b5cf6); cursor: pointer; margin-bottom: 24px;">
+
+      <div class="preview-box">
+        <div class="preview-title">Предпросмотр кнопки</div>
+        <button type="button" class="preview-btn-demo">ПРИМЕНИТЬ СТИЛЬ</button>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-title">Предпросмотр карточки</div>
+        <div class="preview-card-demo">
+          <div class="preview-card-icon">
+            <img src="./src/img/gamepad.svg" alt="icon"
+              style="width: 20px; height: 20px; filter: brightness(0) invert(1);">
+          </div>
+          <div>
+            <div style="font-weight: 600; font-size: 14px; color: #fff;">Игра</div>
+            <div style="font-size: 12px; color: var(--accent-cyan, #06b6d4);">Action RPG</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="right-footer">
-      <input type="text" placeholder="#общий..." class="chat-bottom-input"
-        data-i18n-placeholder="chat_input_placeholder">
+    <!-- Подвал с кнопкой сброса -->
+    <div class="visual-footer">
+      <button type="button" class="reset-btn">
+        <img src="./src/img/rotate.svg" alt="Reset" class="reset-icon">
+        <span>Сбросить к NEXORA</span>
+      </button>
     </div>
-
   </aside>
 
-  <!-- <script type="module" src="./src/js/main.js"></script>
-  <script type="module" src="./src/js/sort-game.js"></script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Управление открытием/закрытием панели «Визуал»
+      const visualSidebar = document.querySelector('.visual-settings');
+      const closeBtn = document.getElementById('closeVisualBtn');
+      const appearanceBtn = document.getElementById('appearance-btn');
+
+      if (appearanceBtn && visualSidebar) {
+        appearanceBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          visualSidebar.classList.add('open');
+        });
+      }
+
+      if (closeBtn && visualSidebar) {
+        closeBtn.addEventListener('click', () => {
+          visualSidebar.classList.remove('open');
+        });
+      }
+
+      // 2. Переключение вкладок в панели «Визуал»
+      const tabItems = document.querySelectorAll('.visual-tabs .tab-item');
+      const tabPanes = document.querySelectorAll('.visual-content.tab-pane');
+
+      tabItems.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabItems.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const tabName = tab.getAttribute('data-tab');
+          tabPanes.forEach(pane => {
+            if (pane.id === `tab-${tabName}`) {
+              pane.style.display = 'block';
+              pane.classList.add('active');
+            } else {
+              pane.style.display = 'none';
+              pane.classList.remove('active');
+            }
+          });
+        });
+      });
+
+      // 3. Темы и кастомные цвета
+      const themeCards = document.querySelectorAll('.themes-list .theme-card');
+      const htmlElement = document.documentElement;
+      const resetBtn = document.querySelector('.reset-btn');
+
+      const colorInputs = [
+        { input: document.getElementById('colorPrimary'), text: document.getElementById('colorPrimaryText'), cssVar: '--accent-primary', storageKey: 'nexora-c-primary' },
+        { input: document.getElementById('colorCyan'), text: document.getElementById('colorCyanText'), cssVar: '--accent-cyan', storageKey: 'nexora-c-cyan' },
+        { input: document.getElementById('colorBg'), text: document.getElementById('colorBgText'), cssVar: '--bg-main', storageKey: 'nexora-c-bg' },
+        { input: document.getElementById('colorSurface'), text: document.getElementById('colorSurfaceText'), cssVar: '--bg-surface', storageKey: 'nexora-c-surface' },
+        { input: document.getElementById('colorCards'), text: document.getElementById('colorCardsText'), cssVar: '--bg-cards', storageKey: 'nexora-c-cards' }
+      ];
+
+      const applyTheme = (themeName) => {
+        if (themeName === 'nexora') {
+          htmlElement.removeAttribute('data-theme');
+        } else {
+          htmlElement.setAttribute('data-theme', themeName);
+        }
+
+        themeCards.forEach(card => {
+          if (card.getAttribute('data-theme') === themeName) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+      };
+
+      const savedTheme = localStorage.getItem('nexora-theme');
+      if (savedTheme) applyTheme(savedTheme);
+
+      colorInputs.forEach(item => {
+        if (!item.input) return;
+        const savedVal = localStorage.getItem(item.storageKey);
+        if (savedVal) {
+          item.input.value = savedVal;
+          if (item.text) item.text.textContent = savedVal;
+          document.documentElement.style.setProperty(item.cssVar, savedVal);
+        }
+
+        item.input.addEventListener('input', (e) => {
+          const val = e.target.value;
+          if (item.text) item.text.textContent = val;
+          document.documentElement.style.setProperty(item.cssVar, val);
+          localStorage.setItem(item.storageKey, val);
+        });
+      });
+
+      themeCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const themeName = card.getAttribute('data-theme');
+          if (!themeName) return;
+          applyTheme(themeName);
+          localStorage.setItem('nexora-theme', themeName);
+        });
+      });
+
+      // 4. Шрифты
+      const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
+      const savedFont = localStorage.getItem('nexora-font');
+
+      if (savedFont) {
+        document.documentElement.style.setProperty('--font-family', savedFont);
+        fontButtons.forEach(btn => {
+          if (btn.getAttribute('data-font') === savedFont) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      fontButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          fontButtons.forEach(b => b.classList.remove('active'));
+          const fontVal = btn.getAttribute('data-font');
+          document.documentElement.style.setProperty('--font-family', fontVal);
+          localStorage.setItem('nexora-font', fontVal);
+          btn.classList.add('active');
+        });
+      });
+
+      // 5. Лейаут (Паттерны и Радиус)
+      const patternCards = document.querySelectorAll('.pattern-card');
+      const radiusRange = document.getElementById('radiusRange');
+      const radiusValueText = document.getElementById('radiusValueText');
+      const bgLayer = document.getElementById('dynamic-bg-layer');
+
+      const applyPattern = (patternName) => {
+        if (bgLayer) {
+          bgLayer.className = '';
+          bgLayer.classList.add(`bg-pattern-${patternName}`);
+        }
+        patternCards.forEach(c => {
+          if (c.getAttribute('data-pattern') === patternName) c.classList.add('active');
+          else c.classList.remove('active');
+        });
+      };
+
+      const savedPattern = localStorage.getItem('nexora-pattern') || 'none';
+      applyPattern(savedPattern);
+
+      patternCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const patternName = card.getAttribute('data-pattern');
+          applyPattern(patternName);
+          localStorage.setItem('nexora-pattern', patternName);
+        });
+      });
+
+      if (radiusRange) {
+        const savedRadius = localStorage.getItem('nexora-radius') || '8';
+        radiusRange.value = savedRadius;
+        if (radiusValueText) radiusValueText.textContent = savedRadius + 'px';
+        document.documentElement.style.setProperty('--ui-radius', savedRadius + 'px');
+
+        radiusRange.addEventListener('input', (e) => {
+          const val = e.target.value;
+          if (radiusValueText) radiusValueText.textContent = val + 'px';
+          document.documentElement.style.setProperty('--ui-radius', val + 'px');
+          localStorage.setItem('nexora-radius', val);
+        });
+      }
+
+      // 6. Эффекты (Анимация фона и Свечение)
+      const effectCards = document.querySelectorAll('.effect-card');
+      const glowRange = document.getElementById('glowRange');
+      const glowValueText = document.getElementById('glowValueText');
+      let fxLayer = document.getElementById('dynamic-fx-layer');
+
+      if (!fxLayer) {
+        fxLayer = document.createElement('div');
+        fxLayer.id = 'dynamic-fx-layer';
+        document.body.insertBefore(fxLayer, document.body.firstChild);
+      }
+
+      const createParticles = (type) => {
+        if (!fxLayer) return;
+        fxLayer.innerHTML = '';
+        if (type === 'none') return;
+
+        const particleCount = 40;
+        for (let i = 0; i < particleCount; i++) {
+          const p = document.createElement('div');
+          p.className = `fx-particle particle-${type}`;
+
+          p.style.left = `${Math.random() * 100}vw`;
+          p.style.top = `-50px`;
+
+          const duration = Math.random() * 3 + 2;
+          const delay = Math.random() * 4;
+          const size = Math.random() * 8 + 6;
+
+          p.style.animationDuration = `${duration}s`;
+          p.style.animationDelay = `${delay}s`;
+
+          if (type === 'matrix') {
+            const chars = '01ABCXYZアイウエオ';
+            p.textContent = chars[Math.floor(Math.random() * chars.length)];
+            p.style.fontSize = `${size + 6}px`;
+          } else {
+            p.style.width = `${size}px`;
+            p.style.height = `${type === 'meteors' ? size * 5 : size}px`;
+          }
+
+          fxLayer.appendChild(p);
+        }
+      };
+
+      const applyEffect = (effectName) => {
+        effectCards.forEach(c => {
+          if (c.getAttribute('data-effect') === effectName) c.classList.add('active');
+          else c.classList.remove('active');
+        });
+        createParticles(effectName);
+      };
+
+      const savedEffect = localStorage.getItem('nexora-effect') || 'none';
+      applyEffect(savedEffect);
+
+      effectCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const effectName = card.getAttribute('data-effect');
+          applyEffect(effectName);
+          localStorage.setItem('nexora-effect', effectName);
+        });
+      });
+
+      if (glowRange) {
+        const savedGlow = localStorage.getItem('nexora-glow') || '20';
+        glowRange.value = savedGlow;
+        if (glowValueText) glowValueText.textContent = savedGlow + '%';
+        document.documentElement.style.setProperty('--glow-intensity', savedGlow / 100);
+
+        glowRange.addEventListener('input', (e) => {
+          const val = e.target.value;
+          if (glowValueText) glowValueText.textContent = val + '%';
+          document.documentElement.style.setProperty('--glow-intensity', val / 100);
+          localStorage.setItem('nexora-glow', val);
+        });
+      }
+
+      // Сброс настроек
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          localStorage.clear();
+          location.reload();
+        });
+      }
+    });
+  </script>
+  
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  // 1. Управление панелью «Визуал»
+  const visualSidebar = document.querySelector('.visual-settings');
+  const closeBtn = document.getElementById('closeVisualBtn');
+  const appearanceBtn = document.getElementById('appearance-btn');
+
+  if (appearanceBtn && visualSidebar) {
+    appearanceBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      visualSidebar.classList.add('open');
+    });
+  }
+
+  if (closeBtn && visualSidebar) {
+    closeBtn.addEventListener('click', () => visualSidebar.classList.remove('open'));
+  }
+
+  // 2. Переключение вкладок
+  const tabItems = document.querySelectorAll('.visual-tabs .tab-item');
+  const tabPanes = document.querySelectorAll('.visual-content.tab-pane');
+
+  tabItems.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabItems.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const tabName = tab.getAttribute('data-tab');
+      tabPanes.forEach(pane => {
+        if (pane.id === `tab-${tabName}`) {
+          pane.style.display = 'block';
+          pane.classList.add('active');
+        } else {
+          pane.style.display = 'none';
+          pane.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // 3. Темы и кастомные цвета
+  const themeCards = document.querySelectorAll('.themes-list .theme-card');
+  const htmlElement = document.documentElement;
+
+  const applyTheme = (themeName) => {
+    if (themeName === 'nexora') {
+      htmlElement.removeAttribute('data-theme');
+    } else {
+      htmlElement.setAttribute('data-theme', themeName);
+    }
+    themeCards.forEach(card => {
+      card.classList.toggle('active', card.getAttribute('data-theme') === themeName);
+    });
+  };
+
+  const savedTheme = localStorage.getItem('nexora-theme');
+  if (savedTheme) applyTheme(savedTheme);
+
+  themeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const themeName = card.getAttribute('data-theme');
+      if (!themeName) return;
+      applyTheme(themeName);
+      localStorage.setItem('nexora-theme', themeName);
+    });
+  });
+
+  // Кастомные инпуты цветов
+  const colorInputs = [
+    { input: document.getElementById('colorPrimary'), text: document.getElementById('colorPrimaryText'), cssVar: '--accent-primary', key: 'nexora-c-primary' },
+    { input: document.getElementById('colorCyan'), text: document.getElementById('colorCyanText'), cssVar: '--accent-cyan', key: 'nexora-c-cyan' },
+    { input: document.getElementById('colorBg'), text: document.getElementById('colorBgText'), cssVar: '--bg-main', key: 'nexora-c-bg' },
+    { input: document.getElementById('colorSurface'), text: document.getElementById('colorSurfaceText'), cssVar: '--bg-surface', key: 'nexora-c-surface' },
+    { input: document.getElementById('colorCards'), text: document.getElementById('colorCardsText'), cssVar: '--bg-cards', key: 'nexora-c-cards' }
+  ];
+
+  colorInputs.forEach(item => {
+    if (!item.input) return;
+    const savedVal = localStorage.getItem(item.key);
+    if (savedVal) {
+      item.input.value = savedVal;
+      if (item.text) item.text.textContent = savedVal;
+      htmlElement.style.setProperty(item.cssVar, savedVal);
+    }
+
+    item.input.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (item.text) item.text.textContent = val;
+      htmlElement.style.setProperty(item.cssVar, val);
+      localStorage.setItem(item.key, val);
+    });
+  });
+
+  // 4. Шрифты
+  const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
+  const savedFont = localStorage.getItem('nexora-font');
+
+  if (savedFont) {
+    htmlElement.style.setProperty('--font-family', savedFont);
+    fontButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-font') === savedFont);
+    });
+  }
+
+  fontButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      fontButtons.forEach(b => b.classList.remove('active'));
+      const fontVal = btn.getAttribute('data-font');
+      htmlElement.style.setProperty('--font-family', fontVal);
+      localStorage.setItem('nexora-font', fontVal);
+      btn.classList.add('active');
+    });
+  });
+
+  // 5. Паттерны и Радиус
+  const patternCards = document.querySelectorAll('.pattern-card');
+  const radiusRange = document.getElementById('radiusRange');
+  const radiusValueText = document.getElementById('radiusValueText');
+  const bgLayer = document.getElementById('dynamic-bg-layer');
+
+  const applyPattern = (patternName) => {
+    if (bgLayer) {
+      bgLayer.className = '';
+      if (patternName !== 'none') bgLayer.classList.add(`bg-pattern-${patternName}`);
+    }
+    patternCards.forEach(c => {
+      c.classList.toggle('active', c.getAttribute('data-pattern') === patternName);
+    });
+  };
+
+  const savedPattern = localStorage.getItem('nexora-pattern') || 'none';
+  applyPattern(savedPattern);
+
+  patternCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const patternName = card.getAttribute('data-pattern');
+      applyPattern(patternName);
+      localStorage.setItem('nexora-pattern', patternName);
+    });
+  });
+
+  if (radiusRange) {
+    const savedRadius = localStorage.getItem('nexora-radius') || '8';
+    radiusRange.value = savedRadius;
+    if (radiusValueText) radiusValueText.textContent = savedRadius + 'px';
+    htmlElement.style.setProperty('--ui-radius', savedRadius + 'px');
+
+    radiusRange.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (radiusValueText) radiusValueText.textContent = val + 'px';
+      htmlElement.style.setProperty('--ui-radius', val + 'px');
+      localStorage.setItem('nexora-radius', val);
+    });
+  }
+
+  // 6. Эффекты и анимация частиц фона
+  const effectCards = document.querySelectorAll('.effect-card');
+  const glowRange = document.getElementById('glowRange');
+  const glowValueText = document.getElementById('glowValueText');
+  let fxLayer = document.getElementById('dynamic-fx-layer');
+
+  if (!fxLayer) {
+    fxLayer = document.createElement('div');
+    fxLayer.id = 'dynamic-fx-layer';
+    document.body.insertBefore(fxLayer, document.body.firstChild);
+  }
+
+  const createParticles = (type) => {
+    fxLayer.innerHTML = '';
+    if (type === 'none') return;
+
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = `fx-particle`;
+      p.style.left = `${Math.random() * 100}vw`;
+      p.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      p.style.animationDelay = `${Math.random() * 4}s`;
+      
+      const size = Math.random() * 6 + 4;
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.borderRadius = '50%';
+      
+      fxLayer.appendChild(p);
+    }
+  };
+
+  const applyEffect = (effectName) => {
+    effectCards.forEach(c => {
+      c.classList.toggle('active', c.getAttribute('data-effect') === effectName);
+    });
+    createParticles(effectName);
+  };
+
+  const savedEffect = localStorage.getItem('nexora-effect') || 'none';
+  applyEffect(savedEffect);
+
+  effectCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const effectName = card.getAttribute('data-effect');
+      applyEffect(effectName);
+      localStorage.setItem('nexora-effect', effectName);
+    });
+  });
+
+  if (glowRange) {
+    const savedGlow = localStorage.getItem('nexora-glow') || '20';
+    glowRange.value = savedGlow;
+    if (glowValueText) glowValueText.textContent = savedGlow + '%';
+    htmlElement.style.setProperty('--glow-intensity', savedGlow / 100);
+
+    glowRange.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (glowValueText) glowValueText.textContent = val + '%';
+      htmlElement.style.setProperty('--glow-intensity', val / 100);
+      localStorage.setItem('nexora-glow', val);
+    });
+  }
+
+  // Кнопка сброса
+  const resetBtn = document.querySelector('.reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      localStorage.clear();
+      location.reload();
+    });
+  }
+});
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  // 1. Управление панелью «Визуал»
+  const visualSidebar = document.querySelector('.visual-settings');
+  const closeBtn = document.getElementById('closeVisualBtn');
+  const appearanceBtn = document.getElementById('appearance-btn');
+
+  if (appearanceBtn && visualSidebar) {
+    appearanceBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      visualSidebar.classList.add('open');
+    });
+  }
+
+  if (closeBtn && visualSidebar) {
+    closeBtn.addEventListener('click', () => visualSidebar.classList.remove('open'));
+  }
+
+  // 2. Переключение вкладок
+  const tabItems = document.querySelectorAll('.visual-tabs .tab-item');
+  const tabPanes = document.querySelectorAll('.visual-content.tab-pane');
+
+  tabItems.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabItems.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const tabName = tab.getAttribute('data-tab');
+      tabPanes.forEach(pane => {
+        if (pane.id === `tab-${tabName}`) {
+          pane.style.display = 'block';
+          pane.classList.add('active');
+        } else {
+          pane.style.display = 'none';
+          pane.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // 3. Темы и кастомные цвета
+  const themeCards = document.querySelectorAll('.themes-list .theme-card');
+  const htmlElement = document.documentElement;
+
+  const applyTheme = (themeName) => {
+    if (themeName === 'nexora') {
+      htmlElement.removeAttribute('data-theme');
+    } else {
+      htmlElement.setAttribute('data-theme', themeName);
+    }
+    themeCards.forEach(card => {
+      card.classList.toggle('active', card.getAttribute('data-theme') === themeName);
+    });
+  };
+
+  const savedTheme = localStorage.getItem('nexora-theme');
+  if (savedTheme) applyTheme(savedTheme);
+
+  themeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const themeName = card.getAttribute('data-theme');
+      if (!themeName) return;
+      applyTheme(themeName);
+      localStorage.setItem('nexora-theme', themeName);
+    });
+  });
+
+  const colorInputs = [
+    { input: document.getElementById('colorPrimary'), text: document.getElementById('colorPrimaryText'), cssVar: '--accent-primary', storageKey: 'nexora-c-primary' },
+    { input: document.getElementById('colorCyan'), text: document.getElementById('colorCyanText'), cssVar: '--accent-cyan', storageKey: 'nexora-c-cyan' },
+    { input: document.getElementById('colorBg'), text: document.getElementById('colorBgText'), cssVar: '--bg-main', storageKey: 'nexora-c-bg' },
+    { input: document.getElementById('colorSurface'), text: document.getElementById('colorSurfaceText'), cssVar: '--bg-surface', storageKey: 'nexora-c-surface' },
+    { input: document.getElementById('colorCards'), text: document.getElementById('colorCardsText'), cssVar: '--bg-cards', storageKey: 'nexora-c-cards' }
+  ];
+
+  colorInputs.forEach(item => {
+    if (!item.input) return;
+    const savedVal = localStorage.getItem(item.storageKey);
+    if (savedVal) {
+      item.input.value = savedVal;
+      if (item.text) item.text.textContent = savedVal;
+      htmlElement.style.setProperty(item.cssVar, savedVal);
+    }
+
+    item.input.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (item.text) item.text.textContent = val;
+      htmlElement.style.setProperty(item.cssVar, val);
+      localStorage.setItem(item.storageKey, val);
+    });
+  });
+
+  // 4. Шрифты
+  const fontButtons = document.querySelectorAll('#fontSelectorList .font-card');
+  const savedFont = localStorage.getItem('nexora-font');
+
+  if (savedFont) {
+    htmlElement.style.setProperty('--font-family', savedFont);
+    fontButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-font') === savedFont);
+    });
+  }
+
+  fontButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      fontButtons.forEach(b => b.classList.remove('active'));
+      const fontVal = btn.getAttribute('data-font');
+      htmlElement.style.setProperty('--font-family', fontVal);
+      localStorage.setItem('nexora-font', fontVal);
+      btn.classList.add('active');
+    });
+  });
+
+  // 5. Лейаут (Паттерны и Радиус)
+  const patternCards = document.querySelectorAll('.pattern-card');
+  const radiusRange = document.getElementById('radiusRange');
+  const radiusValueText = document.getElementById('radiusValueText');
+  const bgLayer = document.getElementById('dynamic-bg-layer');
+
+  const applyPattern = (patternName) => {
+    if (bgLayer) {
+      bgLayer.className = '';
+      bgLayer.classList.add(`bg-pattern-${patternName}`);
+    }
+    patternCards.forEach(c => {
+      c.classList.toggle('active', c.getAttribute('data-pattern') === patternName);
+    });
+  };
+
+  const savedPattern = localStorage.getItem('nexora-pattern') || 'none';
+  applyPattern(savedPattern);
+
+  patternCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const patternName = card.getAttribute('data-pattern');
+      applyPattern(patternName);
+      localStorage.setItem('nexora-pattern', patternName);
+    });
+  });
+
+  if (radiusRange) {
+    const savedRadius = localStorage.getItem('nexora-radius') || '8';
+    radiusRange.value = savedRadius;
+    if (radiusValueText) radiusValueText.textContent = savedRadius + 'px';
+    htmlElement.style.setProperty('--ui-radius', savedRadius + 'px');
+
+    radiusRange.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (radiusValueText) radiusValueText.textContent = val + 'px';
+      htmlElement.style.setProperty('--ui-radius', val + 'px');
+      localStorage.setItem('nexora-radius', val);
+    });
+  }
+
+  // 6. Эффекты (Твоя оригинальная логика анимаций оставлена без изменений)
+  const effectCards = document.querySelectorAll('.effect-card');
+  const glowRange = document.getElementById('glowRange');
+  const glowValueText = document.getElementById('glowValueText');
+  let fxLayer = document.getElementById('dynamic-fx-layer');
+
+  if (!fxLayer) {
+    fxLayer = document.createElement('div');
+    fxLayer.id = 'dynamic-fx-layer';
+    document.body.insertBefore(fxLayer, document.body.firstChild);
+  }
+
+  const createParticles = (type) => {
+    if (!fxLayer) return;
+    fxLayer.innerHTML = '';
+    if (type === 'none') return;
+
+    const particleCount = 40;
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('div');
+      p.className = `fx-particle particle-${type}`;
+
+      p.style.left = `${Math.random() * 100}vw`;
+      p.style.top = `-50px`;
+
+      const duration = Math.random() * 3 + 2;
+      const delay = Math.random() * 4;
+      const size = Math.random() * 8 + 6;
+
+      p.style.animationDuration = `${duration}s`;
+      p.style.animationDelay = `${delay}s`;
+
+      if (type === 'matrix') {
+        const chars = '01ABCXYZアイウエオ';
+        p.textContent = chars[Math.floor(Math.random() * chars.length)];
+        p.style.fontSize = `${size + 6}px`;
+      } else {
+        p.style.width = `${size}px`;
+        p.style.height = `${type === 'meteors' ? size * 5 : size}px`;
+      }
+
+      fxLayer.appendChild(p);
+    }
+  };
+
+  const applyEffect = (effectName) => {
+    effectCards.forEach(c => {
+      c.classList.toggle('active', c.getAttribute('data-effect') === effectName);
+    });
+    createParticles(effectName);
+  };
+
+  const savedEffect = localStorage.getItem('nexora-effect') || 'none';
+  applyEffect(savedEffect);
+
+  effectCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const effectName = card.getAttribute('data-effect');
+      applyEffect(effectName);
+      localStorage.setItem('nexora-effect', effectName);
+    });
+  });
+
+  if (glowRange) {
+    const savedGlow = localStorage.getItem('nexora-glow') || '20';
+    glowRange.value = savedGlow;
+    if (glowValueText) glowValueText.textContent = savedGlow + '%';
+    htmlElement.style.setProperty('--glow-intensity', savedGlow / 100);
+
+    glowRange.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (glowValueText) glowValueText.textContent = val + '%';
+      htmlElement.style.setProperty('--glow-intensity', val / 100);
+      localStorage.setItem('nexora-glow', val);
+    });
+  }
+
+  // Кнопка сброса
+  const resetBtn = document.querySelector('.reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      localStorage.clear();
+      location.reload();
+    });
+  }
+});
+</script>
+
   <script type="module" src="./src/js/helpers/lang.js"></script>
 </body>
 

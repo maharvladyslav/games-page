@@ -77,27 +77,40 @@
                     <button type="button" class="setting-item lang-dropdown-btn" id="lang-dropdown-btn">
                         <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z">
+                            <path
+                                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
                             </path>
                         </svg>
-                        <span>
-                            <span class="lang-code-text" id="current-lang-code">RU</span>
-                            <span id="current-lang-name">Русский</span>
-                        </span>
+                        <span><span class="lang-code-text" id="current-lang-code">RU</span> <span id="current-lang-name"
+                                data-i18n="lang_name">Русский</span></span>
                     </button>
 
                     <div class="lang-dropdown-menu" id="lang-dropdown-menu">
                         <button type="button" class="lang-option" data-lang="en">
                             <span class="lang-code">GB</span>
                             <span class="lang-title">English</span>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </button>
+
                         <button type="button" class="lang-option" data-lang="ua">
                             <span class="lang-code">UA</span>
                             <span class="lang-title">Українська</span>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </button>
+
                         <button type="button" class="lang-option active" data-lang="ru">
                             <span class="lang-code">RU</span>
                             <span class="lang-title">Русский</span>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -758,7 +771,7 @@
                 });
             });
 
-            // 5. Лейаут (Паттерны и Радиус) — РАБОЧИЙ ФУНКЦИОНАЛ
+            // 5. Лейаут (Паттерны и Радиус)
             const patternCards = document.querySelectorAll('.pattern-card');
             const radiusRange = document.getElementById('radiusRange');
             const radiusValueText = document.getElementById('radiusValueText');
@@ -798,35 +811,9 @@
                 localStorage.setItem('nexora-radius', val);
             });
 
-            // 6. Эффекты (Анимация фона и Свечение) — РАБОЧИЙ ФУНКЦИОНАЛ
-            const effectCards = document.querySelectorAll('.effect-card');
+            // 6. Интенсивность свечения
             const glowRange = document.getElementById('glowRange');
             const glowValueText = document.getElementById('glowValueText');
-            const fxLayer = document.getElementById('dynamic-fx-layer');
-
-            const applyEffect = (effectName) => {
-                if (fxLayer) {
-                    fxLayer.className = '';
-                    if (effectName !== 'none') {
-                        fxLayer.classList.add(`fx-${effectName}`);
-                    }
-                }
-                effectCards.forEach(c => {
-                    if (c.getAttribute('data-effect') === effectName) c.classList.add('active');
-                    else c.classList.remove('active');
-                });
-            };
-
-            const savedEffect = localStorage.getItem('nexora-effect') || 'none';
-            applyEffect(savedEffect);
-
-            effectCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const effectName = card.getAttribute('data-effect');
-                    applyEffect(effectName);
-                    localStorage.setItem('nexora-effect', effectName);
-                });
-            });
 
             const savedGlow = localStorage.getItem('nexora-glow') || '20';
             glowRange.value = savedGlow;
@@ -850,238 +837,7 @@
         });
     </script>
     <script>
-        // 6. Эффекты (Живые анимации частиц фона)
-        const effectCards = document.querySelectorAll('.effect-card');
-        const glowRange = document.getElementById('glowRange');
-        const glowValueText = document.getElementById('glowValueText');
-        const fxLayer = document.getElementById('dynamic-fx-layer');
-
-        let animationInterval = null;
-
-        const createParticles = (type) => {
-            if (!fxLayer) return;
-            fxLayer.innerHTML = '';
-            if (animationInterval) clearInterval(animationInterval);
-            if (type === 'none') return;
-
-            const particleCount = 35; // Количество элементов на экране
-            const elements = [];
-
-            for (let i = 0; i < particleCount; i++) {
-                const el = document.createElement('div');
-                el.classList.add('fx-particle', `particle-${type}`);
-
-                // Случайные начальные позиции и параметры анимации
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.top = -20 + 'px';
-
-                const size = Math.random() * 8 + 6; // Размер от 6 до 14px
-                el.style.width = size + 'px';
-                el.style.height = size + 'px';
-
-                const duration = Math.random() * 6 + 4; // Скорость падения/подъема от 4 до 10 сек
-                const delay = Math.random() * 5; // Задержка старта
-
-                el.style.animationDuration = duration + 's';
-                el.style.animationDelay = delay + 's';
-
-                // Кастомный контент или форма для разных эффектов
-                if (type === 'matrix') {
-                    const chars = '0123456789ABCDEFXYZ';
-                    el.textContent = chars[Math.floor(Math.random() * chars.length)];
-                    el.style.fontSize = (size + 4) + 'px';
-                } else if (type === 'sakura') {
-                    el.style.borderRadius = '50% 0 50% 50%';
-                } else if (type === 'bubbles') {
-                    el.style.borderRadius = '50%';
-                    el.style.border = '1px solid rgba(14, 165, 233, 0.4)';
-                } else if (type === 'fireflies') {
-                    el.style.borderRadius = '50%';
-                }
-
-                fxLayer.appendChild(el);
-            }
-        };
-
-        const applyEffect = (effectName) => {
-            effectCards.forEach(c => {
-                if (c.getAttribute('data-effect') === effectName) c.classList.add('active');
-                else c.classList.remove('active');
-            });
-            createParticles(effectName);
-        };
-
-        const savedEffect = localStorage.getItem('nexora-effect') || 'none';
-        applyEffect(savedEffect);
-
-        effectCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const effectName = card.getAttribute('data-effect');
-                applyEffect(effectName);
-                localStorage.setItem('nexora-effect', effectName);
-            });
-        });
-
-        const savedGlow = localStorage.getItem('nexora-glow') || '20';
-        glowRange.value = savedGlow;
-        glowValueText.textContent = savedGlow + '%';
-        document.documentElement.style.setProperty('--glow-intensity', savedGlow / 100);
-
-        glowRange.addEventListener('input', (e) => {
-            const val = e.target.value;
-            glowValueText.textContent = val + '%';
-            document.documentElement.style.setProperty('--glow-intensity', val / 100);
-            localStorage.setItem('nexora-glow', val);
-        });
-    </script>
-    <script>
-        const translations = {
-            ru: {
-                lang_code: "RU",
-                lang_name: "Русский",
-                page_library: "БИБЛИОТЕКА",
-                search_placeholder: "Поиск...",
-                search_games_placeholder: "Поиск игр...",
-                nav_home: "Главная",
-                nav_library: "Библиотека",
-                nav_cloud: "Облачный гейминг",
-                nav_downloads: "Загрузки",
-                nav_community: "Сообщество",
-                nav_chat: "Чат",
-                notifications: "Уведомления",
-                appearance: "Внешний вид",
-                settings: "Настройки",
-                status_online: "Онлайн",
-                subnav_header_library: "БИБЛИОТЕКА",
-                lib_all_games: "Все игры",
-                lib_in_progress: "В процессе",
-                lib_completed: "Завершённые",
-                subnav_header_categories: "КАТЕГОРИИ",
-                subnav_header_platform: "ПЛАТФОРМА",
-                cat_adventure: "Приключения",
-                cat_building: "Строительство",
-                cat_coop: "Кооператив",
-                cat_competitive: "Соревновательные",
-                cat_crime: "Криминал",
-                cat_fantasy: "Фэнтези",
-                cat_indie: "Инди",
-                cat_multiplayer: "Мультиплеер",
-                cat_mythology: "Мифология",
-                cat_narrative: "Сюжетные",
-                cat_open_world: "Открытый мир",
-                cat_platformer: "Платформер",
-                cat_sandbox: "Песочница",
-                cat_shooter: "Шутер",
-                cat_simulation: "Симулятор",
-                cat_sports: "Спорт",
-                cat_stealth: "Стелс",
-                cat_strategy: "Стратегия",
-                cat_survival: "Выживание",
-                cat_survival_horror: "Survival Horror",
-                cat_thriller: "Триллер",
-                cat_turn_based: "Пошаговые",
-                stats_games: "Игры",
-                stats_total_hours: "Всего часов",
-                stats_hours_val: "2.7k ч"
-            },
-            en: {
-                lang_code: "GB",
-                lang_name: "English",
-                page_library: "LIBRARY",
-                search_placeholder: "Search...",
-                search_games_placeholder: "Search games...",
-                nav_home: "Home",
-                nav_library: "Library",
-                nav_cloud: "Cloud Gaming",
-                nav_downloads: "Downloads",
-                nav_community: "Community",
-                nav_chat: "Chat",
-                notifications: "Notifications",
-                appearance: "Appearance",
-                settings: "Settings",
-                status_online: "Online",
-                subnav_header_library: "LIBRARY",
-                lib_all_games: "All Games",
-                lib_in_progress: "In Progress",
-                lib_completed: "Completed",
-                subnav_header_categories: "CATEGORIES",
-                subnav_header_platform: "PLATFORM",
-                cat_adventure: "Adventure",
-                cat_building: "Building",
-                cat_coop: "Co-op",
-                cat_competitive: "Competitive",
-                cat_crime: "Crime",
-                cat_fantasy: "Fantasy",
-                cat_indie: "Indie",
-                cat_multiplayer: "Multiplayer",
-                cat_mythology: "Mythology",
-                cat_narrative: "Narrative",
-                cat_open_world: "Open World",
-                cat_platformer: "Platformer",
-                cat_sandbox: "Sandbox",
-                cat_shooter: "Shooter",
-                cat_simulation: "Simulation",
-                cat_sports: "Sports",
-                cat_stealth: "Stealth",
-                cat_strategy: "Strategy",
-                cat_survival: "Survival",
-                cat_survival_horror: "Survival Horror",
-                cat_thriller: "Thriller",
-                cat_turn_based: "Turn-Based",
-                stats_games: "Games",
-                stats_total_hours: "Total Hours",
-                stats_hours_val: "2.7k h"
-            },
-            ua: {
-                lang_code: "UA",
-                lang_name: "Українська",
-                page_library: "БІБЛІОТЕКА",
-                search_placeholder: "Пошук...",
-                search_games_placeholder: "Пошук ігор...",
-                nav_home: "Головна",
-                nav_library: "Бібліотека",
-                nav_cloud: "Хмарний ґеймінг",
-                nav_downloads: "Завантаження",
-                nav_community: "Спільнота",
-                nav_chat: "Чат",
-                notifications: "Сповіщення",
-                appearance: "Зовнішній вигляд",
-                settings: "Налаштування",
-                status_online: "Онлайн",
-                subnav_header_library: "БІБЛІОТЕКА",
-                lib_all_games: "Усі ігри",
-                lib_in_progress: "У процесі",
-                lib_completed: "Завершені",
-                subnav_header_categories: "КАТЕГОРІЇ",
-                subnav_header_platform: "ПЛАТФОРМА",
-                cat_adventure: "Пригоди",
-                cat_building: "Будівництво",
-                cat_coop: "Кооператив",
-                cat_competitive: "Змагальні",
-                cat_crime: "Кримінал",
-                cat_fantasy: "Фентезі",
-                cat_indie: "Інді",
-                cat_multiplayer: "Мультиплеєр",
-                cat_mythology: "Міфологія",
-                cat_narrative: "Сюжетні",
-                cat_open_world: "Відкритий світ",
-                cat_platformer: "Платформер",
-                cat_sandbox: "Пісочниця",
-                cat_shooter: "Шутер",
-                cat_simulation: "Симулятор",
-                cat_sports: "Спорт",
-                cat_stealth: "Стелс",
-                cat_strategy: "Стратегія",
-                cat_survival: "Виживання",
-                cat_survival_horror: "Survival Horror",
-                cat_thriller: "Трилер",
-                cat_turn_based: "Покрокові",
-                stats_games: "Ігри",
-                stats_total_hours: "Усього годин",
-                stats_hours_val: "2.7k год"
-            }
-        };
-
+        
     </script>
 </body>
 

@@ -1440,6 +1440,7 @@ body {
 .visual-content::-webkit-scrollbar {
     width: 4px;
 }
+
 .visual-content::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
@@ -1642,8 +1643,10 @@ body {
     padding: 0 16px;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Выравнивание всего контента по левому краю */
-    gap: 12px;                  /* Фиксированный отступ между иконкой и текстом */
+    justify-content: flex-start;
+    /* Выравнивание всего контента по левому краю */
+    gap: 12px;
+    /* Фиксированный отступ между иконкой и текстом */
     cursor: pointer;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -1655,7 +1658,8 @@ body {
 }
 
 .theme-card.active {
-    border: 1px solid #22c55e; /* Прямоугольная зеленая рамка для активного элемента */
+    border: 1px solid #22c55e;
+    /* Прямоугольная зеленая рамка для активного элемента */
     background-color: #121217;
 }
 
@@ -1854,7 +1858,8 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 6px;
-    padding: 10px 16px; /* уменьшили вертикальные отступы контейнера */
+    padding: 10px 16px;
+    /* уменьшили вертикальные отступы контейнера */
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -1867,15 +1872,18 @@ body {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    padding: 6px 2px; /* уменьшили высоту карточки */
+    padding: 6px 2px;
+    /* уменьшили высоту карточки */
     cursor: pointer;
     color: #9ca3af;
-    font-size: 10.5px; /* чуть уменьшили шрифт */
+    font-size: 10.5px;
+    /* чуть уменьшили шрифт */
     transition: all 0.2s ease;
 }
 
 .tab-item .tab-icon {
-    width: 15px; /* уменьшили размер иконки */
+    width: 15px;
+    /* уменьшили размер иконки */
     height: 15px;
     object-fit: contain;
     filter: brightness(0) saturate(100%) invert(70%) sepia(10%) saturate(200%) hue-rotate(200deg) brightness(90%) contrast(90%);
@@ -1905,17 +1913,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px; /* уменьшили верхний и нижний отступ с 16px до 10px */
+    padding: 10px 20px;
+    /* уменьшили верхний и нижний отступ с 16px до 10px */
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .right-sidebar.visual-settings {
     /* Ваши текущие стили для панели */
-    display: none; /* по умолчанию скрыта */
+    display: none;
+    /* по умолчанию скрыта */
 }
 
 .right-sidebar.visual-settings.open {
-    display: block; /* или flex / grid — в зависимости от того, как она у вас версталась */
+    display: block;
+    /* или flex / grid — в зависимости от того, как она у вас версталась */
 }
 
 /* Дефолтные цвета (Nexora) */
@@ -2043,9 +2054,9 @@ body {
     color: var(--text-color);
 }
 
-.left-sidebar, 
-.right-sidebar, 
-.library-sidebar, 
+.left-sidebar,
+.right-sidebar,
+.library-sidebar,
 .main-header,
 .visual-settings,
 .theme-card {
@@ -2062,7 +2073,7 @@ body {
     box-shadow: var(--box-glow);
 }
 
-.purple-icon, 
+.purple-icon,
 .stats-value.purple,
 .badge-purple {
     background: var(--main-gradient);
@@ -2087,7 +2098,11 @@ body {
 }
 
 /* src/css/visual-extras.css */
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
     font-family: var(--font-family, 'Inter', sans-serif);
 }
 
@@ -2113,7 +2128,7 @@ body, button, input, select, textarea {
 }
 
 /* Динамическое изменение цвета иконок и элементов в активных карточках тем/шрифтов через --accent-primary */
-.theme-card.active, 
+.theme-card.active,
 .font-card.active,
 .effect-card.active,
 .pattern-card.active {
@@ -2127,14 +2142,16 @@ body, button, input, select, textarea {
 }
 
 /* Сетки лейаута и эффектов */
-.effects-grid, .patterns-grid {
+.effects-grid,
+.patterns-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
     margin-bottom: 20px;
 }
 
-.effect-card, .pattern-card {
+.effect-card,
+.pattern-card {
     background: var(--bg-cards, #131420);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 8px;
@@ -2148,7 +2165,8 @@ body, button, input, select, textarea {
     transition: all 0.2s ease;
 }
 
-.effect-card span, .pattern-card span {
+.effect-card span,
+.pattern-card span {
     font-size: 12px;
     margin-top: 6px;
 }
@@ -2207,7 +2225,11 @@ body, button, input, select, textarea {
 }
 
 /* src/css/visual-extras.css */
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
     font-family: var(--font-family, 'Inter', sans-serif);
 }
 
@@ -2233,7 +2255,7 @@ body, button, input, select, textarea {
 }
 
 /* Динамическое изменение цвета иконок и элементов в активных карточках тем/шрифтов через --accent-primary */
-.theme-card.active, 
+.theme-card.active,
 .font-card.active,
 .effect-card.active,
 .pattern-card.active {
@@ -2247,14 +2269,16 @@ body, button, input, select, textarea {
 }
 
 /* Сетки лейаута и эффектов */
-.effects-grid, .patterns-grid {
+.effects-grid,
+.patterns-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
     margin-bottom: 20px;
 }
 
-.effect-card, .pattern-card {
+.effect-card,
+.pattern-card {
     background: var(--bg-cards, #131420);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 8px;
@@ -2268,7 +2292,8 @@ body, button, input, select, textarea {
     transition: all 0.2s ease;
 }
 
-.effect-card span, .pattern-card span {
+.effect-card span,
+.pattern-card span {
     font-size: 12px;
     margin-top: 6px;
 }
@@ -2339,7 +2364,7 @@ body, button, input, select, textarea {
 
 .bg-pattern-grid {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 30px 30px;
 }
 
@@ -2402,8 +2427,13 @@ body, button, input, select, textarea {
 }
 
 @keyframes pulseFx {
-    0% { opacity: 0.2; }
-    100% { opacity: 0.6; }
+    0% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
 }
 
 /* СЛОИ ЖИВЫХ ЧАСТИЦ */
@@ -2489,48 +2519,131 @@ body, button, input, select, textarea {
 
 /* Траектории анимаций */
 @keyframes fallAndSway {
-    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
-    100% { transform: translateY(105vh) translateX(60px) rotate(360deg); opacity: 0; }
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(105vh) translateX(60px) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 @keyframes fallStraight {
-    0% { transform: translateY(0); opacity: 0; }
-    15% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { transform: translateY(105vh); opacity: 0; }
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(105vh);
+        opacity: 0;
+    }
 }
 
 @keyframes fallDiagonal {
-    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translate(-40vw, 105vh) rotate(-45deg); opacity: 0; }
+    0% {
+        transform: translate(0, 0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-40vw, 105vh) rotate(-45deg);
+        opacity: 0;
+    }
 }
 
 @keyframes riseUp {
-    0% { transform: translateY(105vh) translateX(0) scale(0.5); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(-20px) translateX(40px) scale(1.2); opacity: 0; }
+    0% {
+        transform: translateY(105vh) translateX(0) scale(0.5);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20px) translateX(40px) scale(1.2);
+        opacity: 0;
+    }
 }
 
 @keyframes riseBubble {
-    0% { transform: translateY(105vh) scale(0.8); opacity: 0; }
-    20% { opacity: 0.6; }
-    100% { transform: translateY(-30px) scale(1.3); opacity: 0; }
+    0% {
+        transform: translateY(105vh) scale(0.8);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1.3);
+        opacity: 0;
+    }
 }
 
 @keyframes floatRandom {
-    0% { transform: translate(0, 105vh); opacity: 0; }
-    30% { opacity: 0.8; transform: translate(30px, 60vh); }
-    70% { opacity: 0.8; transform: translate(-30px, 30vh); }
-    100% { transform: translate(10px, -20px); opacity: 0; }
+    0% {
+        transform: translate(0, 105vh);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.8;
+        transform: translate(30px, 60vh);
+    }
+
+    70% {
+        opacity: 0.8;
+        transform: translate(-30px, 30vh);
+    }
+
+    100% {
+        transform: translate(10px, -20px);
+        opacity: 0;
+    }
 }
 
 @keyframes glitterAnim {
-    0%, 100% { opacity: 0.2; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.4); }
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
 }
 
 /* ==========================================================================
@@ -2544,21 +2657,21 @@ body, button, input, select, textarea {
     --bg-card-hover: #171721;
     --border-color: rgba(255, 255, 255, 0.06);
     --border-color-hover: rgba(168, 85, 247, 0.4);
-    
+
     --accent-purple: #a855f7;
     --accent-purple-glow: rgba(168, 85, 247, 0.25);
     --accent-cyan: #22d3ee;
     --accent-green: #34d399;
     --accent-orange: #fb923c;
-    
+
     --text-main: #ffffff;
     --text-muted: #94a3b8;
     --text-dim: #64748b;
-    
+
     --sidebar-width: 240px;
     --right-panel-width: 320px;
     --header-height: 64px;
-    
+
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
@@ -2599,7 +2712,7 @@ ul {
     width: 100vw;
     height: 100vh;
     background: radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.05) 0%, transparent 40%);
     pointer-events: none;
     z-index: 0;
 }
@@ -2841,6 +2954,7 @@ ul {
     padding: 0 32px;
     background-color: rgba(11, 11, 15, 0.75);
     backdrop-filter: blur(12px);
+    padding: 10px;
 }
 
 .page-title {
@@ -2910,7 +3024,7 @@ ul {
    ========================================================================== */
 .profile-header-banner {
     background: linear-gradient(180deg, rgba(20, 20, 28, 0.8) 0%, rgba(15, 15, 20, 0.95) 100%),
-                radial-gradient(circle at top right, rgba(168, 85, 247, 0.15), transparent 50%);
+        radial-gradient(circle at top right, rgba(168, 85, 247, 0.15), transparent 50%);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 24px;
@@ -3061,10 +3175,21 @@ ul {
     font-weight: 800;
 }
 
-.stat-num.purple { color: var(--accent-purple); }
-.stat-num.cyan { color: var(--accent-cyan); }
-.stat-num.green { color: var(--accent-green); }
-.stat-num.orange { color: var(--accent-orange); }
+.stat-num.purple {
+    color: var(--accent-purple);
+}
+
+.stat-num.cyan {
+    color: var(--accent-cyan);
+}
+
+.stat-num.green {
+    color: var(--accent-green);
+}
+
+.stat-num.orange {
+    color: var(--accent-orange);
+}
 
 .stat-label {
     font-size: 11px;
@@ -3123,10 +3248,21 @@ ul {
     background-position: center;
 }
 
-.placeholder-starfield { background: linear-gradient(45deg, #1e1b4b, #312e81); }
-.placeholder-bg3 { background: linear-gradient(45deg, #381b1b, #7f1d1d); }
-.placeholder-alan2 { background: linear-gradient(45deg, #064e3b, #022c22); }
-.placeholder-elden { background: linear-gradient(45deg, #451a03, #78350f); }
+.placeholder-starfield {
+    background: linear-gradient(45deg, #1e1b4b, #312e81);
+}
+
+.placeholder-bg3 {
+    background: linear-gradient(45deg, #381b1b, #7f1d1d);
+}
+
+.placeholder-alan2 {
+    background: linear-gradient(45deg, #064e3b, #022c22);
+}
+
+.placeholder-elden {
+    background: linear-gradient(45deg, #451a03, #78350f);
+}
 
 .showcase-info {
     padding: 10px;
@@ -3462,5 +3598,315 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    min-height: max-content; /* Позволяет контенту свободно занимать нужную высоту */
+    min-height: max-content;
+    /* Позволяет контенту свободно занимать нужную высоту */
 }
+
+#dynamic-fx-layer {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    /* Убедитесь, что у основного контента сайта z-index выше (например, 1 или 2) */
+    overflow: hidden !important;
+}
+
+/* Элементы частиц будут подложка под текстом */
+.fx-particle {
+    position: absolute;
+    top: -20px;
+    z-index: 0 !important;
+    animation-name: fallParticles;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#dynamic-fx-layer {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 999 !important;
+    /* Временно ставим высокий z-index, чтобы проверить, появляются ли они поверх всего */
+    overflow: hidden !important;
+}
+
+.fx-particle {
+    position: absolute !important;
+    top: -50px !important;
+    animation-name: fallParticles !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+    opacity: 0.8 !important;
+}
+
+@keyframes fallParticles {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+    }
+}
+
+/* Яркие цвета для теста видимости */
+.particle-sakura {
+    background-color: #ff69b4 !important;
+    border-radius: 50% 0 50% 50%;
+}
+
+.particle-sparks {
+    background-color: #ff4500 !important;
+    box-shadow: 0 0 8px #ff4500;
+    border-radius: 50%;
+}
+
+.particle-matrix {
+    background-color: transparent !important;
+    color: #00ff00 !important;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.particle-bubbles {
+    background-color: rgba(0, 191, 255, 0.7) !important;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+
+.particle-meteors {
+    background: linear-gradient(to bottom, #ffffff, transparent) !important;
+    width: 3px !important;
+}
+
+.particle-fireflies {
+    background-color: #adff2f !important;
+    box-shadow: 0 0 10px #adff2f;
+    border-radius: 50%;
+}
+
+.particle-particles {
+    background-color: #ba55d3 !important;
+    border-radius: 30%;
+}
+
+.particle-glitter {
+    background-color: #ffd700 !important;
+    box-shadow: 0 0 8px #ffd700;
+}
+
+/* Красим все иконки в интерфейсе и меню, КРОМЕ логотипа бренда */
+.nav-icon,
+.purple-icon,
+.tab-icon,
+.icon-sort,
+.icon-gamepad,
+.visual-small-logo,
+.reset-icon,
+.sidebar-top img:not(.brand-logo img),
+.sidebar-bottom img {
+    filter: invert(36%) sepia(85%) saturate(1450%) hue-rotate(235deg) brightness(95%) contrast(98%) !important;
+}
+
+/* Иконки в активных или выбранных пунктах меню делаем контрастно-белыми */
+.nav-item.active img,
+.subnav-btn.active img,
+.theme-card.active img {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Переменные по умолчанию (NEXORA) */
+:root {
+    --accent-primary: #8b5cf6;
+    --accent-cyan: #06b6d4;
+    --bg-main: #0a0b10;
+    --bg-surface: #0e0f16;
+    --bg-cards: #131420;
+    --text-main: #ffffff;
+    --ui-radius: 8px;
+    --glow-intensity: 0.2;
+}
+
+/* Темы */
+html[data-theme="crimson"] {
+    --accent-primary: #e11d48;
+    --accent-cyan: #f43f5e;
+    --bg-main: #0f0a0c;
+    --bg-surface: #140e11;
+    --bg-cards: #1f1217;
+}
+
+html[data-theme="emerald"] {
+    --accent-primary: #10b981;
+    --accent-cyan: #06b6d4;
+    --bg-main: #0a0f0d;
+    --bg-surface: #0e1412;
+    --bg-cards: #121c19;
+}
+
+html[data-theme="gold"] {
+    --accent-primary: #eab308;
+    --accent-cyan: #f59e0b;
+    --bg-main: #0f0e0a;
+    --bg-surface: #14130e;
+    --bg-cards: #1c1a12;
+}
+
+html[data-theme="pink"] {
+    --accent-primary: #ec4899;
+    --accent-cyan: #f472b6;
+    --bg-main: #0f0a0e;
+    --bg-surface: #140e13;
+    --bg-cards: #1c1219;
+}
+
+html[data-theme="ocean"] {
+    --accent-primary: #0ea5e9;
+    --accent-cyan: #2563eb;
+    --bg-main: #0a0c10;
+    --bg-surface: #0e1117;
+    --bg-cards: #121722;
+}
+
+html[data-theme="midnight"] {
+    --accent-primary: #8b5cf6;
+    --accent-cyan: #6366f1;
+    --bg-main: #0a0910;
+    --bg-surface: #0f0d16;
+    --bg-cards: #151221;
+}
+
+html[data-theme="matrix"] {
+    --accent-primary: #22c55e;
+    --accent-cyan: #10b981;
+    --bg-main: #090f0b;
+    --bg-surface: #0d1410;
+    --bg-cards: #121c16;
+}
+
+/* Базовые цвета приложения через переменные */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-family, 'Inter', sans-serif);
+}
+
+.left-sidebar,
+.right-sidebar.visual-settings {
+    background-color: var(--bg-surface);
+}
+
+.theme-card,
+.preview-card-demo,
+.font-card,
+.pattern-card,
+.effect-card {
+    background-color: var(--bg-cards);
+    border-radius: var(--ui-radius);
+}
+
+/* Панель «Визуал» выездная */
+.right-sidebar.visual-settings {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 380px;
+    height: 100vh;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.right-sidebar.visual-settings.open {
+    right: 0;
+}
+
+/* Фоновые паттерны */
+.bg-pattern-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.bg-pattern-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+.bg-pattern-diagonal {
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 0, transparent 50px);
+}
+
+/* Слой частиц для эффектов */
+#dynamic-fx-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.fx-particle {
+    position: absolute;
+    background: var(--accent-primary);
+    opacity: var(--glow-intensity, 0.2);
+    animation: fallParticle linear infinite;
+}
+
+@keyframes fallParticle {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+    }
+}
+
+/* Выпадающее меню сортировки и языков */
+.sort-dropdown-menu.show,
+.lang-dropdown-menu.show {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* Сетка и список игр */
+.games-grid.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.games-grid.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.game-list-item, 
+.game-grid-card {
+    background: #131420;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+
+
+
+

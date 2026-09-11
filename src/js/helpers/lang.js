@@ -1,3 +1,181 @@
+// src/js/helpers/lang.js
+export function setLanguage(lang) {
+    if (!translations[lang]) return;
+    localStorage.setItem('nexora-lang', lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+
+    const codeEl = document.getElementById('current-lang-code');
+    const nameEl = document.getElementById('current-lang-name');
+    if (codeEl) codeEl.textContent = translations[lang].lang_code;
+    if (nameEl) nameEl.textContent = translations[lang].lang_name;
+
+    document.querySelectorAll('.lang-option').forEach(opt => {
+        if (opt.getAttribute('data-lang') === lang) {
+            opt.classList.add('active');
+        } else {
+            opt.classList.remove('active');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownBtn = document.getElementById('lang-dropdown-btn');
+    const dropdownMenu = document.getElementById('lang-dropdown-menu');
+
+    if (dropdownBtn && dropdownMenu) {
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownMenu.classList.remove('show');
+        });
+
+        dropdownMenu.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                setLanguage(lang);
+                dropdownMenu.classList.remove('show');
+            });
+        });
+    }
+
+    const savedLang = localStorage.getItem('nexora-lang') || 'ru';
+    setLanguage(savedLang);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const effectsGrid = document.getElementById('effectsGrid');
+    if (!effectsGrid) return;
+
+    // Создаем контейнер для частиц на фоне, если его еще нет
+    let fxLayer = document.getElementById('dynamic-fx-layer');
+    if (!fxLayer) {
+        fxLayer = document.createElement('div');
+        fxLayer.id = 'dynamic-fx-layer';
+        fxLayer.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:hidden;';
+        document.body.prepend(fxLayer);
+    }
+
+    const cards = effectsGrid.querySelectorAll('.effect-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            cards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const effectType = card.getAttribute('data-effect');
+            runParticles(effectType, fxLayer);
+        });
+    });
+});
+
+function runParticles(type, layer) {
+    layer.innerHTML = '';
+
+    if (type === 'none') return;
+
+    const count = 35;
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = `fx-particle particle-${type}`;
+
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = `-20px`;
+        
+        const duration = Math.random() * 3 + 3; // от 3 до 6 сек
+        const delay = Math.random() * 5;
+        const size = Math.random() * 6 + 4; // от 4 до 10px
+
+        p.style.animationDuration = `${duration}s`;
+        p.style.animationDelay = `${delay}s`;
+
+        if (type === 'matrix') {
+            const chars = '01ABCXYZアイウエオカキクケコ';
+            p.textContent = chars[Math.floor(Math.random() * chars.length)];
+            p.style.fontSize = `${size + 4}px`;
+        } else {
+            p.style.width = `${size}px`;
+            p.style.height = `${type === 'meteors' ? size * 4 : size}px`;
+        }
+
+        layer.appendChild(p);
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const effectsGrid = document.getElementById('effectsGrid');
+    if (!effectsGrid) return;
+
+    // Гарантированно создаем слой и вешаем его в самый верх body (чтобы был под всем контентом)
+    let fxLayer = document.getElementById('dynamic-fx-layer');
+    if (!fxLayer) {
+        fxLayer = document.createElement('div');
+        fxLayer.id = 'dynamic-fx-layer';
+        document.body.insertBefore(fxLayer, document.body.firstChild);
+    }
+
+    const cards = effectsGrid.querySelectorAll('.effect-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            cards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const effectType = card.getAttribute('data-effect');
+            runParticles(effectType, fxLayer);
+        });
+    });
+});
+
+function runParticles(type, layer) {
+    layer.innerHTML = '';
+
+    if (type === 'none') return;
+
+    const count = 40;
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = `fx-particle particle-${type}`;
+
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = `-50px`;
+        
+        const duration = Math.random() * 3 + 2; 
+        const delay = Math.random() * 4;
+        const size = Math.random() * 8 + 6; // Сделали элементы крупнее (от 6 до 14px)
+
+        p.style.animationDuration = `${duration}s`;
+        p.style.animationDelay = `${delay}s`;
+
+        if (type === 'matrix') {
+            const chars = '01ABCXYZアイウエオ';
+            p.textContent = chars[Math.floor(Math.random() * chars.length)];
+            p.style.fontSize = `${size + 6}px`;
+        } else {
+            p.style.width = `${size}px`;
+            p.style.height = `${type === 'meteors' ? size * 5 : size}px`;
+        }
+
+        layer.appendChild(p);
+    }
+}
+
+// src/js/helpers/lang.js
+
 const translations = {
     ru: {
         lang_code: "RU",
@@ -45,7 +223,41 @@ const translations = {
         cat_turn_based: "Пошаговые",
         stats_games: "Игры",
         stats_total_hours: "Всего часов",
-        stats_hours_val: "2.7k ч"
+        stats_hours_val: "2.7k ч",
+        sort_title: "Название",
+        main_title: "ГЛАВНАЯ",
+        chat_header: "ЧАТ",
+        group_my_hubs: "МОИ ХАБЫ",
+        group_zones: "ЗОНЫ",
+        zone_feed: "Лента",
+        zone_general: "Общий",
+        zone_drops: "Дропы",
+        zone_squad: "Сквад",
+        zone_help: "Помощь",
+        group_online: "ОНЛАЙН",
+        chat_input_placeholder: "#общий...",
+        page_profile: "ПРОФИЛЬ",
+        profile_playing: "🎮 Играет в Elden Ring",
+        profile_location: "📍 Украина • С 2018",
+        btn_edit: "Редактировать",
+        profile_bio: "Гейминг — это жизнь 🎮 Люблю RPG и Souls-like игры. Всегда ищу новые приключения в виртуальных мирах.",
+        stats_hours: "Часы",
+        stats_friends: "Друзья",
+        stats_achievements: "Достижения",
+        sec_showcase: "⭐ ВИТРИНА ИГР",
+        sec_recent: "🎮 НЕДАВНИЕ",
+        hours_minecraft: "500 ч",
+        hours_cs2: "300 ч",
+        hours_witcher: "200 ч",
+        hours_rdr2: "180 ч",
+        sec_achievements: "🏆 ДОСТИЖЕНИЯ",
+        ach_collector: "Коллекционер",
+        ach_addict: "Заядлый",
+        ach_critic: "Критик",
+        ach_sociable: "Общительный",
+        ach_veteran: "Ветеран",
+        ach_reliable: "Надёжный",
+        sec_friends: "👥 ДРУЗЬЯ"
     },
     en: {
         lang_code: "GB",
@@ -93,7 +305,41 @@ const translations = {
         cat_turn_based: "Turn-Based",
         stats_games: "Games",
         stats_total_hours: "Total Hours",
-        stats_hours_val: "2.7k h"
+        stats_hours_val: "2.7k h",
+        sort_title: "Title",
+        main_title: "HOME",
+        chat_header: "CHAT",
+        group_my_hubs: "MY HUBS",
+        group_zones: "ZONES",
+        zone_feed: "Feed",
+        zone_general: "General",
+        zone_drops: "Drops",
+        zone_squad: "Squad",
+        zone_help: "Help",
+        group_online: "ONLINE",
+        chat_input_placeholder: "#general...",
+        page_profile: "PROFILE",
+        profile_playing: "🎮 Playing Elden Ring",
+        profile_location: "📍 Ukraine • Since 2018",
+        btn_edit: "Edit",
+        profile_bio: "Gaming is life 🎮 I love RPG and Souls-like games. Always looking for new adventures in virtual worlds.",
+        stats_hours: "Hours",
+        stats_friends: "Friends",
+        stats_achievements: "Achievements",
+        sec_showcase: "⭐ GAME SHOWCASE",
+        sec_recent: "🎮 RECENT",
+        hours_minecraft: "500 h",
+        hours_cs2: "300 h",
+        hours_witcher: "200 h",
+        hours_rdr2: "180 h",
+        sec_achievements: "🏆 ACHIEVEMENTS",
+        ach_collector: "Collector",
+        ach_addict: "Hardcore",
+        ach_critic: "Critic",
+        ach_sociable: "Sociable",
+        ach_veteran: "Veteran",
+        ach_reliable: "Reliable",
+        sec_friends: "👥 FRIENDS"
     },
     ua: {
         lang_code: "UA",
@@ -115,7 +361,7 @@ const translations = {
         lib_all_games: "Усі ігри",
         lib_in_progress: "У процесі",
         lib_completed: "Завершені",
-        subnav_header_categories: "КАСТЕГОРІЇ",
+        subnav_header_categories: "КАТЕГОРІЇ",
         subnav_header_platform: "ПЛАТФОРМА",
         cat_adventure: "Пригоди",
         cat_building: "Будівництво",
@@ -129,7 +375,7 @@ const translations = {
         cat_narrative: "Сюжетні",
         cat_open_world: "Відкритий світ",
         cat_platformer: "Платформер",
-        cat_sandbox: "Песочница",
+        cat_sandbox: "Пісочниця",
         cat_shooter: "Шутер",
         cat_simulation: "Симулятор",
         cat_sports: "Спорт",
@@ -141,242 +387,186 @@ const translations = {
         cat_turn_based: "Покрокові",
         stats_games: "Ігри",
         stats_total_hours: "Усього годин",
-        stats_hours_val: "2.7k год"
+        stats_hours_val: "2.7k год",
+        sort_title: "Назва",
+        main_title: "ГОЛОВНА",
+        chat_header: "ЧАТ",
+        group_my_hubs: "МОЇ ХАБИ",
+        group_zones: "ЗОНИ",
+        zone_feed: "Лента",
+        zone_general: "Загальний",
+        zone_drops: "Дропи",
+        zone_squad: "Сквад",
+        zone_help: "Допомога",
+        group_online: "ОНЛАЙН",
+        chat_input_placeholder: "#загальний...",
+        page_profile: "ПРОФІЛЬ",
+        profile_playing: "🎮 Грає в Elden Ring",
+        profile_location: "📍 Україна • З 2018",
+        btn_edit: "Редагувати",
+        profile_bio: "Ґеймінг — це життя 🎮 Люблю RPG та Souls-like ігри. Завжди шукаю нові пригоди у віртуальних світах.",
+        stats_hours: "Години",
+        stats_friends: "Друзі",
+        stats_achievements: "Досягнення",
+        sec_showcase: "⭐ ВІТРИНА ІГОР",
+        sec_recent: "🎮 НЕЩОДАВНІ",
+        hours_minecraft: "500 год",
+        hours_cs2: "300 год",
+        hours_witcher: "200 год",
+        hours_rdr2: "180 год",
+        sec_achievements: "🏆 ДОСЯГНЕННЯ",
+        ach_collector: "Колекціонер",
+        ach_addict: "Запеклий",
+        ach_critic: "Критик",
+        ach_sociable: "Товариський",
+        ach_veteran: "Ветеран",
+        ach_reliable: "Надійний",
+        sec_friends: "👥 ДРУЗІ"
     }
 };
 
-function applyLanguage(lang) {
+export function setLanguage(lang) {
     if (!translations[lang]) return;
+    localStorage.setItem('nexora-lang', lang);
 
-    // Перевод текстов
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) el.textContent = translations[lang][key];
+        if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
     });
 
-    // Перевод плейсхолдеров
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
-        if (translations[lang][key]) el.placeholder = translations[lang][key];
+        if (translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
     });
 
-    // Обновление кнопки выборки
     const codeEl = document.getElementById('current-lang-code');
     const nameEl = document.getElementById('current-lang-name');
     if (codeEl) codeEl.textContent = translations[lang].lang_code;
     if (nameEl) nameEl.textContent = translations[lang].lang_name;
 
-    // Активный пункт списка
     document.querySelectorAll('.lang-option').forEach(opt => {
-        opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+        if (opt.getAttribute('data-lang') === lang) {
+            opt.classList.add('active');
+        } else {
+            opt.classList.remove('active');
+        }
     });
+}
 
-    localStorage.setItem('site_lang', lang);
+// Инициализация переключения языка
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownBtn = document.getElementById('lang-dropdown-btn');
+    const dropdownMenu = document.getElementById('lang-dropdown-menu');
+
+    if (dropdownBtn && dropdownMenu) {
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownMenu.classList.remove('show');
+        });
+
+        dropdownMenu.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                setLanguage(lang);
+                dropdownMenu.classList.remove('show');
+            });
+        });
+    }
+
+    const savedLang = localStorage.getItem('nexora-lang') || 'ru';
+    setLanguage(savedLang);
+});
+
+// Инициализация анимации частиц фона
+function runParticles(type, layer) {
+    layer.innerHTML = '';
+    if (type === 'none') return;
+
+    const count = 40;
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = `fx-particle particle-${type}`;
+
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = `-50px`;
+        
+        const duration = Math.random() * 3 + 2; 
+        const delay = Math.random() * 4;
+        const size = Math.random() * 8 + 6;
+
+        p.style.animationDuration = `${duration}s`;
+        p.style.animationDelay = `${delay}s`;
+
+        if (type === 'matrix') {
+            const chars = '01ABCXYZアイウエオ';
+            p.textContent = chars[Math.floor(Math.random() * chars.length)];
+            p.style.fontSize = `${size + 6}px`;
+        } else {
+            p.style.width = `${size}px`;
+            p.style.height = `${type === 'meteors' ? size * 5 : size}px`;
+        }
+
+        layer.appendChild(p);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('site_lang') || 'ru';
-    applyLanguage(savedLang);
+    const effectsGrid = document.getElementById('effectsGrid');
+    if (!effectsGrid) return;
 
-    // Выпадающий список перевода
-    const btn = document.getElementById('lang-dropdown-btn');
-    const menu = document.getElementById('lang-dropdown-menu');
-
-    btn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.classList.toggle('show');
-    });
-
-    document.querySelectorAll('.lang-option').forEach(option => {
-        option.addEventListener('click', () => {
-            const selectedLang = option.getAttribute('data-lang');
-            applyLanguage(selectedLang);
-            menu.classList.remove('show');
-        });
-    });
-
-    document.addEventListener('click', (e) => {
-        if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-            menu.classList.remove('show');
-        }
-    });
-
-    // Сворачивание списков (Аккордеон)
-    const toggleButtons = document.querySelectorAll('.subnav-header.toggle-btn');
-    toggleButtons.forEach(header => {
-        header.addEventListener('click', () => {
-            const group = header.closest('.collapsible');
-            group.classList.toggle('open');
-        });
-    });
-
-    // Подсветка кликнутых категорий и платформ
-    const allSubnavBtns = document.querySelectorAll('.subnav-btn');
-    allSubnavBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            allSubnavBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        });
-    });
-});
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const btnList = document.getElementById('viewList');
-    const btnGrid = document.getElementById('viewGrid');
-
-    if (btnList && btnGrid) {
-        btnList.addEventListener('click', () => {
-            btnList.classList.add('active');
-            btnGrid.classList.remove('active');
-        });
-
-        btnGrid.addEventListener('click', () => {
-            btnGrid.classList.add('active');
-            btnList.classList.remove('active');
-        });
+    let fxLayer = document.getElementById('dynamic-fx-layer');
+    if (!fxLayer) {
+        fxLayer = document.createElement('div');
+        fxLayer.id = 'dynamic-fx-layer';
+        document.body.insertBefore(fxLayer, document.body.firstChild);
     }
+
+    const cards = effectsGrid.querySelectorAll('.effect-card');
+    
+    const savedEffect = localStorage.getItem('nexora-effect') || 'none';
+    if (savedEffect !== 'none') {
+        runParticles(savedEffect, fxLayer);
+    }
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            cards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const effectType = card.getAttribute('data-effect');
+            runParticles(effectType, fxLayer);
+            localStorage.setItem('nexora-effect', effectType);
+        });
+    });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const wrapper = document.querySelector('.sort-dropdown-wrapper');
-    const btn = document.getElementById('sortDropdownBtn');
-    const menu = document.getElementById('sortDropdownMenu');
-    const titleSpan = document.getElementById('currentSortTitle');
-    const options = menu.querySelectorAll('.sort-option');
-
-    if (wrapper && btn) {
-        // Открытие / закрытие по клику на кнопку
-        btn.addEventListener('click', (e) => {
+// Выпадающее меню сортировки
+    if (sortBtn && sortMenu) {
+        sortBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            wrapper.classList.toggle('open');
+            sortMenu.classList.toggle('show');
         });
 
-        // Выбор элемента
-        options.forEach(option => {
-            option.addEventListener('click', () => {
-                options.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                
-                titleSpan.textContent = option.textContent;
-                wrapper.classList.remove('open');
-            });
-        });
-
-        // Закрытие при клике в любую другую область экрана
-        document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-                wrapper.classList.remove('open');
-            }
-        });
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const appearanceBtn = document.getElementById('appearanceBtn');
-    const themePanel = document.getElementById('themePanel');
-    const closeThemePanel = document.getElementById('closeThemePanel');
-    const themeCards = document.querySelectorAll('.theme-card');
-    const resetThemeBtn = document.getElementById('resetThemeBtn');
-
-    // 1. Загрузка сохраненной темы
-    const savedTheme = localStorage.getItem('nexora-theme') || 'nexora';
-    applyTheme(savedTheme);
-
-    // 2. Открытие / Закрытие панели
-    if (appearanceBtn) {
-        appearanceBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            themePanel.classList.add('open');
+        document.addEventListener('click', () => {
+            sortMenu.classList.remove('show');
         });
     }
 
-    if (closeThemePanel) {
-        closeThemePanel.addEventListener('click', () => {
-            themePanel.classList.remove('open');
+    if (dropdownBtn && dropdownMenu) {
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownMenu.classList.remove('show');
         });
     }
-
-    // 3. Выбор темы
-    themeCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const themeName = card.getAttribute('data-theme');
-            applyTheme(themeName);
-        });
-    });
-
-    // 4. Сброс темы
-    if (resetThemeBtn) {
-        resetThemeBtn.addEventListener('click', () => {
-            applyTheme('nexora');
-        });
-    }
-
-    // Функция применения темы
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('nexora-theme', theme);
-
-        themeCards.forEach(card => {
-            if (card.getAttribute('data-theme') === theme) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-        });
-    }
-});
-
-visualSidebar.classList.toggle('active'); // или classList.remove('open')
-
-document.addEventListener('DOMContentLoaded', () => {
-    const themeCards = document.querySelectorAll('.theme-card');
-    const htmlElement = document.documentElement;
-    const resetBtn = document.querySelector('.reset-btn');
-
-    // Функция применения темы
-    const applyTheme = (themeName) => {
-        if (themeName === 'nexora') {
-            htmlElement.removeAttribute('data-theme');
-        } else {
-            htmlElement.setAttribute('data-theme', themeName);
-        }
-
-        // Обновляем активный класс у карточек тем
-        themeCards.forEach(card => {
-            if (card.getAttribute('data-theme') === themeName) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-        });
-    };
-
-    // 1. Проверяем сохраненную тему при загрузке страницы
-    const savedTheme = localStorage.getItem('nexora-theme');
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    }
-
-    // 2. Слушаем клики по карточкам тем
-    themeCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const themeName = card.getAttribute('data-theme');
-            if (!themeName) return;
-
-            applyTheme(themeName);
-            localStorage.setItem('nexora-theme', themeName);
-        });
-    });
-
-    // 3. Обработка клика по кнопке сброса к Nexora
-    if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            applyTheme('nexora');
-            localStorage.removeItem('nexora-theme');
-        });
-    }
-});
-
