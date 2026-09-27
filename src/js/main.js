@@ -231,9 +231,11 @@ const sortList = document.querySelector("[data-sort]");
 
 const handleSortGames = (event) => {
   const target = event.target;
-  console.log(target);
   if (target.dataset.sortType === "name-arc") {
-    console.log("sort by name");
+    const sortedGames = [...actualGames].sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
+    renderGames(gamesContainer, sortedGames);
   }
 };
 
