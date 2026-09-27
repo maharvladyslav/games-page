@@ -155,6 +155,7 @@ const actualGames = load(STORAGE_KEY) || games;
 
 const gamesContainer = document.querySelector("[data-games]");
 const addGameBtn = document.querySelector("[data-controls='add']");
+const deleteGameBtn = document.querySelector("[data-controls='delete']");
 const resetBtn = document.querySelector("[data-controls='reset']");
 const goodGameBtn = document.querySelector("[data-controls='good-game']");
 const pcGameBtn = document.querySelector("[data-controls='pc-game']");
@@ -184,10 +185,13 @@ const handleAddGame = () => {
     alert("Треба заповнити поле");
   }
 };
+addGameBtn.addEventListener("click", handleAddGame);
 
 function handleRemoveGame() {
   const deletGame = prompt("Яку гру хочете видалити ?");
-  const indexDeletGame = actualGames.indexOf(deletGame);
+  const indexDeletGame = actualGames.findIndex(
+    (game) => game.name === deletGame,
+  );
   if (indexDeletGame === -1) {
     alert("Такої гри немає");
   } else {
@@ -197,7 +201,7 @@ function handleRemoveGame() {
   }
 }
 
-addGameBtn.addEventListener("click", handleAddGame);
+deleteGameBtn.addEventListener("click", handleRemoveGame);
 
 const handleResetGameList = () => {
   deleteAllGames(actualGames);
